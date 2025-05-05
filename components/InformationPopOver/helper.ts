@@ -1,0 +1,57 @@
+import { PixelRatio } from "react-native";
+import { TInformationPopOverPositionsStyles } from "./type";
+
+export const informationPopOverPositionStyles:TInformationPopOverPositionsStyles = {
+    LEFT:{
+        mainContainer:{
+            flexDirection:'row-reverse',
+        },
+        arrowContainer:{
+            top:0,
+            left:2/PixelRatio.get()
+        },
+        descriptionContainer:{
+            marginHorizontal:0,
+            marginVertical:2/PixelRatio.get()
+        }
+    },
+    RIGHT:{
+        mainContainer:{
+            flexDirection:'row',
+        },
+        arrowContainer:{
+            top:0,
+            left:2/PixelRatio.get()
+        },
+        descriptionContainer:{
+            marginHorizontal:0,
+            marginVertical:2/PixelRatio.get()
+        }
+    },
+    TOP:{
+        mainContainer:{
+            flexDirection:'column-reverse',
+        },
+        arrowContainer:{
+            top:2/PixelRatio.get(),
+            left:0
+        },
+        descriptionContainer:{
+            marginVertical:0,
+            marginHorizontal:2/PixelRatio.get(),
+        }
+    },
+    BOTTOM:{
+        mainContainer:{
+            flexDirection:'column',
+        },
+        arrowContainer:{
+            top:2/PixelRatio.get(),
+            left:0
+        },
+        descriptionContainer:{
+            marginVertical:0,
+            marginHorizontal:2/PixelRatio.get(),
+        }
+    }
+}

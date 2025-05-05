@@ -1,0 +1,45 @@
+import { PixelRatio, StyleSheet } from "react-native";
+
+export const AlertModalStyle = StyleSheet.create({
+    AlertModalContainerWrapper:{
+        position:"absolute",
+        top:0,
+        left:0,
+        right:0,
+        bottom:0,
+    },
+    AlertModalContainer:{
+        position:"absolute",
+        top:0,
+        left:0,
+        right:0,
+        bottom:0,
+        justifyContent:'center',
+        alignItems:"center",
+        backgroundColor:'#000000aa',
+    },
+    AlertModalInnerContainer:{
+        maxWidth:'75%',
+        backgroundColor:'white',
+        padding:24/PixelRatio.get(),
+    },
+    AlertModalTitleText:{
+        fontWeight:'600',
+        fontSize:48/PixelRatio.get()
+    },
+    AlertModalDescriptionContainer:{
+        marginVertical:12/PixelRatio.get()
+    },
+    AlertModalDescriptionText:{
+        fontSize:32/PixelRatio.get()
+    },
+    AlertModalTextButtonsContainer:{
+        alignItems:'center',
+        justifyContent:'flex-end',
+        flexDirection:'row',
+        flexWrap:'wrap',
+    },
+    AlertModalTextButtonsLeftButtonContainer:{
+        marginRight:12/PixelRatio.get()
+    }
+})
