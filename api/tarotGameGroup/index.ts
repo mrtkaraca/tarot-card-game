@@ -21,6 +21,7 @@ export const getTarotGameSettingsData = async(signal:AbortSignal):Promise<[TTaro
             },
             signal
         })
+        console.log(data.data,'gheh')
         return [data.data,null];
     }
     catch(err){

@@ -57,6 +57,7 @@ export const useTarotGameSettingsOnboardScreensContainerHook = ()=>{
 
     const fetchData = async(abortSignal:AbortSignal)=>{
         const [res,err] = await getTarotGameSettingsData(abortSignal);
+        console.log(res,'heh')
         if(res){
             compareTarotGameSettingsSelectedItemsWithTarotGameSettingsData(res)
             setTarotGameSettingsData(res)

@@ -10,7 +10,8 @@ export const TextButton = (props:TTextButtonProps)=>{
     const { 
         textButtonColor,
         textButtonOpacityColor,
-        textButtonTextLabel, 
+        textButtonTextLabel,
+        textButtonBorderRadius,
         disabled,
         handleOnPress,
         style,
@@ -38,6 +39,7 @@ export const TextButton = (props:TTextButtonProps)=>{
                         TextButtonStyle.TextButtonStyleInnerContainer,
                         {
                             backgroundColor:textButtonColor,
+                            borderRadius:textButtonBorderRadius
                         }
                     ]
                 }

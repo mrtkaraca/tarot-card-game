@@ -4,6 +4,7 @@ export type TTextButtonProps = {
     textButtonTextLabel?:string
     textButtonColor?:string
     textButtonOpacityColor?:string
+    textButtonBorderRadius?:number
     handleOnPress?:()=>void;
 } & TextProps
 

@@ -1,30 +1,43 @@
 import { 
-    SafeAreaView,
-    Text
+    Text,
+    View
 } from "react-native"
 import { router } from "expo-router"
 
 import { TextButton } from "@/components/TextButton"
+import { useHomeHook } from "./hook"
 
 const Home = ()=>{
 
-    const c = ()=>{
-   
-        router.navigate('/home/tarotGameSettings')
-    
-    }
+   const {
+    handleNavigateToTarotGameSettings
+   } = useHomeHook({
+
+   })
 
     return(
-        <SafeAreaView style={{flex:1,justifyContent:"center",alignItems:"center"}}>
-            <Text>(Home)</Text>
+        <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:'white'}}>
+            <Text>Tarot Card Game</Text>
+            <View
+                style={{
+                    flex:0.5,
+                    backgroundColor:'red'
+                }}
+            >
+
+            </View>
             <TextButton
                 numberOfLines={1}
-                textButtonTextLabel='git'
-                handleOnPress={c}
+                textButtonTextLabel='Start'
+                handleOnPress={handleNavigateToTarotGameSettings}
                 textButtonColor="purple"
                 textButtonOpacityColor='grey'
+                textButtonBorderRadius={9999}
+                style={{
+                    color:'white'
+                }}
             />
-        </SafeAreaView>
+        </View>
     )
 }
 
