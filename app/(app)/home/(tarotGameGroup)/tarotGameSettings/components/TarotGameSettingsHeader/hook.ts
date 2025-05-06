@@ -96,7 +96,7 @@ export const useTarotGameSettingsHeaderHook = (props:TTarotGameSettingsHeaderHoo
     const handleAlertModalRightButton = useCallback(()=>{
         selectRandomlyTarotGameSettingsSelectedItems();
         setAlertModalProps(null);
-        router.push('/tarotEvent/tarotGame')
+        router.push('/home/tarotGame')
     },[tarotGameSettingsData,tarotGameSettingsSelectedItems])
 
     const handleSkip = useCallback(()=>{
@@ -105,7 +105,7 @@ export const useTarotGameSettingsHeaderHook = (props:TTarotGameSettingsHeaderHoo
             tarotGameSettingsSelectedItems.tarotCursor && 
             tarotGameSettingsSelectedItems.tarotDeck
         ){
-            router.push('/tarotEvent/tarotGame')
+            router.push('/home/tarotGame')
         }
         else{
             const alertModalDescription = handleAlertModalDescription();

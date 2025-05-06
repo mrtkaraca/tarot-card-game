@@ -35,7 +35,7 @@ export const TarotGameSettingsOnboardScreen = memo((props:TTarotGameSettingsOnbo
                 style={[TarotGameSettingsOnboardScreenStyle.TarotGameSettingsOnboardScreenTitleContainer]}
             >
                 <Text style={TarotGameSettingsOnboardScreenStyle.TarotGameSettingsOnboardScreenTitleLabel}>{props.screenTitle}</Text>
-                <InformationPopoverButton
+                {/* <InformationPopoverButton
                     informationPopOverPosition="AUTO"
                 >
                     {(props.screenName === 'tarotDeck') && 
@@ -44,7 +44,7 @@ export const TarotGameSettingsOnboardScreen = memo((props:TTarotGameSettingsOnbo
                     {(props.screenName === 'tarotBackground' || props.screenName === 'tarotCursor') &&
                         <TarotGameSettingsOnboardDefaultScreenInformationPopOverDescription/>
                     }
-                </InformationPopoverButton>
+                </InformationPopoverButton> */}
             </View>
             { props.children }
         </Animated.View>

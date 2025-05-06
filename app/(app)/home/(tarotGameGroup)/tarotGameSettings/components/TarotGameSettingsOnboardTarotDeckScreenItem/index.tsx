@@ -12,6 +12,7 @@ import { TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDots } fr
 import { useTarotGameSettingsOnboardTarotDeckScreenItemHook } from "./hook";
 import { TTarotGameSettingsOnboardTarotDeckScreenItemProps } from "./type";
 import { TarotGameSettingsOnboardScreenItemStyle } from "./style";
+import { Suspense } from "react";
 
 export const  TarotGameSettingsOnboardTarotDeckScreenItem = (props:TTarotGameSettingsOnboardTarotDeckScreenItemProps)=>{
 
@@ -65,63 +66,65 @@ export const  TarotGameSettingsOnboardTarotDeckScreenItem = (props:TTarotGameSet
     })
 
     return(
-        <Animated.View 
-            style={[
-                animStyle,TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemContainer
-            ]}
-        >
-            <GestureDetector gesture={exclusiveGesture}>
-                <View style={TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemInnerContainer}>
-                    <GestureDetector gesture={panGesture}>
-                        <Animated.View
-                            style={[translateAnim,TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemMultiImageContainer]}
-                        >
-                            <Image
-                                source={backFaceImageViewportSizeSource}
-                                allowDownscaling={false}
-                                placeholder={{blurhash:props.item.backFace.image.blurhash}}
-                                style={[TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemImage]}
-                                contentFit='cover'
-                                placeholderContentFit="cover"
-                                transition={{
-                                    duration:1000,
-                                    timing:'linear'
-                                }}
-                                cachePolicy={'disk'}
-                            />
-                            <Image
-                                source={randomFrontFaceImageViewportSizeSource}
-                                allowDownscaling={false}
-                                placeholder={{blurhash:props.item.randomFrontFace.image.blurhash}}
-                                style={[TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemImage]}
-                                contentFit='cover'
-                                placeholderContentFit="cover"
-                                transition={{
-                                    duration:1000,
-                                    timing:'linear'
-                                }}
-                                cachePolicy={'disk'}
-                            />
-                        </Animated.View>
-                    </GestureDetector>
-                    <TarotGameSettingsOnboardScreenSelectedItemIcon
-                        itemSelectedIconSize={itemSelectedIconSize}
-                        isSelected={isSelected}
-                    />
-                    <TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicator>
-                        <TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDots
-                            index={0}
-                            currentImageIndex={currentItem}
-                            pagingIndicatorSize={pagingIndicatorSize}
+        <Suspense>
+            <Animated.View 
+                style={[
+                    animStyle,TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemContainer
+                ]}
+            >
+                <GestureDetector gesture={exclusiveGesture}>
+                    <View style={TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemInnerContainer}>
+                        <GestureDetector gesture={panGesture}>
+                            <Animated.View
+                                style={[translateAnim,TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemMultiImageContainer]}
+                            >
+                                <Image
+                                    source={backFaceImageViewportSizeSource}
+                                    allowDownscaling={false}
+                                    placeholder={{blurhash:props.item.backFace.image.blurhash}}
+                                    style={[TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemImage]}
+                                    contentFit='cover'
+                                    placeholderContentFit="cover"
+                                    transition={{
+                                        duration:1000,
+                                        timing:'linear'
+                                    }}
+                                    cachePolicy={'disk'}
+                                />
+                                <Image
+                                    source={randomFrontFaceImageViewportSizeSource}
+                                    allowDownscaling={false}
+                                    placeholder={{blurhash:props.item.randomFrontFace.image.blurhash}}
+                                    style={[TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemImage]}
+                                    contentFit='cover'
+                                    placeholderContentFit="cover"
+                                    transition={{
+                                        duration:1000,
+                                        timing:'linear'
+                                    }}
+                                    cachePolicy={'disk'}
+                                />
+                            </Animated.View>
+                        </GestureDetector>
+                        <TarotGameSettingsOnboardScreenSelectedItemIcon
+                            itemSelectedIconSize={itemSelectedIconSize}
+                            isSelected={isSelected}
                         />
-                        <TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDots
-                            index={1}
-                            currentImageIndex={currentItem}
-                            pagingIndicatorSize={pagingIndicatorSize}
-                        />
-                    </TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicator>
-                </View>
-            </GestureDetector>
-        </Animated.View>
+                        <TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicator>
+                            <TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDots
+                                index={0}
+                                currentImageIndex={currentItem}
+                                pagingIndicatorSize={pagingIndicatorSize}
+                            />
+                            <TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDots
+                                index={1}
+                                currentImageIndex={currentItem}
+                                pagingIndicatorSize={pagingIndicatorSize}
+                            />
+                        </TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicator>
+                    </View>
+                </GestureDetector>
+            </Animated.View>
+        </Suspense>
     )
 }

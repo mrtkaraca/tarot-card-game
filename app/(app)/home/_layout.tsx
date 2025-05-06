@@ -6,7 +6,8 @@ const StackLayout = () => {
   return (
     <Stack
          screenOptions={{
-            headerShown:false
+            headerShown:false,
+            animation:'fade'
         }
     }>
         <Stack.Screen name="index"/>

@@ -39,17 +39,14 @@ export const TarotGameSettingsOnboardTarotDeckScreenItemContainer = memo((props:
             >
                 {props.data.map((item,index)=>{
                     return (
-                        <Suspense
-                            key={index}  
-                        >
-                            <TarotGameSettingsOnboardTarotDeckScreenItem    
-                                item={item}
-                                itemSize={itemSize}
-                                itemImageViewportSizes={itemImageViewportSizes}
-                                itemSizePercent={itemSizePercent}
-                                screenName={props.screenName}
-                            />
-                        </Suspense>
+                        <TarotGameSettingsOnboardTarotDeckScreenItem
+                            key={index}
+                            item={item}
+                            itemSize={itemSize}
+                            itemImageViewportSizes={itemImageViewportSizes}
+                            itemSizePercent={itemSizePercent}
+                            screenName={props.screenName}
+                        />
                     )
                 })}
             </ScrollView>

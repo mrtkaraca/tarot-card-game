@@ -10,7 +10,7 @@ const Home = ()=>{
 
     const c = ()=>{
    
-        router.navigate('/tarotEvent/tarotGameSettings')
+        router.navigate('/home/tarotGameSettings')
     
     }
 
@@ -21,7 +21,7 @@ const Home = ()=>{
                 numberOfLines={1}
                 textButtonTextLabel='git'
                 handleOnPress={c}
-                textButtonColor='red'
+                textButtonColor="purple"
                 textButtonOpacityColor='grey'
             />
         </SafeAreaView>

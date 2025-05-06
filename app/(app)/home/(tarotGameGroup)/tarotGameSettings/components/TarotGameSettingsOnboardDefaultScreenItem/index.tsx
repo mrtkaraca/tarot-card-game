@@ -13,6 +13,7 @@ import { TarotGameSettingsOnboardScreenSelectedItemIcon } from "../TarotGameSett
 import { useTarotGameSettingsOnboardDefaultScreenItemHook } from "./hook";
 import { TarotGameSettingsOnboardScreenItemStyle } from "./style";
 import { TTarotGameSettingsOnboardDefaultScreenItemProps } from "./type";
+import { Suspense } from "react";
 
 
 export const  TarotGameSettingsOnboardDefaultScreenItem = (props:TTarotGameSettingsOnboardDefaultScreenItemProps)=>{
@@ -54,20 +55,27 @@ export const  TarotGameSettingsOnboardDefaultScreenItem = (props:TTarotGameSetti
         >   
             <GestureDetector gesture={exclusiveGesture}>
                 <View style={TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemInnerContainer}>
-                    <Image
-                        source={itemImageViewportSizeSource}
-                        allowDownscaling={false}
-                        placeholder={{
-                            blurhash:props.item.image.blurhash
-                        }}
-                        style={TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemImage}
-                        contentFit='cover'
-                        transition={{
-                            duration:1000,
-                            timing:'linear'
-                        }}
-                        cachePolicy={'disk'}
-                    />
+                    <Suspense
+                        fallback={
+                            <Image
+                                placeholder={{
+                                    blurhash:props.item.image.blurhash
+                                }}
+                            />
+                        }
+                    >
+                        <Image
+                            source={itemImageViewportSizeSource}
+                            allowDownscaling={false}
+                            style={TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemImage}
+                            contentFit='cover'
+                            transition={{
+                                duration:1000,
+                                timing:'linear'
+                            }}
+                            cachePolicy={'disk'}
+                        />
+                    </Suspense>
                     <TarotGameSettingsOnboardScreenSelectedItemIcon
                         isSelected={isSelected}
                         itemSelectedIconSize={itemSelectedIconSize}

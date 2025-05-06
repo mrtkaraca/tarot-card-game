@@ -1,11 +1,11 @@
 import { PixelRatio } from "react-native"
 import Animated from "react-native-reanimated"
 
-import { Portal } from "components/Portal"
-import { IconButton } from "components/IconButton"
-import { InformationPopOver } from "components/InformationPopOver"
+import { Portal } from "@/components/Portal"
+import { IconButton } from "@/components/IconButton"
+import { InformationPopOver } from "@/components/InformationPopOver"
 
-import { InformationPopOverButtonIcon } from "constants/icon"
+import { InformationPopOverButtonIcon } from "@/constants/icon"
 
 import { TInformationPopoverButtonProps } from "./type"
 import { useInformationPopoverButtonHook } from "./hook"

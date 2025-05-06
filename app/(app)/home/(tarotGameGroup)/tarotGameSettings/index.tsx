@@ -1,4 +1,8 @@
-import { Fragment } from "react";
+import { 
+    Fragment, 
+    Suspense 
+} from "react";
+import { View } from "react-native";
 
 import { TarotGameSettingsBackground } from "./components/TarotGameSettingsBackground";
 import { TarotGameSettingsHeader } from "./components/TarotGameSettingsHeader";

@@ -4,7 +4,7 @@ import {
     Text 
 } from "react-native"
 
-import { TextButton } from "components/TextButton"
+import { TextButton } from "@/components/TextButton"
 
 import { TErrorViewProps } from "./type"
 import { ErrorViewStyle } from "./style"

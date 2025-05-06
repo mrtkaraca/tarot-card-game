@@ -1,7 +1,9 @@
-import { Slot } from "expo-router"
+import { Slot, Stack } from "expo-router"
 
-const AppLayout = ()=>{
-    return <Slot/>
+const StackLayout = ()=>{
+    return (
+        <Slot/>
+    )
 }
 
-export default AppLayout
+export default StackLayout

@@ -36,7 +36,7 @@ export const useTarotGameSettingsFooterHook = (props:TTarotGameSettingsFooterHoo
     },[])
 
     const handleNavigateToTarotGame = ()=>{
-        router.navigate('/tarotEvent/tarotGame')
+        router.navigate('/home/tarotGame')
     }
 
     useAnimatedReaction(

@@ -22,9 +22,9 @@ import {
     vec 
 } from "@shopify/react-native-skia";
 
-import { workletClamp } from "components/helper";
+import { workletClamp } from "@/components/helper";
 
-import { useDimensionSize } from "constants/hook";
+import { useDimensionSize } from "@/constants/hook";
 
 import { informationPopOverPositionStyles } from "./helper";
 import { 

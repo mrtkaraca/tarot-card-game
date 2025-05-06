@@ -14,17 +14,14 @@ import { ErrorView } from "@/components/ErrorView";
 
 import { TarotGameSettingsOnboardScreen } from "../TarotGameSettingsOnboardScreen";
 import { TarotGameSettingsFooter } from "../TarotGameSettingsFooter";
-import { TarotGameSettingsOnboardTarotDeckScreenItemContainer } from "../TarotGameSettingsOnboardTarotDeckScreenItemContainer";
-import { TarotGameSettingsOnboardDefaultScreenItemContainer } from "../TarotGameSettingsOnboardDefaultScreenItemContainer";
 
 import { onboardScreensData } from "./helper";
 import { useTarotGameSettingsOnboardScreensContainerHook } from "./hook";
 import { TarotGameSettingsOnboardScreensContainerStyle } from "./style";
 import { TTarotGameSettingsOnboardScreensContainerProps } from "./type";
+import { TarotGameSettingsOnboardTarotDeckScreenItemContainer } from "../TarotGameSettingsOnboardTarotDeckScreenItemContainer";
+import {TarotGameSettingsOnboardDefaultScreenItemContainer} from "../TarotGameSettingsOnboardDefaultScreenItemContainer";
 
-
-const LazyTarotGameSettingsOnboardTarotDeckScreenItemContainer = lazy(()=>import('../TarotGameSettingsOnboardTarotDeckScreenItemContainer').then((module)=>({default:module.TarotGameSettingsOnboardTarotDeckScreenItemContainer})))
-const LazyTarotGameSettingsOnboardDefaultScreenItemContainer = lazy(()=>import('../TarotGameSettingsOnboardDefaultScreenItemContainer').then((module)=>({default:module.TarotGameSettingsOnboardDefaultScreenItemContainer})))
 
 export const TarotGameSettingsOnboardScreensContainer = (props:TTarotGameSettingsOnboardScreensContainerProps)=>{
 
@@ -77,22 +74,21 @@ export const TarotGameSettingsOnboardScreensContainer = (props:TTarotGameSetting
                                 onboardScreenDimensions={onboardScreenDimensions}
                                 onboardScreensPagination={props.onboardScreensPagination}
                             >   
-                                <Suspense>
-                                    {screen.name === 'tarotDeck' && 
-                                        <TarotGameSettingsOnboardTarotDeckScreenItemContainer
-                                            screenName={screen.name}
-                                            data={tarotGameSettingsData[screen.name]!}
-                                            onboardScreenDimensions={onboardScreenDimensions}
-                                        />
-                                    }
-                                    {(screen.name === 'tarotBackground' || screen.name === 'tarotCursor')  && 
-                                        <TarotGameSettingsOnboardDefaultScreenItemContainer
-                                            screenName={screen.name}
-                                            data={tarotGameSettingsData[screen.name]!}
-                                            onboardScreenDimensions={onboardScreenDimensions}
-                                        />
-                                    }
-                                </Suspense>
+                                {screen.name === 'tarotDeck' && 
+                                    <TarotGameSettingsOnboardTarotDeckScreenItemContainer
+                                        screenName={screen.name}
+                                        data={tarotGameSettingsData[screen.name]!}
+                                        onboardScreenDimensions={onboardScreenDimensions}
+                                    />
+                                }
+                                {(screen.name === 'tarotBackground' || screen.name === 'tarotCursor')  && 
+                                    <TarotGameSettingsOnboardDefaultScreenItemContainer
+                                        screenName={screen.name}
+                                        data={tarotGameSettingsData[screen.name]!}
+                                        onboardScreenDimensions={onboardScreenDimensions}
+                                    />
+                                }
+
                             </TarotGameSettingsOnboardScreen>
                         )})
                     }

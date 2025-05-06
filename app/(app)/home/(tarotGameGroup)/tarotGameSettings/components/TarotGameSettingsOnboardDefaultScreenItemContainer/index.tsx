@@ -12,6 +12,7 @@ import { TarotGameSettingsOnboardScreenItemContainerStyle } from "./style";
 
 export default undefined
 
+const LazyTarotGameSettingsOnboardDefaultScreenItem= lazy(()=>import('../TarotGameSettingsOnboardDefaultScreenItem').then((module)=>({default:module.TarotGameSettingsOnboardDefaultScreenItem})))
 export const  TarotGameSettingsOnboardDefaultScreenItemContainer = memo((props:TTarotGameSettingsOnboardDefaultScreenItemContainerProps)=>{
 
     const {
@@ -49,7 +50,7 @@ export const  TarotGameSettingsOnboardDefaultScreenItemContainer = memo((props:T
                             itemSize={itemSize}
                             itemSizePercent={itemSizePercent}
                             screenName={props.screenName}
-                        />           
+                        />             
                     )
                 })}
             </ScrollView>
