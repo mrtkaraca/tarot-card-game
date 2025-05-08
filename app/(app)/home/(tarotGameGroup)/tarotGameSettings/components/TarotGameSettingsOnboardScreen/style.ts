@@ -1,17 +1,22 @@
 import { PixelRatio, StyleSheet } from "react-native"
 
+import { TarotGameSettingsSize } from "@/constants/size"
+
 export const TarotGameSettingsOnboardScreenStyle = StyleSheet.create({
     TarotGameSettingsOnboardScreenContainer:{
         position:'absolute',
     },
-    TarotGameSettingsOnboardScreenTitleContainer:{
+    TarotGameSettingsOnboardScreenHeaderContainer:{
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems:'center',
         paddingVertical:24/PixelRatio.get()
     },
+    TarotGameSettingsOnboardScreenTitleContainer:{
+        flexShrink:1,
+    },
     TarotGameSettingsOnboardScreenTitleLabel:{
-        fontSize:16/PixelRatio.getFontScale(),
+        fontSize:TarotGameSettingsSize.tarotGameSettingsOnboardScreen.title,
         fontWeight:'500'
     }
 })

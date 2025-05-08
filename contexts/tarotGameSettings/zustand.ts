@@ -29,22 +29,16 @@ export const createTarotGameSettingsStore = (store:MMKV,key:string) =>{
     }
 
     return create<TTarotGameSettingsStore>()(
-        persist(
-            (set,get)=>({
-                tarotGameSettingsData:null,
-                tarotGameSettingsItemModal:{
-                    modalVisibility:false,
-                    screenName:null,
-                    item:null
-                },
-                setTarotGameSettingsData:(props)=>set(()=>({tarotGameSettingsData:props ? {...props} : props})),
-                setTarotGameSettingsItemModal:(props)=>set((state)=>({tarotGameSettingsItemModal:{...state.tarotGameSettingsItemModal,...props}})),
-            }),
-            {
-                name:TarotGameSettingsPersistStorageConfig.key,
-                storage:createJSONStorage(()=>TarotGameSettingsPersistStorageConfig.tarotGameSettingsZustandPersistStorage),
-            }
-        )
+        (set,get)=>({
+            tarotGameSettingsData:null,
+            tarotGameSettingsItemModal:{
+                modalVisibility:false,
+                screenName:null,
+                item:null
+            },
+            setTarotGameSettingsData:(props)=>set(()=>({tarotGameSettingsData:props ? {...props} : props})),
+            setTarotGameSettingsItemModal:(props)=>set((state)=>({tarotGameSettingsItemModal:{...state.tarotGameSettingsItemModal,...props}})),
+        })
     )
 }
 

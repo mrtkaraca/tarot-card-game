@@ -5,6 +5,7 @@ const StackLayout = () => {
 
   return (
     <Stack
+      initialRouteName="index"
          screenOptions={{
             headerShown:false,
             animation:'fade'

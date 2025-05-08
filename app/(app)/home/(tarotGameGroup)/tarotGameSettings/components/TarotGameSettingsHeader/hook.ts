@@ -1,5 +1,6 @@
 import { 
     useCallback, 
+    useEffect, 
     useLayoutEffect 
 } from "react";
 import { 
@@ -19,12 +20,16 @@ import { useAlertModalContext } from "@/contexts/alertModal";
 import { useTarotGameSettingsStore } from "@/contexts/tarotGameSettings";
 import { useTarotGameGroupStore } from "@/contexts/tarotGameGroup";
 
-import { TTarotGameSettingsScreens } from "../../type";
+import { TTarotGameSettingsScreens } from "../type";
 import { tarotGameSettingsAlertModalDescription } from "./helper";
 import { TTarotGameSettingsHeaderHookProps } from "./type";
+import { useTranslation } from "react-i18next";
 
 
 export const useTarotGameSettingsHeaderHook = (props:TTarotGameSettingsHeaderHookProps) =>{
+     const {
+        t
+    } = useTranslation()
 
     const { setAlertModalProps } = useAlertModalContext();
 
@@ -32,8 +37,6 @@ export const useTarotGameSettingsHeaderHook = (props:TTarotGameSettingsHeaderHoo
     const tarotGameSettingsSelectedItems = useTarotGameGroupStore((state)=>state.tarotGameSettingsSelectedItems)
     const isTarotGameSettingsDataReady = useTarotGameSettingsStore((state)=>state.tarotGameSettingsData ? true : false)
     const setTarotGameSettingsSelectedItems = useTarotGameGroupStore((state)=>state.setTarotGameSettingsSelectedItems)
-
-    const { resetAndNavigate } = useCustomRoute()
 
     const leftSideRef = useAnimatedRef();
     const rightSideRef = useAnimatedRef();
@@ -58,10 +61,10 @@ export const useTarotGameSettingsHeaderHook = (props:TTarotGameSettingsHeaderHoo
 
     const handleLeftButton = useCallback(()=>{
         if(router.canGoBack()){
-            router.back();
+            router.back()
         }
         else{
-            resetAndNavigate('tarotEvent')
+            router.replace('/home')
         }
     },[])
 
@@ -112,21 +115,21 @@ export const useTarotGameSettingsHeaderHook = (props:TTarotGameSettingsHeaderHoo
 
             setAlertModalProps({
                 isAlertModalVisible:true,
-                alertModalTitle:'Alert',
+                alertModalTitle:t('tarotGameSettings.tarotGameSettingsHeader.skipAlertModal.alertModalTitle'),
                 alertModalDescription:alertModalDescription,
                 leftButton:{
-                    textButtonTextLabel:'Cancel',
+                    textButtonTextLabel:t('tarotGameSettings.tarotGameSettingsHeader.skipAlertModal.leftButtonTextLabel'),
                     handleOnPress:handleAlertModalLeftButton,
                 },
                 rightButton:{
-                    textButtonTextLabel:'Continue',
+                    textButtonTextLabel:t('tarotGameSettings.tarotGameSettingsHeader.skipAlertModal.rightButtonTextLabel'),
                     handleOnPress:handleAlertModalRightButton
                 }
             })
         }
     },[tarotGameSettingsSelectedItems,tarotGameSettingsData])
 
-    useLayoutEffect(()=>{
+    const handleOnLayout = useCallback(()=>{
         runOnUI(()=>{
             const leftSideMes = measure(leftSideRef)
             const rightSideMes = measure(rightSideRef)
@@ -148,8 +151,8 @@ export const useTarotGameSettingsHeaderHook = (props:TTarotGameSettingsHeaderHoo
                 }
             }
         })()
-        
     },[])
+
 
     useAnimatedReaction(
         ()=>[leftSideDim.value,rightSideDim.value],
@@ -174,13 +177,15 @@ export const useTarotGameSettingsHeaderHook = (props:TTarotGameSettingsHeaderHoo
     )
 
     return {
+        t,
         leftSideRef,
         rightSideRef,
         isTarotGameSettingsDataReady,
         leftSideAnimStyle,
         rightSideAnimStyle,
         handleLeftButton,
-        handleSkip
+        handleSkip,
+        handleOnLayout
     }
 
 }

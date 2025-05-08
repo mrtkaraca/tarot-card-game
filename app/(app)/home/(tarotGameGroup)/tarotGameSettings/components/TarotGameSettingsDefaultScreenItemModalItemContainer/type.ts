@@ -1,4 +1,4 @@
-import { TTarotGameSettingsScreens, TTarotGameSettingsScreensDefaultData } from "../../type"
+import { TTarotGameSettingsScreens, TTarotGameSettingsScreensDefaultData } from "../type"
 
 export type TTarotGameSettingsDefaultScreenItemModalItemContainerProps = {
     data: TTarotGameSettingsScreensDefaultData

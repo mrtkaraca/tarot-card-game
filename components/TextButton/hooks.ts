@@ -7,37 +7,27 @@ import { useLayoutEffect } from "react";
 
 export const useTextButtonHook = (props:TTextButtonHookProps)=>{
 
-    const buttonContainerRef = useAnimatedRef();
+    const isButtonActive = useSharedValue(false)
 
-    const buttonOpacity = useSharedValue(0);
-    const buttonScale = useSharedValue(1);
-    const textButtonDimensions = useSharedValue<{
-        width:number,
-        height:number
-    } | null>(null);
-
- 
-    const textButtonAnimStyle = useAnimatedStyle(()=>({
-        borderRadius:textButtonDimensions.value ? textButtonDimensions.value.height/10 : undefined,
-    }))
     const buttonOpacityStyle = useAnimatedStyle(()=>{
         return {
-            opacity:buttonOpacity.value
+            opacity:withTiming(
+                isButtonActive.value === true ? 1 : 0,
+                {
+                    duration:100
+                }
+            )
         }
     })
-
 
     const gesture = Gesture.Pan()
     .enabled(props.isButtonDisabled ? !props.isButtonDisabled : true)
     .shouldCancelWhenOutside(true)
     .onBegin(()=>{
-        buttonScale.value = withTiming(0.975,{duration:100})
-        buttonOpacity.value = withTiming(1,{duration:100})
+        isButtonActive.value = true
     })
     .onFinalize((e)=>{
-        buttonScale.value = withTiming(1,{duration:200})
-        buttonOpacity.value = withTiming(0,{duration:200})
-
+        isButtonActive.value = false
         if(e.state !== 3){
             if(props.handleOnPress){
                 runOnJS(props.handleOnPress)()
@@ -45,22 +35,8 @@ export const useTextButtonHook = (props:TTextButtonHookProps)=>{
         }
     })
 
-    useLayoutEffect(()=>{
-        if(buttonContainerRef.current){
-            const mes = measure(buttonContainerRef)
-            if(mes){
-                textButtonDimensions.value = {
-                    width:mes.width,
-                    height:mes.height
-                }
-            }
-        }
-    },[buttonContainerRef])
-  
     return {
         gesture,
-        buttonContainerRef,
-        buttonOpacityStyle,
-        textButtonAnimStyle,
+        buttonOpacityStyle
     }
 }

@@ -1,3 +1,4 @@
+import { RefObject } from "react"
 import { LayoutRectangle, ViewStyle } from "react-native"
 import { MeasuredDimensions } from "react-native-reanimated"
 
@@ -14,6 +15,7 @@ export type TInformationPopOverPositionsStyles = {
 
 export type TInformationPopOverProps = {
     children?:React.ReactNode;
+    ref:RefObject<TInformationPopOverRefProps | null>
     informationPopOverPosition?:TInformationPopOverPositions,
 }
 

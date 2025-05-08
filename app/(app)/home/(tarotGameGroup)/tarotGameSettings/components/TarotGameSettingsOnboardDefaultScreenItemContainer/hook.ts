@@ -25,21 +25,12 @@ export const useTarotGameSettingsOnboardScreenItemContainerHook = (props:TTarotG
             0
     })
 
-    const itemSizePercent = useDerivedValue(()=>{
-        return (itemSize.value && props.onboardScreenDimensions.value.width) ?
-            (itemSize.value/(props.onboardScreenDimensions.value.width)*100)
-            :
-            0
-    })
-
     const itemImageViewportSizes = imageSizeViewports[props.screenName]
-
 
     return{
         numberOfColumns,
         itemGap,
         itemSize,
-        itemSizePercent,
         itemImageViewportSizes,
     }
 }

@@ -3,15 +3,15 @@ import { TErrorApiResponseData, TErrorApiResponseObject } from "./type";
 const errorDataConfig:TErrorApiResponseData={
     networkError:[
         {
-            errorTitleMessage:'Internet yok!',
-            errorDescriptionMessage:'Internete bir an once baglan!'
+            errorTitleMessage:'No Connection!',
+            errorDescriptionMessage:'Reconnect to net!'
         }
     ],
     tarotGameSettings:[
         {
             errorCode:400,
             errorTitleMessage:"Hmm...",
-            errorDescriptionMessage:"Gorünüşe gore bazı boşlukları doldurmamışsın!"
+            errorDescriptionMessage:"Bad request to server!"
         }, 
         {
             errorCode:401,

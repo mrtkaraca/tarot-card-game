@@ -1,3 +1,4 @@
+import { TarotGameSettingsSize } from "@/constants/size"
 import { StyleSheet } from "react-native"
 
 export const TarotGameSettingsOnboardScreensContainerStyle = StyleSheet.create({
@@ -15,6 +16,6 @@ export const TarotGameSettingsOnboardScreensContainerStyle = StyleSheet.create({
         alignItems:'center',
     },
     TarotGameSettingsOnboardScreensContainerFallbackInnerContainerText:{
-        fontSize:16
+        fontSize:TarotGameSettingsSize.tarotGameSettingsOnboardScreenContainer.fallBackFontSize
     }
 })

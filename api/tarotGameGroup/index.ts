@@ -21,11 +21,9 @@ export const getTarotGameSettingsData = async(signal:AbortSignal):Promise<[TTaro
             },
             signal
         })
-        console.log(data.data,'gheh')
         return [data.data,null];
     }
     catch(err){
-
         const c = await NetInfo.fetch();
         if(!c.isConnected){
             return [null,errorResponseHandler('networkError')]

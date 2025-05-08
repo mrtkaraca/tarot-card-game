@@ -6,11 +6,16 @@ import { TTarotGameSettingsOnboardScreenItemContainerHookProps } from "./type"
 
 export const useTarotGameSettingsOnboardScreenItemContainerHook = (props:TTarotGameSettingsOnboardScreenItemContainerHookProps)=>{
 
+    const {
+        onboardScreenDimensions,
+        screenName
+    } = props
+
     const itemGap = Math.floor(4/PixelRatio.get())
 
     const numberOfColumns = useDerivedValue(()=>{
-        return (props.onboardScreenDimensions.value.heigth && props.onboardScreenDimensions.value.width) ?
-            props.onboardScreenDimensions.value.heigth > props.onboardScreenDimensions.value.width ? 
+        return (onboardScreenDimensions.value.heigth && onboardScreenDimensions.value.width) ?
+            onboardScreenDimensions.value.heigth > onboardScreenDimensions.value.width ? 
                 3
                 : 
                 5
@@ -19,27 +24,20 @@ export const useTarotGameSettingsOnboardScreenItemContainerHook = (props:TTarotG
     })
 
     const itemSize = useDerivedValue(()=>{
-        return (props.onboardScreenDimensions.value.heigth && props.onboardScreenDimensions.value.width) ? 
-            ((props.onboardScreenDimensions.value.width/numberOfColumns.value) - (itemGap*(numberOfColumns.value-1))/numberOfColumns.value)
+        return (onboardScreenDimensions.value.heigth && onboardScreenDimensions.value.width) ? 
+            ((onboardScreenDimensions.value.width/numberOfColumns.value) - (itemGap*(numberOfColumns.value-1))/numberOfColumns.value)
             :
             0
     })
 
-    const itemSizePercent = useDerivedValue(()=>{
-        return (itemSize.value && props.onboardScreenDimensions.value.width) ?
-            (itemSize.value/(props.onboardScreenDimensions.value.width)*100)
-            :
-            0
-    })
 
-    const itemImageViewportSizes = imageSizeViewports[props.screenName]
+    const itemImageViewportSizes = imageSizeViewports[screenName]
 
 
     return{
         numberOfColumns,
         itemGap,
         itemSize,
-        itemSizePercent,
         itemImageViewportSizes,
     }
 }

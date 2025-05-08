@@ -2,40 +2,56 @@ import {
     Text,
     View
 } from "react-native"
-import { router } from "expo-router"
+import { Image } from "expo-image"
+import { useTranslation } from "react-i18next"
 
 import { TextButton } from "@/components/TextButton"
+import { HomeIcons } from "@/constants/icon"
+
 import { useHomeHook } from "./hook"
+import { HomeStyle } from "./style"
+import { HomeColors } from "@/constants/color"
+import { HomeSizes } from "@/constants/size"
+
 
 const Home = ()=>{
 
-   const {
-    handleNavigateToTarotGameSettings
-   } = useHomeHook({
+    const{
+        handleNavigateToTarotGameSettings
+    } = useHomeHook({
 
-   })
+    })
 
+    const {
+        t
+    } = useTranslation()
+
+    
     return(
-        <View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:'white'}}>
-            <Text>Tarot Card Game</Text>
-            <View
-                style={{
-                    flex:0.5,
-                    backgroundColor:'red'
-                }}
+        <View style={HomeStyle.HomeContainer}>
+            <Text
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                style={HomeStyle.HomeTitle}
             >
-
+                {t('home.title')}
+            </Text>
+            <View
+                style={HomeStyle.HomeLogoContainer}
+            >
+                <Image
+                    source={HomeIcons.logo}
+                    contentFit="contain"
+                    style={HomeStyle.HomeLogo}
+                />
             </View>
             <TextButton
                 numberOfLines={1}
-                textButtonTextLabel='Start'
+                textButtonTextLabel={t('home.startTextButton')}
                 handleOnPress={handleNavigateToTarotGameSettings}
-                textButtonColor="purple"
-                textButtonOpacityColor='grey'
-                textButtonBorderRadius={9999}
-                style={{
-                    color:'white'
-                }}
+                textButtonOpacityColor={HomeColors.startTextButton.textButtonOpacityColor}
+                textButtonBorderRadius={HomeSizes.startTextButton.borderRadius}
+               
             />
         </View>
     )

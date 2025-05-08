@@ -1,4 +1,4 @@
-import { TTarotGameSettingsScreens, TTarotGameSettingsTarotDeckScreenData } from "../../type"
+import { TTarotGameSettingsScreens, TTarotGameSettingsTarotDeckScreenData } from "../type"
 
 export type TTarotGameSettingsTarotDeckScreenItemModalItemContainerProps = {
     data: TTarotGameSettingsTarotDeckScreenData 

@@ -5,8 +5,7 @@ import {
     TTarotGameSettingsScreens,
     TTarotGameSettingsScreensDefaultData,
     TTarotGameSettingsTarotDeckScreenData
-} from "@/app/(app)/home/(tarotGameGroup)/tarotGameSettings/type";
-
+} from "@/app/(app)/home/(tarotGameGroup)/tarotGameSettings/components/type";
 
 
 export type TTarotEventProviderProps = {
@@ -14,7 +13,7 @@ export type TTarotEventProviderProps = {
 }
 
 export type TTarotGameSettingsStore={
-    tarotGameSettingsData:TTarotGameSettingsData | null | undefined,
+    tarotGameSettingsData:TTarotGameSettingsData | null,
     tarotGameSettingsItemModal:({
         modalVisibility:true,
     } & ({

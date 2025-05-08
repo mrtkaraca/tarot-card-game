@@ -17,6 +17,13 @@ import { Suspense } from "react";
 export const  TarotGameSettingsOnboardTarotDeckScreenItem = (props:TTarotGameSettingsOnboardTarotDeckScreenItemProps)=>{
 
     const {
+        item,
+        itemImageViewportSizes,
+        itemSize,
+        screenName
+    } = props
+
+    const {
         animStyle,
         translateAnim,
         isSelected,
@@ -24,46 +31,16 @@ export const  TarotGameSettingsOnboardTarotDeckScreenItem = (props:TTarotGameSet
         itemSelectedIconSize,
         panGesture,
         currentItem,
-        pagingIndicatorSize
+        pagingIndicatorSize,
+        backFaceImageViewportSizeSource,
+        randomFrontFaceImageViewportSizeSource
     } = useTarotGameSettingsOnboardTarotDeckScreenItemHook({
-        item:props.item,
-        itemSize:props.itemSize,
-        itemSizePercent:props.itemSizePercent,
-        screenName:props.screenName,
+        item,
+        itemSize,
+        screenName,
+        itemImageViewportSizes
     });
     
-
-    const randomFrontFaceImageViewportSizeSource = props.itemImageViewportSizes.map((viewPorts)=>{
-        const uri = 
-            `${props.item.randomFrontFace.image.url.split(props.item.randomFrontFace.image.ext)[0]}` +
-            `-` + 
-            `${viewPorts.width}` + 
-            `x` +
-            `${viewPorts.height}` + 
-            `${props.item.randomFrontFace.image.ext}`
-        ;
-        return {
-            uri:uri,
-            width:viewPorts.width,
-            height:viewPorts.height
-        }
-    })
-
-    const backFaceImageViewportSizeSource = props.itemImageViewportSizes.map((viewPorts)=>{
-        const uri = 
-            `${props.item.backFace.image.url.split(props.item.backFace.image.ext)[0]}` +
-            `-` + 
-            `${viewPorts.width}` + 
-            `x` +
-            `${viewPorts.height}` + 
-            `${props.item.backFace.image.ext}`
-        ;
-        return {
-            uri:uri,
-            width:viewPorts.width,
-            height:viewPorts.height
-        }
-    })
 
     return(
         <Suspense>
@@ -81,7 +58,7 @@ export const  TarotGameSettingsOnboardTarotDeckScreenItem = (props:TTarotGameSet
                                 <Image
                                     source={backFaceImageViewportSizeSource}
                                     allowDownscaling={false}
-                                    placeholder={{blurhash:props.item.backFace.image.blurhash}}
+                                    placeholder={{blurhash:item.backFace.image.blurhash}}
                                     style={[TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemImage]}
                                     contentFit='cover'
                                     placeholderContentFit="cover"
@@ -94,7 +71,7 @@ export const  TarotGameSettingsOnboardTarotDeckScreenItem = (props:TTarotGameSet
                                 <Image
                                     source={randomFrontFaceImageViewportSizeSource}
                                     allowDownscaling={false}
-                                    placeholder={{blurhash:props.item.randomFrontFace.image.blurhash}}
+                                    placeholder={{blurhash:item.randomFrontFace.image.blurhash}}
                                     style={[TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemImage]}
                                     contentFit='cover'
                                     placeholderContentFit="cover"

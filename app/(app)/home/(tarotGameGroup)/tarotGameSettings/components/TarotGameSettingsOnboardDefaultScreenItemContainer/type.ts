@@ -1,5 +1,5 @@
 import { SharedValue } from "react-native-reanimated";
-import { TTarotGameSettingsDefaultData, TTarotGameSettingsScreens } from "../../type";
+import { TTarotGameSettingsDefaultData, TTarotGameSettingsScreens } from "../type";
 
 export type TTarotGameSettingsOnboardDefaultScreenItemContainerProps = {
     screenName:Exclude<TTarotGameSettingsScreens,'tarotDeck'>;

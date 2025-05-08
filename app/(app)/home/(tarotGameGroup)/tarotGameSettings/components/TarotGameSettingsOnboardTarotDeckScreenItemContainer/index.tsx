@@ -7,18 +7,20 @@ import { TTarotGameSettingsOnboarTarotDeckScreenItemContainerProps } from "./typ
 import { useTarotGameSettingsOnboardScreenItemContainerHook } from "./hook";
 import { TarotGameSettingsOnboardScreenItemContainerStyle } from "./style";
 
-const LazyTarotGameSettingsOnboardTarotDeckScreenItem= lazy(()=>import('../TarotGameSettingsOnboardTarotDeckScreenItem').then((module)=>({default:module.TarotGameSettingsOnboardTarotDeckScreenItem})))
-
 export const TarotGameSettingsOnboardTarotDeckScreenItemContainer = memo((props:TTarotGameSettingsOnboarTarotDeckScreenItemContainerProps)=>{
+
+    const {
+        onboardScreenDimensions,
+        screenName
+    } = props
 
     const {
         itemGap,
         itemSize,
-        itemSizePercent,
         itemImageViewportSizes,
     } = useTarotGameSettingsOnboardScreenItemContainerHook({
-        onboardScreenDimensions:props.onboardScreenDimensions,
-        screenName:props.screenName
+        onboardScreenDimensions,
+        screenName
     });
 
     return(
@@ -44,8 +46,7 @@ export const TarotGameSettingsOnboardTarotDeckScreenItemContainer = memo((props:
                             item={item}
                             itemSize={itemSize}
                             itemImageViewportSizes={itemImageViewportSizes}
-                            itemSizePercent={itemSizePercent}
-                            screenName={props.screenName}
+                            screenName={screenName}
                         />
                     )
                 })}

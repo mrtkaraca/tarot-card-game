@@ -1,6 +1,6 @@
 import { StateStorage } from "zustand/middleware";
 
-import { TTarotGameSettingsScreens } from "@/app/(app)/home/(tarotGameGroup)/tarotGameSettings/type";
+import { TTarotGameSettingsScreens } from "@/app/(app)/home/(tarotGameGroup)/tarotGameSettings/components/type";
 
 export type TTarotGameGroupProviderProps = {
     children:React.ReactNode

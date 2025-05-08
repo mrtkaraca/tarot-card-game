@@ -1,7 +1,8 @@
 import { SharedValue } from "react-native-reanimated";
-import { TTarotGameSettingsOnboardScreensContainerProps } from "../TarotGameSettingsOnboardScreensContainer/type";
+import { TOnboardScreensData, TTarotGameSettingsOnboardScreensContainerProps } from "../TarotGameSettingsOnboardScreensContainer/type";
 
 export type TTarotGameSettingsFooterProps = {
+    onboardScreensData: TOnboardScreensData,
     onboardScreensPagination: SharedValue<{
         pre: null | number;
         curr: number;
@@ -9,5 +10,6 @@ export type TTarotGameSettingsFooterProps = {
 }
 
 export type TTarotGameSettingsFooterHookProps = Pick<TTarotGameSettingsFooterProps,
-    'onboardScreensPagination'
+    'onboardScreensPagination' |
+    'onboardScreensData'
 >

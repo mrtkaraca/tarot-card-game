@@ -1,7 +1,12 @@
+import { useTranslation } from "react-i18next";
 import { useSharedValue } from "react-native-reanimated";
 
 
 export const useTarotGameSettingsHook = ()=>{
+
+    const {
+        t
+    } = useTranslation()
 
     const onboardScreensPagination = useSharedValue<{
         pre:null | number;
@@ -12,6 +17,7 @@ export const useTarotGameSettingsHook = ()=>{
     })
 
     return {
+        t,
         onboardScreensPagination
     }
 }

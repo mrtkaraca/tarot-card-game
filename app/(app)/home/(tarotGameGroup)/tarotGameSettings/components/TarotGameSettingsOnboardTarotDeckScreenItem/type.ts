@@ -1,6 +1,6 @@
 import { SharedValue } from "react-native-reanimated";
-import { TTarotGameSettingsScreens, TTarotGameSettingsTarotDeckScreenData } from "../../type";
-import { TTarotGameSettingsOnboarTarotDeckScreenItemContainerProps } from "../TarotGameSettingsOnboardTarotDeckScreenItemContainer/type";
+
+import { TTarotGameSettingsScreens, TTarotGameSettingsTarotDeckScreenData } from "../type";
 
 export type TTarotGameSettingsOnboardTarotDeckScreenItemProps = {
     screenName:Extract<TTarotGameSettingsScreens,'tarotDeck'>;
@@ -10,12 +10,11 @@ export type TTarotGameSettingsOnboardTarotDeckScreenItemProps = {
         width: number;
         height: number;
     }>
-    itemSizePercent: Readonly<SharedValue<number>>
 }
 
 export type TTarotGameSettingsOnboardTarotDeckScreenItemHookProps = Pick<TTarotGameSettingsOnboardTarotDeckScreenItemProps,
     'item' |
     'screenName' |
     'itemSize' |
-    'itemSizePercent'
+    'itemImageViewportSizes'
 >

@@ -15,33 +15,37 @@ import { ErrorView } from "@/components/ErrorView";
 import { TarotGameSettingsOnboardScreen } from "../TarotGameSettingsOnboardScreen";
 import { TarotGameSettingsFooter } from "../TarotGameSettingsFooter";
 
-import { onboardScreensData } from "./helper";
 import { useTarotGameSettingsOnboardScreensContainerHook } from "./hook";
 import { TarotGameSettingsOnboardScreensContainerStyle } from "./style";
 import { TTarotGameSettingsOnboardScreensContainerProps } from "./type";
 import { TarotGameSettingsOnboardTarotDeckScreenItemContainer } from "../TarotGameSettingsOnboardTarotDeckScreenItemContainer";
 import {TarotGameSettingsOnboardDefaultScreenItemContainer} from "../TarotGameSettingsOnboardDefaultScreenItemContainer";
+import { TarotGameSettingsSize } from "@/constants/size";
 
 
 export const TarotGameSettingsOnboardScreensContainer = (props:TTarotGameSettingsOnboardScreensContainerProps)=>{
 
     const {
+        onboardScreensPagination
+    } = props
+
+    const {
+        t,
         isPending,
+        onboardScreensData,
         tarotGameSettingsData,
         errorViewData,
         onboardScreenDimensions,
-        handleOnLayout,
         handleOnboardScreensDimensions,
     } = useTarotGameSettingsOnboardScreensContainerHook();
 
 
-    if(isPending || tarotGameSettingsData === null){
+    if(isPending){
         return(
             <View 
-                onLayout={handleOnLayout} 
                 style={TarotGameSettingsOnboardScreensContainerStyle.TarotGameSettingsOnboardScreensContainerFallbackInnerContainer}
             >
-                <ActivityIndicator size={32 * PixelRatio.get()} />
+                <ActivityIndicator size={TarotGameSettingsSize.tarotGameSettingsOnboardScreenContainer.activityIndicator} />
             </View>
         )
     }
@@ -58,58 +62,65 @@ export const TarotGameSettingsOnboardScreensContainer = (props:TTarotGameSetting
         )
     }
 
-    if((tarotGameSettingsData && tarotGameSettingsData.tarotBackground && tarotGameSettingsData.tarotCursor && tarotGameSettingsData.tarotDeck)){
-        return(
-            <View
-                style={TarotGameSettingsOnboardScreensContainerStyle.TarotGameSettingsOnboardScreensContainerContainer}
-            >
-                <View onLayout={handleOnboardScreensDimensions} style={TarotGameSettingsOnboardScreensContainerStyle.TarotGameSettingsOnboardScreensContainerInnerContainer}>
-                    {onboardScreensData.map((screen,index)=>{
-                        return (
-                            <TarotGameSettingsOnboardScreen 
-                                key={index}
-                                index={index}
-                                screenName={screen.name}
-                                screenTitle={screen.screenTitle}
-                                onboardScreenDimensions={onboardScreenDimensions}
-                                onboardScreensPagination={props.onboardScreensPagination}
-                            >   
-                                {screen.name === 'tarotDeck' && 
-                                    <TarotGameSettingsOnboardTarotDeckScreenItemContainer
-                                        screenName={screen.name}
-                                        data={tarotGameSettingsData[screen.name]!}
-                                        onboardScreenDimensions={onboardScreenDimensions}
-                                    />
-                                }
-                                {(screen.name === 'tarotBackground' || screen.name === 'tarotCursor')  && 
-                                    <TarotGameSettingsOnboardDefaultScreenItemContainer
-                                        screenName={screen.name}
-                                        data={tarotGameSettingsData[screen.name]!}
-                                        onboardScreenDimensions={onboardScreenDimensions}
-                                    />
-                                }
-
-                            </TarotGameSettingsOnboardScreen>
-                        )})
-                    }
+    if((tarotGameSettingsData)){
+        if(tarotGameSettingsData.tarotBackground && tarotGameSettingsData.tarotCursor && tarotGameSettingsData.tarotDeck){
+            return(
+                <View
+                    style={TarotGameSettingsOnboardScreensContainerStyle.TarotGameSettingsOnboardScreensContainerContainer}
+                >
+                    <View 
+                        onLayout={handleOnboardScreensDimensions} 
+                        style={TarotGameSettingsOnboardScreensContainerStyle.TarotGameSettingsOnboardScreensContainerInnerContainer}
+                    >
+                        {onboardScreensData.map((screen,index)=>{
+                            return (
+                                <TarotGameSettingsOnboardScreen 
+                                    key={index}
+                                    index={index}
+                                    screenName={screen.name}
+                                    screenTitle={screen.screenTitle}
+                                    onboardScreenDimensions={onboardScreenDimensions}
+                                    onboardScreensPagination={onboardScreensPagination}
+                                >   
+                                    {screen.name === 'tarotDeck' && 
+                                        <TarotGameSettingsOnboardTarotDeckScreenItemContainer
+                                            screenName={screen.name}
+                                            data={tarotGameSettingsData[screen.name]!}
+                                            onboardScreenDimensions={onboardScreenDimensions}
+                                        />
+                                    }
+                                    {(screen.name === 'tarotBackground' || screen.name === 'tarotCursor')  && 
+                                        <TarotGameSettingsOnboardDefaultScreenItemContainer
+                                            screenName={screen.name}
+                                            data={tarotGameSettingsData[screen.name]!}
+                                            onboardScreenDimensions={onboardScreenDimensions}
+                                        />
+                                    }
+    
+                                </TarotGameSettingsOnboardScreen>
+                            )})
+                        }
+                    </View>
+                    <TarotGameSettingsFooter
+                        onboardScreensData={onboardScreensData}
+                        onboardScreensPagination={onboardScreensPagination}
+                    />
                 </View>
-                <TarotGameSettingsFooter
-                    onboardScreensPagination={props.onboardScreensPagination}
-                />
-            </View>
-        )
-    }
-    else{
-        return(
-            <View style={TarotGameSettingsOnboardScreensContainerStyle.TarotGameSettingsOnboardScreensContainerFallbackInnerContainer}>
-                <Text style={TarotGameSettingsOnboardScreensContainerStyle.TarotGameSettingsOnboardScreensContainerFallbackInnerContainerText}>
-                    {!tarotGameSettingsData?.tarotBackground && 'Gorunuse gore kullanabilcegin arka plan yok!\n\n'}
-                    {!tarotGameSettingsData?.tarotCursor && 'Gorunuse gore kullanabilcegin imlec yok!\n\n'}
-                    {!tarotGameSettingsData?.tarotDeck && 'Gorunuse gore kullanabilcegin deste yok!'}
-                </Text>
-            </View>
-        )
+            )
+        }
+        else{
+            return(
+                <View style={TarotGameSettingsOnboardScreensContainerStyle.TarotGameSettingsOnboardScreensContainerFallbackInnerContainer}>
+                    <Text style={TarotGameSettingsOnboardScreensContainerStyle.TarotGameSettingsOnboardScreensContainerFallbackInnerContainerText}>
+                        {!tarotGameSettingsData?.tarotBackground && t('tarotGameSettings.tarotGameSettingsOnboardScreensContainer.noTarotBackground') + '\n\n'}
+                        {!tarotGameSettingsData?.tarotCursor && t('tarotGameSettings.tarotGameSettingsOnboardScreensContainer.noTarotCursor') + '\n\n'}
+                        {!tarotGameSettingsData?.tarotDeck && t('tarotGameSettings.tarotGameSettingsOnboardScreensContainer.noTarotDeck')}
+                    </Text>
+                </View>
+            )
+        }
     }
 
+    return null
 
 }

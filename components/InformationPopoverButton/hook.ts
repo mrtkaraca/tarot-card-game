@@ -1,8 +1,8 @@
 import { useCallback, useId, useRef } from "react";
 
 import { TInformationPopoverButtonHookProps } from "./type";
-import { TIconButtonProps } from "components/IconButton/types";
-import { TInformationPopOverRefProps } from "components/InformationPopOver/type";
+import { TIconButtonProps } from "@/components/IconButton/types";
+import { TInformationPopOverRefProps } from "@/components/InformationPopOver/type";
 import { LayoutChangeEvent } from "react-native";
 
 export const useInformationPopoverButtonHook = (props:TInformationPopoverButtonHookProps)=>{

@@ -17,36 +17,58 @@ import { TTarotGameSettingsOnboardScreenProps } from "./type"
 export const TarotGameSettingsOnboardScreen = memo((props:TTarotGameSettingsOnboardScreenProps)=>{
 
     const {
+        children,
+        index,
+        screenName,
+        screenTitle,
+        onboardScreenDimensions,
+        onboardScreensPagination
+    } = props
+
+    const {
         animateStyle,
     } = useTarotGameSettingsOnboardScreenHook({
-        index:props.index,
-        onboardScreenDimensions:props.onboardScreenDimensions,
-        onboardScreensPagination:props.onboardScreensPagination
+        index,
+        onboardScreenDimensions,
+        onboardScreensPagination
     })
 
 
     return(
         <Animated.View
             style={
-                [animateStyle,TarotGameSettingsOnboardScreenStyle.TarotGameSettingsOnboardScreenContainer]
+                [
+                    TarotGameSettingsOnboardScreenStyle.TarotGameSettingsOnboardScreenContainer,
+                    animateStyle
+                ]
             }
         >
             <View 
-                style={[TarotGameSettingsOnboardScreenStyle.TarotGameSettingsOnboardScreenTitleContainer]}
+                style={[TarotGameSettingsOnboardScreenStyle.TarotGameSettingsOnboardScreenHeaderContainer]}
             >
-                <Text style={TarotGameSettingsOnboardScreenStyle.TarotGameSettingsOnboardScreenTitleLabel}>{props.screenTitle}</Text>
-                {/* <InformationPopoverButton
+                <View
+                   style={TarotGameSettingsOnboardScreenStyle.TarotGameSettingsOnboardScreenTitleContainer}
+                >
+                    <Text 
+                        numberOfLines={1}
+                        adjustsFontSizeToFit
+                        style={TarotGameSettingsOnboardScreenStyle.TarotGameSettingsOnboardScreenTitleLabel}
+                    >
+                        {screenTitle}
+                    </Text>
+                </View>
+                <InformationPopoverButton
                     informationPopOverPosition="AUTO"
                 >
-                    {(props.screenName === 'tarotDeck') && 
+                    {(screenName === 'tarotDeck') && 
                         <TarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription/>
                     }
-                    {(props.screenName === 'tarotBackground' || props.screenName === 'tarotCursor') &&
+                    {(screenName === 'tarotBackground' || screenName === 'tarotCursor') &&
                         <TarotGameSettingsOnboardDefaultScreenInformationPopOverDescription/>
                     }
-                </InformationPopoverButton> */}
+                </InformationPopoverButton>
             </View>
-            { props.children }
+            { children }
         </Animated.View>
     )
 })

@@ -1,17 +1,19 @@
 import { PixelRatio, StyleSheet } from "react-native"
 
-import { StatusBarHeight } from "@/constants/size"
+import { StatusBarHeight, TarotGameSettingsSize } from "@/constants/size"
 
 export const TarotGameSettingsHeaderStyle = StyleSheet.create({
     TarotGameSettingsHeaderContainer:{
         flexDirection:'row',
         paddingTop:StatusBarHeight,
-        padding:8,
+        padding:TarotGameSettingsSize.tarotGameSettingsHeader.headerContainer.padding,
         justifyContent:'space-between',
     },
     TarotGameSettingsHeaderLeftButtonContainer:{
         maxWidth:'33%',
         flexDirection:'row',
+        justifyContent:'flex-start',
+        alignItems:'center'
     },
     TarotGameSettingsHeaderTextContainer:{
         flexShrink:1,
@@ -19,12 +21,13 @@ export const TarotGameSettingsHeaderStyle = StyleSheet.create({
     },
     TarotGameSettingsHeaderTextLabel:{
         textAlign:'center',
-        fontSize:24/PixelRatio.getFontScale(),
+        fontSize:TarotGameSettingsSize.tarotGameSettingsHeader.headerFontSize,
         fontWeight:'500'
     },
     TarotGameSettingsHeaderRightButtonContainer:{
         maxWidth:'33%',
         flexDirection:'row',
         justifyContent:'flex-end',
+        alignItems:'center'
     }
 })

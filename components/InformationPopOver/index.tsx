@@ -13,13 +13,19 @@ import Animated from "react-native-reanimated"
 
 import { useInformationPopOverHook } from "./hook"
 import { 
-    TInformationPopOverProps, 
-    TInformationPopOverRefProps 
+    TInformationPopOverProps
 } from "./type"
 import { InformationPopOverStyle } from "./style"
 
 
-export const InformationPopOver = forwardRef<TInformationPopOverRefProps,TInformationPopOverProps>((props,ref)=>{
+export const InformationPopOver = (props:TInformationPopOverProps)=>{
+
+    const {
+        ref,
+        children,
+        informationPopOverPosition
+    } = props
+
     const {
         isInformationPopOverVisible,
         arrowVertices,
@@ -29,7 +35,10 @@ export const InformationPopOver = forwardRef<TInformationPopOverRefProps,TInform
         descriptionContainerAnimStyle,
         handleOnLayout,
         handleSetInformationPopOverInvisible,
-    } = useInformationPopOverHook(props,ref);
+    } = useInformationPopOverHook({
+        ref,
+        informationPopOverPosition
+    });
 
 
     return(
@@ -77,7 +86,7 @@ export const InformationPopOver = forwardRef<TInformationPopOverRefProps,TInform
                                     descriptionContainerAnimStyle
                                 ]}
                             >
-                                {props.children}
+                                {children}
                             </Animated.View>
                         </Animated.View>
                     </View>
@@ -85,4 +94,4 @@ export const InformationPopOver = forwardRef<TInformationPopOverRefProps,TInform
             }
         </Fragment>
     )
-}) 
+}

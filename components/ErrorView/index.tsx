@@ -15,6 +15,7 @@ export const ErrorView = (props:TErrorViewProps)=>{
 
 
     const {
+        isVisible,
         isButtonVisible,
         errorData,
         textButtonProps
@@ -23,7 +24,7 @@ export const ErrorView = (props:TErrorViewProps)=>{
 
     return(
         <Fragment>
-            {props.isVisible && (
+            {isVisible && (
                 <View 
                     style={ErrorViewStyle.ErrorViewContainer} 
                 >
@@ -46,6 +47,7 @@ export const ErrorView = (props:TErrorViewProps)=>{
                         style={ErrorViewStyle.ErrorViewDescriptionContainer}
                     >
                         <Text 
+                            adjustsFontSizeToFit
                             style={ErrorViewStyle.ErrorViewDescription} 
                         >
                             {errorData?.errorDescriptionMessage}

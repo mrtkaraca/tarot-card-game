@@ -10,31 +10,55 @@ import { useTarotGameSettingsStore } from "@/contexts/tarotGameSettings";
 import { useTarotGameGroupStore } from "@/contexts/tarotGameGroup";
 
 import { TTarotGameSettingsOnboardDefaultScreenItemHookProps } from "./type";
+import { ImageSource } from "expo-image";
 
 export const useTarotGameSettingsOnboardDefaultScreenItemHook = (props:TTarotGameSettingsOnboardDefaultScreenItemHookProps)=>{
+
+    const {
+        item,
+        itemSize,
+        itemImageViewportSizes,
+        screenName
+    } = props
     
     const setTarotGameSettingsSelectedItems = useTarotGameGroupStore((state)=>state.setTarotGameSettingsSelectedItems);
     const setTarotGameSettingsItemModal = useTarotGameSettingsStore((state)=>state.setTarotGameSettingsItemModal);
 
-    const isSelected = useTarotGameGroupStore((state)=>state.tarotGameSettingsSelectedItems[props.screenName] === props.item.id ? true : false)
+    const isSelected = useTarotGameGroupStore((state)=>state.tarotGameSettingsSelectedItems[props.screenName] === item.id ? true : false)
 
     const itemSelectedIconSize = useDerivedValue(()=>{
-        return props.itemSize.value/5
+        return itemSize.value/5
     })
 
     const animStyle = useAnimatedStyle(()=>({
-        width:props.itemSize.value,
+        width:itemSize.value,
     }))
 
+    const itemImageViewportSizeSource:ImageSource[] = itemImageViewportSizes.map((viewPorts)=>{
+        const uri = 
+            `${item.image.url.split(item.image.ext)[0]}` +
+            `-` + 
+            `${viewPorts.width}` + 
+            `x` +
+            `${viewPorts.height}` + 
+            `${item.image.ext}`
+        ;
+        return {
+            uri:uri,
+            width:viewPorts.width,
+            height:viewPorts.height
+        }
+    })
+
     const handleTapOnItem = useCallback(()=>{
-        setTarotGameSettingsSelectedItems(props.screenName,props.item.id)
+        setTarotGameSettingsSelectedItems(screenName,item.id)
     },[])
 
     const handleDoubleTapOnItem = useCallback(()=>{
         setTarotGameSettingsItemModal({
             modalVisibility:true,
-            screenName:props.screenName,
-            item:props.item
+            screenName:screenName,
+            item:item
         })
     },[])
 
@@ -57,5 +81,6 @@ export const useTarotGameSettingsOnboardDefaultScreenItemHook = (props:TTarotGam
         exclusiveGesture,
         itemSelectedIconSize,
         animStyle,
+        itemImageViewportSizeSource
     }
 }

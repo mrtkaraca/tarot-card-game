@@ -1,18 +1,30 @@
+import { View } from "react-native";
+
 import { TextButton } from "@/components/TextButton";
-import { View, PixelRatio } from "react-native";
+
 import { useTarotGameSettingsFooterHook } from "./hook";
 import { TarotGameSettingsFooterStyle } from "./style";
 import { TTarotGameSettingsFooterProps } from "./type";
+import { TarotGameSettingsColors } from "@/constants/color";
 
 export const TarotGameSettingsFooter = (props:TTarotGameSettingsFooterProps)=>{
 
     const {
+        onboardScreensData,
+        onboardScreensPagination
+    } = props
+
+    const {
+        t,
         currentScreenIndex,
         isCurrentScreenItemSelected,
         handlePreviousScreen,
         handleNextScreen,
         handleNavigateToTarotGame
-    } = useTarotGameSettingsFooterHook(props);
+    } = useTarotGameSettingsFooterHook({
+        onboardScreensData,
+        onboardScreensPagination
+    });
 
 
     return(
@@ -20,9 +32,9 @@ export const TarotGameSettingsFooter = (props:TTarotGameSettingsFooterProps)=>{
             <View>
                 {currentScreenIndex !== 0 ?
                     <TextButton
-                        textButtonTextLabel="Geri"
+                        textButtonTextLabel={t('tarotGameSettings.tarotGameSettingsFooter.leftButtonTextLabel')}
                         handleOnPress={handlePreviousScreen}
-                        textButtonOpacityColor="#00000055"
+                        textButtonOpacityColor={TarotGameSettingsColors.TextButtons.buttonOpacityColor}
                         numberOfLines={1}
                     />
                     : null
@@ -31,12 +43,19 @@ export const TarotGameSettingsFooter = (props:TTarotGameSettingsFooterProps)=>{
             <View>
                 <TextButton
                     disabled={!isCurrentScreenItemSelected}
-                    textButtonTextLabel={currentScreenIndex  !== 2 ? 'İleri' : 'Tamam'}
-                    handleOnPress={currentScreenIndex !== 2 ? handleNextScreen : handleNavigateToTarotGame}
-                    textButtonOpacityColor="#00000055"
+                    textButtonTextLabel={currentScreenIndex  !== onboardScreensData.length-1 ? 
+                        t('tarotGameSettings.tarotGameSettingsFooter.rightButtonTextLabel')
+                        : 
+                        t('tarotGameSettings.tarotGameSettingsFooter.rightButtonEndTextLabel')
+                    }
+                    handleOnPress={currentScreenIndex !== onboardScreensData.length-1 ? handleNextScreen : handleNavigateToTarotGame}
+                    textButtonOpacityColor={TarotGameSettingsColors.TextButtons.buttonOpacityColor}
                     numberOfLines={1}
                     style={{
-                        color:isCurrentScreenItemSelected ? 'blue' : 'grey',
+                        color:isCurrentScreenItemSelected ? 
+                            TarotGameSettingsColors.TarotGameSettingsFooter.currentScreenItemIsSelected 
+                            : 
+                            TarotGameSettingsColors.TarotGameSettingsFooter.currentScreenItemIsNotSelected,
                     }}
                 />
             </View>

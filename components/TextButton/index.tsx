@@ -20,9 +20,7 @@ export const TextButton = (props:TTextButtonProps)=>{
 
     const {
         gesture,
-        buttonContainerRef,
         buttonOpacityStyle,
-        textButtonAnimStyle,
     } = useTextButtonHook({
         isButtonDisabled:disabled,
         handleOnPress:handleOnPress
@@ -32,10 +30,9 @@ export const TextButton = (props:TTextButtonProps)=>{
     return(
         <GestureDetector gesture={gesture}>
             <Animated.View
-                ref={buttonContainerRef}
+                pointerEvents={'box-none'}
                 style={
                     [
-                        textButtonAnimStyle,
                         TextButtonStyle.TextButtonStyleInnerContainer,
                         {
                             backgroundColor:textButtonColor,

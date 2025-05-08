@@ -1,4 +1,5 @@
-export const Icons = {
+const Icons = {
+    logo:require('@/assets/logo.png'),
     atSign:require('@/assets/images/at-sign.png'),
     back:require('@/assets/images/back.png'),
     checkCircle:require('@/assets/images/check-circle.png'),
@@ -16,8 +17,8 @@ export const Icons = {
     xCircle:require('@/assets/images/x-circle.png'),
 }
 
-export const InformationPopOverButtonIcon = {
-    question:Icons.question
+export const HomeIcons = {
+    logo:Icons.logo
 }
 
 export const TarotGameSettingsIcons = {
@@ -25,6 +26,12 @@ export const TarotGameSettingsIcons = {
     back:Icons.back
 }
 
+export const InformationPopOverButtonIcon = {
+    question:Icons.question
+}
+
+
 export const TarotGameIcons = {
     back:Icons.back
 }
+

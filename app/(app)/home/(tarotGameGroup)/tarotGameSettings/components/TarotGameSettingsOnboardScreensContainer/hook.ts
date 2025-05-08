@@ -1,12 +1,12 @@
 import { 
-    useTransition, 
+    startTransition, 
     useState, 
     useCallback,
     useEffect, 
 } from "react"
 import { LayoutChangeEvent } from "react-native"
-import { measure, runOnUI, useAnimatedRef, useSharedValue } from "react-native-reanimated"
-import { useFocusEffect } from "expo-router"
+import { useSharedValue } from "react-native-reanimated"
+import { useTranslation } from "react-i18next"
 
 import { getTarotGameSettingsData } from "@/api/tarotGameGroup"
 
@@ -15,22 +15,27 @@ import { TErrorViewProps } from "@/components/ErrorView/type"
 import { useTarotGameGroupStore } from "@/contexts/tarotGameGroup"
 import { useTarotGameSettingsStore } from "@/contexts/tarotGameSettings"
 
-import { TTarotGameSettingsData, TTarotGameSettingsScreens } from "../../type"
+import { TTarotGameSettingsData, TTarotGameSettingsScreens } from "../type"
+import { TarotGameSettingsColors } from "@/constants/color"
+import { TOnboardScreensData } from "./type"
+
+
 
 export const useTarotGameSettingsOnboardScreensContainerHook = ()=>{
+
+    const {
+        t
+    } = useTranslation()
 
     const tarotGameSettingsData = useTarotGameSettingsStore((state)=>state.tarotGameSettingsData)
     const tarotGameSettingsSelectedItems = useTarotGameGroupStore((state)=>state.tarotGameSettingsSelectedItems)
     const setTarotGameSettingsData = useTarotGameSettingsStore((state)=>state.setTarotGameSettingsData)
     const setTarotGameSettingsSelectedItems = useTarotGameGroupStore((state)=>state.setTarotGameSettingsSelectedItems)
 
-    const [isPending,startTransition] = useTransition()
+    const [isPending,setIsPending] = useState(true)
 
     const [errorViewData,setErrorViewData] = useState<TErrorViewProps | null>(null)
-    const [handleFetch,setHandleFetch] = useState({
-        toggleFetch:false,
-        shouldFetch:false
-    })
+    const [handleFetch,setHandleFetch] = useState(true)
 
     const onboardScreenDimensions = useSharedValue<{
         heigth:null | number;
@@ -39,6 +44,31 @@ export const useTarotGameSettingsOnboardScreensContainerHook = ()=>{
         heigth:null,
         width:null
     })
+
+    const screenTitles = {
+        tarotBackground:t('tarotGameSettings.tarotGameSettingsOnboardScreen.title.tarotBackground'),
+        tarotCursor:t('tarotGameSettings.tarotGameSettingsOnboardScreen.title.tarotCursor'),
+        tarotDeck:t('tarotGameSettings.tarotGameSettingsOnboardScreen.title.tarotDeck'),
+    }
+
+    const onboardScreensData:TOnboardScreensData = [
+        {
+            id:0,
+            name:"tarotBackground",
+            screenTitle:screenTitles['tarotBackground'],
+        },
+        {
+            id:1,
+            name:'tarotCursor',
+            screenTitle:screenTitles['tarotCursor'],
+        },
+        {
+            id:2,
+            name:'tarotDeck',
+            screenTitle:screenTitles['tarotDeck'],
+        }
+    ]
+
 
     const handleOnboardScreensDimensions = useCallback((e:LayoutChangeEvent)=>{
         onboardScreenDimensions.value = {
@@ -57,62 +87,59 @@ export const useTarotGameSettingsOnboardScreensContainerHook = ()=>{
 
     const fetchData = async(abortSignal:AbortSignal)=>{
         const [res,err] = await getTarotGameSettingsData(abortSignal);
-        console.log(res,'heh')
         if(res){
             compareTarotGameSettingsSelectedItemsWithTarotGameSettingsData(res)
             setTarotGameSettingsData(res)
         }
         else{
             if(err){
-                setTarotGameSettingsData(undefined)
                 setErrorViewData({
                     isVisible:true,
-                  
                     errorData:err,
                     textButtonProps:{
-                        textButtonColor:'red',
-                        textButtonTextLabel:'dem',
+                        textButtonOpacityColor:TarotGameSettingsColors.TextButtons.buttonOpacityColor,
+                        textButtonTextLabel:t('tarotGameSettings.tarotGameSettingsOnboardScreensContainer.reFetch'),
                         handleOnPress:()=>{
-                            setTarotGameSettingsData(null)
-                            setHandleFetch((prev)=>({...prev,toggleFetch:!prev.toggleFetch}))
+                            setHandleFetch(true)
+                            setIsPending(true)
                             setErrorViewData(null)
                         }
                     }
                 })
             }
         }
+        setHandleFetch(false)
+        setIsPending(false)
     }
 
-    const handleOnLayout = useCallback(()=>{
-        setHandleFetch(prev=>({...prev,shouldFetch:true}))
-    },[])
 
-    const handleFetchData = useCallback(()=>{
+    const handleFetchDataAction = useCallback(()=>{
         const abortController = new AbortController();
 
-        if(handleFetch.shouldFetch){
-            startTransition(()=>{
-                fetchData(abortController.signal);
-            })
+        if(handleFetch){
+            fetchData(abortController.signal);
         }
         
         return ()=> {
             abortController.abort();
             
         };
-    },[tarotGameSettingsSelectedItems,handleFetch])
+    },[fetchData,handleFetch])
 
     useEffect(()=>{
-        handleFetchData();
-    },[handleFetch])
+        startTransition(()=>{
+            handleFetchDataAction();
+        })
+    },[handleFetchDataAction])
 
 
     return{
+        t,
         isPending,
+        onboardScreensData,
         errorViewData,
         tarotGameSettingsData,
         onboardScreenDimensions,
-        handleOnLayout,
         handleOnboardScreensDimensions,
     }
 }

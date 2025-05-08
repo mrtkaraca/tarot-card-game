@@ -1,11 +1,8 @@
 import { PixelRatio, StyleSheet } from "react-native"
 
-export default undefined
-
 export const ErrorViewStyle = StyleSheet.create(({
     ErrorViewContainer:{
-        height:'100%',
-        width:'100%',
+        flex:1,
         justifyContent:'center',
         alignItems:'center',
         padding:8/PixelRatio.get(),
@@ -31,3 +28,7 @@ export const ErrorViewStyle = StyleSheet.create(({
         
     },
 }))
+
+export default {
+    ErrorViewStyle
+}

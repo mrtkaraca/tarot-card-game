@@ -33,7 +33,12 @@ import {
 } from "./type";
 
 
-export const useInformationPopOverHook = (props:TInformationPopOverHookProps,ref:React.ForwardedRef<TInformationPopOverRefProps>)=>{
+export const useInformationPopOverHook = (props:TInformationPopOverHookProps)=>{
+
+    const {
+        ref,
+        informationPopOverPosition:ipop
+    } = props
 
     const { dimension } = useDimensionSize();
 
@@ -54,7 +59,7 @@ export const useInformationPopOverHook = (props:TInformationPopOverHookProps,ref
 
     const informationPopOverContainerOpacity = useSharedValue(0);
     const informationPopOverContainerScale = useSharedValue(0);
-    const informationPopOverContainerTransformOrigin = useSharedValue<StyleProps['transformOrigin']>(undefined)
+    const informationPopOverContainerTransformOrigin = useSharedValue<StyleProps['transformOrigin']>([0,0,0])
     const informationPopOverContainerTranslateX = useSharedValue(0);
     const informationPopOverContainerTranslateY = useSharedValue(0);
 
@@ -333,7 +338,7 @@ export const useInformationPopOverHook = (props:TInformationPopOverHookProps,ref
     const handleInformationPopOverPosition = ()=>{
         'worklet';
         if(informationPopOverTriggeredComponentMeasure.value){
-            if(props.informationPopOverPosition === 'AUTO' || props.informationPopOverPosition === undefined){
+            if(ipop === 'AUTO' || ipop === undefined){
                 if(dimension.value.height > dimension.value.width){
                     const centerOfTriggeredComponentY = informationPopOverTriggeredComponentMeasure.value.pageY + informationPopOverTriggeredComponentMeasure.value.height/2
                     const centerOfScreenY = dimension.value.height/2
@@ -358,7 +363,7 @@ export const useInformationPopOverHook = (props:TInformationPopOverHookProps,ref
                 }
             }
             else{
-                informationPopOverPosition.value = props.informationPopOverPosition
+                informationPopOverPosition.value = ipop
             }
         }
     }

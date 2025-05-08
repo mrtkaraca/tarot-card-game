@@ -8,18 +8,20 @@ import Animated from "react-native-reanimated"
 import { IconButton } from "@/components/IconButton"
 import { TextButton } from "@/components/TextButton"
 
-import { Colors } from "@/constants/color"
-import { Sizes } from "@/constants/size"
+import { Colors, TarotGameSettingsColors } from "@/constants/color"
+import { TarotGameSettingsSize } from "@/constants/size"
 import { TarotGameSettingsIcons } from "@/constants/icon"
 
 import { useTarotGameSettingsHeaderHook } from "./hook"
 import { TarotGameSettingsHeaderStyle } from "./style"
 import { TTarotGameSettingsHeaderProps } from "./type"
+import { useTranslation } from "react-i18next"
 
 
 export const TarotGameSettingsHeader = (props:TTarotGameSettingsHeaderProps) =>{
 
     const { 
+        t,
         leftSideRef,
         rightSideRef,
         leftSideAnimStyle,
@@ -27,23 +29,29 @@ export const TarotGameSettingsHeader = (props:TTarotGameSettingsHeaderProps) =>{
         isTarotGameSettingsDataReady,
         handleLeftButton,
         handleSkip,
+        handleOnLayout,
     } = useTarotGameSettingsHeaderHook({
         onboardScreensPagination:props.onboardScreensPagination
     })
 
+   
     return(
         <Animated.View 
             style={TarotGameSettingsHeaderStyle.TarotGameSettingsHeaderContainer}
+            onLayout={handleOnLayout}
         >
             <Animated.View
                 ref={leftSideRef}
-                style={[TarotGameSettingsHeaderStyle.TarotGameSettingsHeaderLeftButtonContainer,leftSideAnimStyle]}
+                style={[
+                    TarotGameSettingsHeaderStyle.TarotGameSettingsHeaderLeftButtonContainer,
+                    leftSideAnimStyle
+                ]}
             >
                 <IconButton
                     icon={TarotGameSettingsIcons.back}
-                    buttonSize={Sizes.TarotEvent.IconButtons.buttonSize}
-                    iconColor={Colors.TarotEvent.IconButtons.iconColor}
-                    buttonOpacityColor={Colors.TarotEvent.IconButtons.buttonOpacityColor}
+                    buttonSize={TarotGameSettingsSize.IconButtons.buttonSize}
+                    iconColor={TarotGameSettingsColors.IconButtons.iconColor}
+                    buttonOpacityColor={TarotGameSettingsColors.IconButtons.buttonOpacityColor}
                     handleOnPress={handleLeftButton}
                 />
             </Animated.View>
@@ -51,7 +59,8 @@ export const TarotGameSettingsHeader = (props:TTarotGameSettingsHeaderProps) =>{
                 style={TarotGameSettingsHeaderStyle.TarotGameSettingsHeaderTextContainer}
             >
                 <Text 
-                        numberOfLines={1} 
+                        numberOfLines={1}
+                        adjustsFontSizeToFit
                         style={TarotGameSettingsHeaderStyle.TarotGameSettingsHeaderTextLabel}
                     >
                         {props.textLabel}
@@ -59,16 +68,22 @@ export const TarotGameSettingsHeader = (props:TTarotGameSettingsHeaderProps) =>{
             </View>
             <Animated.View
                 ref={rightSideRef}
-                style={[TarotGameSettingsHeaderStyle.TarotGameSettingsHeaderRightButtonContainer,rightSideAnimStyle]}
+                style={[
+                    TarotGameSettingsHeaderStyle.TarotGameSettingsHeaderRightButtonContainer,
+                    rightSideAnimStyle
+                ]}
             >
                 <TextButton
                     disabled={!isTarotGameSettingsDataReady}
                     numberOfLines={1}
                     style={{
-                        color:isTarotGameSettingsDataReady ? 'blue' : 'grey',
+                        color:isTarotGameSettingsDataReady ? 
+                            TarotGameSettingsColors.TextButtons.tarotGameSettingsHeader.skipDataReady 
+                            : 
+                            TarotGameSettingsColors.TextButtons.tarotGameSettingsHeader.skipDataNotReady ,
                     }}
-                    textButtonTextLabel="Skip"
-                    textButtonOpacityColor="grey"
+                    textButtonTextLabel={t('tarotGameSettings.tarotGameSettingsHeader.skip')}
+                    textButtonOpacityColor={TarotGameSettingsColors.TextButtons.buttonOpacityColor}
                     handleOnPress={handleSkip}
                 />
             </Animated.View>

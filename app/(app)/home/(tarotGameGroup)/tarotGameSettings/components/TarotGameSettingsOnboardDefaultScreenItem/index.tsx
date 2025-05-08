@@ -19,34 +19,26 @@ import { Suspense } from "react";
 export const  TarotGameSettingsOnboardDefaultScreenItem = (props:TTarotGameSettingsOnboardDefaultScreenItemProps)=>{
 
     const {
+        item,
+        itemSize,
+        screenName,
+        itemImageViewportSizes
+    } = props
+
+    const {
         animStyle,
         isSelected,
         exclusiveGesture,
         itemSelectedIconSize,
+        itemImageViewportSizeSource
     } = useTarotGameSettingsOnboardDefaultScreenItemHook({
-        item:props.item,
-        itemSize:props.itemSize,
-        itemSizePercent:props.itemSizePercent,
-        screenName:props.screenName
+        item,
+        itemSize,
+        screenName,
+        itemImageViewportSizes
     });
 
   
-    const itemImageViewportSizeSource:ImageSource[] = props.itemImageViewportSizes.map((viewPorts)=>{
-        const uri = 
-            `${props.item.image.url.split(props.item.image.ext)[0]}` +
-            `-` + 
-            `${viewPorts.width}` + 
-            `x` +
-            `${viewPorts.height}` + 
-            `${props.item.image.ext}`
-        ;
-        return {
-            uri:uri,
-            width:viewPorts.width,
-            height:viewPorts.height
-        }
-    })
-
     return(
         <Animated.View 
             style={[
@@ -59,7 +51,7 @@ export const  TarotGameSettingsOnboardDefaultScreenItem = (props:TTarotGameSetti
                         fallback={
                             <Image
                                 placeholder={{
-                                    blurhash:props.item.image.blurhash
+                                    blurhash:item.image.blurhash
                                 }}
                             />
                         }
@@ -68,6 +60,9 @@ export const  TarotGameSettingsOnboardDefaultScreenItem = (props:TTarotGameSetti
                             source={itemImageViewportSizeSource}
                             allowDownscaling={false}
                             style={TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemImage}
+                            placeholder={{
+                                blurhash:item.image.blurhash
+                            }}
                             contentFit='cover'
                             transition={{
                                 duration:1000,

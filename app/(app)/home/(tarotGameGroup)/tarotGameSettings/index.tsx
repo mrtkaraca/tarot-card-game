@@ -15,6 +15,7 @@ import { useTarotGameSettingsHook } from "./hook";
 const TarotGameSettingsOnboardScreens = ()=>{
 
     const {
+        t,
         onboardScreensPagination
     } = useTarotGameSettingsHook();
 
@@ -23,7 +24,7 @@ const TarotGameSettingsOnboardScreens = ()=>{
         <Fragment>
             <TarotGameSettingsBackground>
                 <TarotGameSettingsHeader
-                    textLabel="Game Options"
+                    textLabel={t('tarotGameSettings.tarotGameSettingsHeader.title')}
                     onboardScreensPagination={onboardScreensPagination}
                 />
                 <TarotGameSettingsOnboardScreensContainer

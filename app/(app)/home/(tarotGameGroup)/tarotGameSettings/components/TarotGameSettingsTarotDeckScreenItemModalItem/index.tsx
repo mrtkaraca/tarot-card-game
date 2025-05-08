@@ -12,7 +12,6 @@ export const TarotGameSettingsTarotDeckScreenItemModalItem = (props:TTarotGameSe
     const {
         imageRef,
         containerAnimatedStyle,
-        imageAnimatedStyle,
         handleImageOnLayout
     } = useTarotGameSettingsTarotDeckScreenItemModalItemHook({
         isFrontFace:props.isFrontFace,
@@ -26,8 +25,7 @@ export const TarotGameSettingsTarotDeckScreenItemModalItem = (props:TTarotGameSe
         <Animated.View
             style={[
                 TarotGameSettingsTarotDeckScreenItemModalItemStyle.TarotGameSettingsTarotDeckScreenItemModalItemContainer,
-                containerAnimatedStyle,
-                imageAnimatedStyle,
+                containerAnimatedStyle
             ]} 
         >
             <AnimatedImage

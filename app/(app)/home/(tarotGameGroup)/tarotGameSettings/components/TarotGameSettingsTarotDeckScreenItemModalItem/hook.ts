@@ -42,9 +42,6 @@ export const useTarotGameSettingsTarotDeckScreenItemModalItemHook = (props:TTaro
         }
     })
 
-    const imageAnimatedStyle = useAnimatedStyle(()=>({
-        borderRadius:imageSize.value ? imageSize.value.width/20 : undefined
-    }))
 
     const handleImageOnLayout = useCallback(()=>{
         runOnUI(()=>{
@@ -90,7 +87,6 @@ export const useTarotGameSettingsTarotDeckScreenItemModalItemHook = (props:TTaro
     return{
         imageRef,
         containerAnimatedStyle,
-        imageAnimatedStyle,
         handleImageOnLayout
     }
 }

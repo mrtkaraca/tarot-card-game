@@ -4,13 +4,22 @@ import { useDerivedValue, runOnUI, useAnimatedReaction, runOnJS } from "react-na
 
 import { useTarotGameGroupStore } from "@/contexts/tarotGameGroup";
 
-import { onboardScreensData } from "../TarotGameSettingsOnboardScreensContainer/helper";
 
 import { TTarotGameSettingsFooterHookProps } from "./type";
 
-import { TTarotGameSettingsScreens } from "../../type";
+import { TTarotGameSettingsScreens } from "../type";
+import { useTranslation } from "react-i18next";
 
 export const useTarotGameSettingsFooterHook = (props:TTarotGameSettingsFooterHookProps)=>{
+
+    const {
+        onboardScreensData,
+        onboardScreensPagination
+    } = props
+
+    const {
+        t
+    } = useTranslation()
 
     const [currentScreenIndex,setCurrentScreenIndex] = useState(0);
     const [currenScreenName,setCurrentScreenName] = useState<TTarotGameSettingsScreens>('tarotBackground')
@@ -19,18 +28,18 @@ export const useTarotGameSettingsFooterHook = (props:TTarotGameSettingsFooterHoo
   
     const handleNextScreen = useCallback(()=>{
         runOnUI(()=>{
-            props.onboardScreensPagination.value = {
-                pre: props.onboardScreensPagination.value.curr,
-                curr: props.onboardScreensPagination.value.curr + 1,
+            onboardScreensPagination.value = {
+                pre: onboardScreensPagination.value.curr,
+                curr: onboardScreensPagination.value.curr + 1,
             }
         })()
     },[])
 
     const handlePreviousScreen = useCallback(()=>{
         runOnUI(()=>{
-            props.onboardScreensPagination.value = {
-                pre : props.onboardScreensPagination.value.curr,
-                curr: props.onboardScreensPagination.value.curr - 1,
+            onboardScreensPagination.value = {
+                pre : onboardScreensPagination.value.curr,
+                curr: onboardScreensPagination.value.curr - 1,
             }
         })()
     },[])
@@ -40,14 +49,15 @@ export const useTarotGameSettingsFooterHook = (props:TTarotGameSettingsFooterHoo
     }
 
     useAnimatedReaction(
-        ()=>props.onboardScreensPagination.value,
+        ()=>onboardScreensPagination.value,
         ()=>{
-            runOnJS(setCurrentScreenIndex)(props.onboardScreensPagination.value.curr)
+            runOnJS(setCurrentScreenIndex)(onboardScreensPagination.value.curr)
             runOnJS(setCurrentScreenName)(onboardScreensData[props.onboardScreensPagination.value.curr].name)
         }
     )
 
     return{
+        t,
         currentScreenIndex,
         isCurrentScreenItemSelected,
         handlePreviousScreen,
