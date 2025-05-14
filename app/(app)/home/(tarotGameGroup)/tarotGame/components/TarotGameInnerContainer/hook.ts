@@ -576,7 +576,6 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
     const handleBottomDeckStartGame = useCallback(()=>{
         if(deckRef.current && cursorRef.current){
             setIsDeckReady(true)
-            // deckPhase.value = 'startGame'
             deckRef.current.handleStartGame()
             let deckStartAnimationDuration = deckRef.current.handleGetTarotGameDeckStartAnimation()
             setTimeout(() => {

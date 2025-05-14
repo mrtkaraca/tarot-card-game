@@ -41,6 +41,7 @@ export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
     const {
         tarotGameDeckAnimatedRef,
         cardStartAnimationDuration,
+        tarotGameDeckAnimatedStyle,
         startAnimationLastCardTranslateXInterpolate,
         cardReOrdinateAnimationDuration,
         handleOnLayout,
@@ -58,7 +59,10 @@ export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
         <Animated.View 
             ref={tarotGameDeckAnimatedRef}
             onLayout={handleOnLayout}
-            style={TarotGameDeckStyle.TarotGameDeckContainer} 
+            style={[
+                TarotGameDeckStyle.TarotGameDeckContainer,
+                tarotGameDeckAnimatedStyle
+            ]} 
         >
             {deckData && deckData.frontFaces.map((frontFace,index)=>{
                 return(

@@ -9,6 +9,7 @@ import { TarotGameCursor } from "../TarotGameCursor"
 import { TTarotGameInnerContainerProps } from "./type"
 import { useTarotGameInnerContainerHook } from "./hook"
 import { TarotGameInnerContainerStyle } from "./stlye"
+import { Suspense } from "react"
 
 
 export const TarotGameInnerContainer = (props:TTarotGameInnerContainerProps)=>{
@@ -51,6 +52,7 @@ export const TarotGameInnerContainer = (props:TTarotGameInnerContainerProps)=>{
     } = useTarotGameInnerContainerHook(props)
 
     return(
+
         <TarotGameCursorGesture
             cursorGestureMeasure={cursorGestureMeasure}
             handleTarotGameCursorGesture={handleTarotGameCursorGesture}

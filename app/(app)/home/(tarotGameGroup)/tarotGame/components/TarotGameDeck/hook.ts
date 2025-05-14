@@ -11,6 +11,7 @@ import {
     measure,
     runOnUI,
     useAnimatedRef,
+    useAnimatedStyle,
     useDerivedValue,
     useSharedValue,
     withTiming, 
@@ -49,6 +50,7 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
     
     const tarotGameDeckAnimatedRef = useAnimatedRef()
 
+    const tarotGameDeckOpacity = useSharedValue<0 | 1>(0)
     const startAnimationLastCardTranslateXToggle = useSharedValue<0 | 1>(0)
 
     const deckLastCardMaximumRightTranslateX = useDerivedValue(()=>{
@@ -72,6 +74,12 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
         )
         :
         0
+    })
+
+    const tarotGameDeckAnimatedStyle = useAnimatedStyle(()=>{
+        return{
+            opacity:tarotGameDeckOpacity.value
+        }
     })
 
     const handleTarotGameDeckCardsRef = useCallback((cardRef:RefObject<TTarotGameCardRefProps | null>,cardIndex:number)=>{
@@ -106,6 +114,8 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
     const handleStartGame = useCallback(()=>{
         if(tarotGameDeckCardsRef.current){
             
+            tarotGameDeckOpacity.value = 1
+
             tarotGameDeckCardsRef.current[tarotGameDeckCardsRef.current.length-1].handleTarotCardMoveCardToRightStartAnimation(
                 startAnimationLastCardEasing
             )
@@ -193,6 +203,7 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
     return{
         tarotGameDeckAnimatedRef,
         cardStartAnimationDuration,
+        tarotGameDeckAnimatedStyle,
         startAnimationLastCardTranslateXInterpolate,
         cardReOrdinateAnimationDuration,
         handleOnLayout,
