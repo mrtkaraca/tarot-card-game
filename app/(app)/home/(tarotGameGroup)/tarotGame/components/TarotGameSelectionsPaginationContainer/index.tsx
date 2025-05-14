@@ -5,38 +5,40 @@ import { TarotGameSelectionsPagination } from "../TarotGameSelectionsPagination"
 
 import { TTarotGameSelectionsPaginationContainerProps } from "./type"
 import { useTarotGameSelectionsPaginationContainerHook } from "./hook"
+import { TarotGameSelectionsPaginationContainerStyle } from "./style"
 
 export default {}
 
 export const TarotGameSelectionsPaginationContainer = (props:TTarotGameSelectionsPaginationContainerProps)=>{
 
     const {
+        tarotGameSelectionsPaginationData,
         handleOnFetchStart
     } = props
 
     const {
         tarotGameSelectionsPaginationRef,
-        TarotGameSelectionsPaginationData,
         tarotGameSelectionPaginationCurrentIndex,
         tarotGameSelectionPaginationCurrentId,
-        tarotGameSelectionsPaginationDataIndexLength
-    } = useTarotGameSelectionsPaginationContainerHook({})
+    } = useTarotGameSelectionsPaginationContainerHook({
+        tarotGameSelectionsPaginationData
+    })
 
       return(
             <View
-                style={{flex:1}}
+                style={TarotGameSelectionsPaginationContainerStyle.TarotGameSelectionsPaginationContainerContainer}
             >
                 <TarotGameSelectionsPagination
                     ref={tarotGameSelectionsPaginationRef}
-                    selectionsPaginationData={TarotGameSelectionsPaginationData}
+                    tarotGameSelectionsPaginationData={tarotGameSelectionsPaginationData}
                     tarotGameSelectionPaginationCurrentIndex={tarotGameSelectionPaginationCurrentIndex}
-                    tarotGameSelectionsPaginationDataIndexLength={tarotGameSelectionsPaginationDataIndexLength}
+                    tarotGameSelectionsPaginationDataLength={tarotGameSelectionsPaginationData.length}
                 />
                 <TarotGameSelectionsFooterContainer
                     tarotGameSelectionsPaginationContainerRef={tarotGameSelectionsPaginationRef}
                     tarotGameSelectionPaginationCurrentIndex={tarotGameSelectionPaginationCurrentIndex}
                     tarotGameSelectionPaginationCurrentId={tarotGameSelectionPaginationCurrentId}
-                    tarotGameSelectionsPaginationDataIndexLength={tarotGameSelectionsPaginationDataIndexLength}
+                    tarotGameSelectionsPaginationDataLength={tarotGameSelectionsPaginationData.length}
                     handleOnFetchStart={handleOnFetchStart}
                 />
             </View>

@@ -6,31 +6,36 @@ import {
 
 import { TTarotGameSelectionsPaginationRefProps } from "../TarotGameSelectionsPagination/type"
 
-import { TarotGameSelectionsPaginationData } from "./helper"
-import { TTarotGameSelectionPaginationData, TTarotGameSelectionsPaginationContainerHookProps } from "./type"
+import { 
+    TTarotGameSelectionPaginationData, 
+    TTarotGameSelectionsPaginationContainerHookProps, 
+} from "./type"
 
-
-export default {}
 
 export const useTarotGameSelectionsPaginationContainerHook = (props:TTarotGameSelectionsPaginationContainerHookProps)=>{
+
+    const {
+        tarotGameSelectionsPaginationData
+    } = props
+
     const tarotGameSelectionsPaginationRef = useRef<TTarotGameSelectionsPaginationRefProps>(null)
 
     const tarotGameSelectionPaginationCurrentIndex = useSharedValue(0)
-    const tarotGameSelectionPaginationCurrentId = useSharedValue<TTarotGameSelectionPaginationData['id']>(TarotGameSelectionsPaginationData[0].id)
-
-    const tarotGameSelectionsPaginationDataIndexLength = TarotGameSelectionsPaginationData.length - 1
+    const tarotGameSelectionPaginationCurrentId = useSharedValue<TTarotGameSelectionPaginationData['id']>(tarotGameSelectionsPaginationData[0].id)
 
     useAnimatedReaction(
         ()=>tarotGameSelectionPaginationCurrentIndex,
         ()=>{
-            tarotGameSelectionPaginationCurrentId.value = TarotGameSelectionsPaginationData[tarotGameSelectionPaginationCurrentIndex.value].id
+            tarotGameSelectionPaginationCurrentId.value = tarotGameSelectionsPaginationData[tarotGameSelectionPaginationCurrentIndex.value].id
         }
     )
     return{
         tarotGameSelectionsPaginationRef,
-        TarotGameSelectionsPaginationData,
         tarotGameSelectionPaginationCurrentIndex,
         tarotGameSelectionPaginationCurrentId,
-        tarotGameSelectionsPaginationDataIndexLength
     }
+}
+
+export default {
+    useTarotGameSelectionsPaginationContainerHook
 }

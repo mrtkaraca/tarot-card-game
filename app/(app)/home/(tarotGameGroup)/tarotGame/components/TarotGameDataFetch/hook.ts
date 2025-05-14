@@ -14,8 +14,8 @@ import { useTarotGameGroupStore } from "@/contexts/tarotGameGroup";
 import { TErrorViewProps } from "@/components/ErrorView/type";
 import { TDataLoadingData } from "@/components/DataLoading/type";
 
-import { errorResponseHandler } from "@/api/helper";
 import { getTarotGameData } from "@/api/tarotGameGroup";
+import { useApiErrorHandler } from "@/api/hook";
 
 import { TTarotGamePrefetchMap } from "./type";
 
@@ -24,11 +24,26 @@ import { TCheckTarotGameData, TTarotGameDataFetchHookProps } from "./type"
 import { TTarotGameAsset, TTarotGameData } from "../../type";
 
 import { TarotGameDataLoadingDataTitles } from "../TarotGameInnerContainer/helper";
-import { TarotGameImageQualitys } from "../TarotGameSelectionsPaginationContainer/helper";
+import { useTranslation } from "react-i18next";
+
 
 export default undefined
 
 export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
+
+    const {
+        tarotGameImageQualitys,
+        handleAfterFetch
+    } = props
+
+
+    const {
+        t
+    } = useTranslation()
+
+    const {
+        errorResponseHandler
+    } = useApiErrorHandler()
 
     const tarotGameSettingsSelectedItems = useTarotGameGroupStore((state)=>state.tarotGameSettingsSelectedItems)
     const tarotGameSelectedImageQuality = useTarotGameStore((state)=>state.tarotGameSelectionsPaginationSelectedItems.tarotGameImageQuality)
@@ -43,14 +58,14 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
     const pureTarotGameDataRef = useRef<TTarotGameData | null>(null)
     const [isAdjustTarotGameDataImageUrl,setIsAdjustTarotGameDataImageUrl] = useState(false)
 
-    const dataLoadingData = useSharedValue<TDataLoadingData | null>(null)
+    const dataLoadingDataSV = useSharedValue<TDataLoadingData | null>(null)
 
     const dataLoadingDataRef = useRef<TDataLoadingData | null>(null)
 
     const handleAdjustTarotGameDefaultDataImageUrls = useCallback((asset:Exclude<TTarotGameAsset,'tarotDeck'>)=>{
 
         if(pureTarotGameDataRef.current?.[asset]){
-            let viewPorts = TarotGameImageQualitys.filter((qualitys)=>qualitys.id === tarotGameSelectedImageQuality).map((quality)=>quality.viewports[asset])[0]
+            let viewPorts = tarotGameImageQualitys.filter((qualitys)=>qualitys.id === tarotGameSelectedImageQuality).map((quality)=>quality.viewports[asset])[0]
     
             let uri = 
                 `${pureTarotGameDataRef.current[asset].image.url.split(pureTarotGameDataRef.current[asset].image.ext)[0]}` +
@@ -68,7 +83,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
 
     const handleAdjustTarotGameDecktDataImageUrls = useCallback((asset:Extract<TTarotGameAsset,'tarotDeck'>)=>{
         if(pureTarotGameDataRef.current){
-            let viewPorts = TarotGameImageQualitys.filter((qualitys)=>qualitys.id === tarotGameSelectedImageQuality).map((quality)=>quality.viewports[asset])[0]
+            let viewPorts = tarotGameImageQualitys.filter((qualitys)=>qualitys.id === tarotGameSelectedImageQuality).map((quality)=>quality.viewports[asset])[0]
     
             let backFaceUri = 
                 `${pureTarotGameDataRef.current[asset].backFace.image.url.split(pureTarotGameDataRef.current[asset].backFace.image.ext)[0]}` +
@@ -117,7 +132,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
             ...dataLoadingDataRef.current,
             dataLoadCurrentDataName:tarotCursorData.name
         }
-        dataLoadingData.value = dataLoadingDataRef.current
+        dataLoadingDataSV.value = dataLoadingDataRef.current
 
         let isPrefetched = await Image.prefetch(tarotCursorData.image.url,{
             cachePolicy:'memory-disk'
@@ -128,7 +143,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
                 ...dataLoadingDataRef.current,
                 dataLoadCurrentProgress:Number(dataLoadingDataRef.current.dataLoadCurrentProgress) + 1
             }
-            dataLoadingData.value = dataLoadingDataRef.current
+            dataLoadingDataSV.value = dataLoadingDataRef.current
             return true
         }
         else{
@@ -142,7 +157,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
             ...dataLoadingDataRef.current,
             dataLoadCurrentDataName:tarotBackgroundData.name
         }
-        dataLoadingData.value = dataLoadingDataRef.current
+        dataLoadingDataSV.value = dataLoadingDataRef.current
 
         let isPrefetched = await Image.prefetch(tarotBackgroundData.image.url,{
             cachePolicy:'memory-disk'
@@ -153,7 +168,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
                 ...dataLoadingDataRef.current,
                 dataLoadCurrentProgress:Number(dataLoadingDataRef.current.dataLoadCurrentProgress) + 1
             }
-            dataLoadingData.value = dataLoadingDataRef.current
+            dataLoadingDataSV.value = dataLoadingDataRef.current
             return true
         }
         else{
@@ -166,7 +181,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
             ...dataLoadingDataRef.current,
             dataLoadCurrentDataName:tarotDeckData.name + ' '  + tarotDeckData.backFace.name
         }
-        dataLoadingData.value = dataLoadingDataRef.current
+        dataLoadingDataSV.value = dataLoadingDataRef.current
 
         const isImagePrefetched = await Image.prefetch(tarotDeckData.backFace.image.url,{
             cachePolicy:'memory-disk'
@@ -177,7 +192,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
                 ...dataLoadingDataRef.current,
                 dataLoadCurrentProgress:Number(dataLoadingDataRef.current.dataLoadCurrentProgress) + 1
             }
-            dataLoadingData.value = dataLoadingDataRef.current
+            dataLoadingDataSV.value = dataLoadingDataRef.current
         }
         else{
             return false
@@ -189,7 +204,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
                 ...dataLoadingDataRef.current,
                 dataLoadCurrentDataName:tarotDeckData.name + ' ' + tarotDeckData.frontFaces[i].name
             }
-            dataLoadingData.value = dataLoadingDataRef.current
+            dataLoadingDataSV.value = dataLoadingDataRef.current
 
 
             const isImagePrefetched = await Image.prefetch(tarotDeckData.frontFaces[i].image.url,{
@@ -201,7 +216,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
                     ...dataLoadingDataRef.current,
                     dataLoadCurrentProgress:Number(dataLoadingDataRef.current.dataLoadCurrentProgress) + 1
                 }
-                dataLoadingData.value = dataLoadingDataRef.current
+                dataLoadingDataSV.value = dataLoadingDataRef.current
             }
             else{
                 return false
@@ -236,13 +251,16 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
             dataLoadMaxDataLength:dataLoadMaxDataLength,
         }
 
-        dataLoadingData.value = dataLoadingDataRef.current;
+        dataLoadingDataSV.value = dataLoadingDataRef.current;
 
         for(const dataKey of ((Object.keys(data)) as Array<TTarotGameAsset>)){
             const fnc = tarotGameDataPrefetchObj[dataKey]
             const check = await fnc(data[dataKey])
             if(!check){
-                const err = errorResponseHandler('tarotGame',503)
+                const err = errorResponseHandler({
+                    errorContent:'tarotGame',
+                    errorCode:'503'
+                })
                 if(err){
                     setErrorViewData({
                         isVisible:true,
@@ -273,7 +291,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
                 const check = await prefetchTarotGameData(pureTarotGameDataRef.current);
                 if(check){
                     setTarotGameData(pureTarotGameDataRef.current)
-                    props.handleAfterFetch()
+                    handleAfterFetch()
                 }
             }
         }
@@ -291,15 +309,19 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
             dataLoadMaxDataLength:1
         }
 
-        dataLoadingData.value = dataLoadingDataRef.current
+        dataLoadingDataSV.value = dataLoadingDataRef.current
 
-        const [res,err] = await getTarotGameData(abortSignal,tarotGameSettingsSelectedItems)
+        const [res,err] = await getTarotGameData(
+            abortSignal,
+            tarotGameSettingsSelectedItems,
+            errorResponseHandler
+        )
         if(res){
             dataLoadingDataRef.current = {
                 ...dataLoadingDataRef.current,
                 dataLoadCurrentProgress:Number(dataLoadingDataRef.current.dataLoadCurrentProgress) + 1
             }
-            dataLoadingData.value = dataLoadingDataRef.current
+            dataLoadingDataSV.value = dataLoadingDataRef.current
     
             if(!res.tarotBackground || !res.tarotCursor || !res.tarotDeck){
                 setCheckTarotGameData({
@@ -369,9 +391,10 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
     },[isPrefetch])
 
     return{
+        t,
         checkTarotGameData,
         isPending,
         errorViewData,
-        dataLoadingData
+        dataLoadingDataSV
     }
 }

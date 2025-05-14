@@ -1,6 +1,7 @@
 import { forwardRef, Fragment } from "react"
 import { 
     PixelRatio, 
+    ScrollView, 
     TouchableWithoutFeedback, 
     View 
 } from "react-native"
@@ -51,9 +52,9 @@ export const InformationPopOver = (props:TInformationPopOverProps)=>{
                         style={InformationPopOverStyle.InformationPopOverContainer}
                     >
                         <Animated.View
-                            onLayout={handleOnLayout}
                             onStartShouldSetResponder={()=>true}
                             pointerEvents={'box-none'}
+                            onLayout={handleOnLayout}
                             style={[
                                 InformationPopOverStyle.InformationPopOverInnerContainer,
                                 containerAnimStyle
@@ -83,10 +84,16 @@ export const InformationPopOver = (props:TInformationPopOverProps)=>{
                             <Animated.View
                                 style={[
                                     InformationPopOverStyle.InformationPopOverDescriptionContainer,
-                                    descriptionContainerAnimStyle
+                                    descriptionContainerAnimStyle,
                                 ]}
                             >
-                                {children}
+                                <ScrollView>
+                                    <View
+                                        onStartShouldSetResponder={()=>true}
+                                    >
+                                        {children}
+                                    </View>
+                                </ScrollView>
                             </Animated.View>
                         </Animated.View>
                     </View>

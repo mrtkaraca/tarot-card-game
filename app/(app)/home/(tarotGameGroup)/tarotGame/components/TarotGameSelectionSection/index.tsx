@@ -26,7 +26,7 @@ export const TarotGameSelectionSection = (props:TTarotGameSelectionSectionProps)
     } = props
 
     const {
-        panGesture,
+        tapGesture,
         boxAnimatedStyle,
         selectionAnimatedStyle
     } = useTarotGameSelectionSectionHook({
@@ -35,44 +35,43 @@ export const TarotGameSelectionSection = (props:TTarotGameSelectionSectionProps)
     })
 
     return(
-        <View>
-            <GestureDetector gesture={panGesture} >
-                <View>
+        <GestureDetector gesture={tapGesture} >
+            <View>
+                <View
+                    style={TarotGameSelectionSectionStyle.TarotGameSelectionSectionInnerContainer}
+                >
                     <View
-                        style={TarotGameSelectionSectionStyle.TarotGameSelectionSectionInnerContainer}
+                        style={TarotGameSelectionSectionStyle.TarotGameSelectionSectionTextContainer}
                     >
-                        <View
-                            style={TarotGameSelectionSectionStyle.TarotGameSelectionSectionTextContainer}
+                        <Text
+                            adjustsFontSizeToFit
+                            numberOfLines={1}
+                            style={TarotGameSelectionSectionStyle.TarotGameSelectionSectionText}
                         >
-                            <Text
-                                numberOfLines={1}
-                                style={TarotGameSelectionSectionStyle.TarotGameSelectionSectionText}
-                            >
-                                {selection.name}
-                            </Text>
-                        </View>
-                        <View
-                            style={TarotGameSelectionSectionStyle.TarotGameSelectionSectionBoxContainer}
-                        >
-                            <Animated.View 
-                                style={[
-                                    TarotGameSelectionSectionStyle.TarotGameSelectionSectionBox,
-                                    boxAnimatedStyle,
-                                ]}
-                            />
-                        </View>
+                            {selection.name}
+                        </Text>
                     </View>
-                    <Animated.View 
-                        style={[
-                            selectionAnimatedStyle,
-                            TarotGameSelectionSectionStyle.TarotGameSelectionSectionOpacityContainer,
-                            {
-                                backgroundColor:selectionOpacitiyColor
-                            }
-                        ]} 
-                    />
+                    <View
+                        style={TarotGameSelectionSectionStyle.TarotGameSelectionSectionBoxContainer}
+                    >
+                        <Animated.View 
+                            style={[
+                                TarotGameSelectionSectionStyle.TarotGameSelectionSectionBox,
+                                boxAnimatedStyle,
+                            ]}
+                        />
+                    </View>
                 </View>
-            </GestureDetector>
-        </View>
+                <Animated.View 
+                    style={[
+                        selectionAnimatedStyle,
+                        TarotGameSelectionSectionStyle.TarotGameSelectionSectionOpacityContainer,
+                        {
+                            backgroundColor:selectionOpacitiyColor
+                        }
+                    ]} 
+                />
+            </View>
+        </GestureDetector>
     )
 }

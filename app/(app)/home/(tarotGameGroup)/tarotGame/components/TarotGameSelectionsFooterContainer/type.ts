@@ -9,7 +9,7 @@ export type TTarotGameSelectionsFooterContainerProps = {
     tarotGameSelectionsPaginationContainerRef:React.RefObject<TTarotGameSelectionsPaginationRefProps | null>
     tarotGameSelectionPaginationCurrentIndex: SharedValue<number>
     tarotGameSelectionPaginationCurrentId: SharedValue<TTarotGameSelectionPaginationData['id']>
-    tarotGameSelectionsPaginationDataIndexLength: number
+    tarotGameSelectionsPaginationDataLength: number
     handleOnFetchStart:TTarotGameSelectionsPaginationContainerProps['handleOnFetchStart']
 }
 

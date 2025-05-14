@@ -3,8 +3,9 @@ import React from "react"
 import { TarotGameBackground } from './components/TarotGameBackground';
 import { TarotGameHeader } from './components/TarotGameHeader';
 import { TarotGameContainer } from './components/TarotGameContainer';
-import { useTarotGameHook } from "./hooks";
 import {TarotGameCardModal} from "./components/TarotGameCardModal";
+
+import { useTarotGameHook } from "./hooks";
 
 const TarotGame= () => {
 

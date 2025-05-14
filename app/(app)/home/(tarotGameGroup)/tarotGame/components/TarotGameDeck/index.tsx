@@ -22,6 +22,7 @@ export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
         deckMeasure,
         deckCardDimensions,
         deckBottomSidePageCenter,
+        deckBottomSideFrontFacesIndexLength,
         deckBottomSideCardsMinimumLeft,
         deckBottomSideCardsPreviousMinimumLeft,
         deckBottomSideSpaceBetweenCards,
@@ -40,6 +41,7 @@ export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
     const {
         tarotGameDeckAnimatedRef,
         cardStartAnimationDuration,
+        startAnimationLastCardTranslateXInterpolate,
         cardReOrdinateAnimationDuration,
         handleOnLayout,
         handleTarotGameDeckCardsRef,
@@ -47,7 +49,9 @@ export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
     } = useTarotGameDeckHook({
         ref,
         deckData,
-        deckMeasure
+        deckMeasure,
+        deckBottomSideFrontFacesIndexLength,
+        deckBottomSideSpaceBetweenCards
     })
 
     return(
@@ -73,6 +77,7 @@ export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
                         cardDimensions={deckCardDimensions}
                         cardStartAnimationDuration={cardStartAnimationDuration}
                         cardReOrdinateAnimationDuration={cardReOrdinateAnimationDuration}
+                        startAnimationLastCardTranslateXInterpolate={startAnimationLastCardTranslateXInterpolate}
                         pageCenter={frontFace.deckSide === 'bottomSide' ? deckBottomSidePageCenter : deckTopSidePageCenter}
                         spaceBetweenCards={frontFace.deckSide === 'bottomSide' ? deckBottomSideSpaceBetweenCards : deckTopSideSpaceBetweenCards}
                         previousSpaceBetweenCards={frontFace.deckSide === 'bottomSide' ?  deckBottomSidePreviousSpaceBetweenCards : deckTopSidePreviousSpaceBetweenCards}

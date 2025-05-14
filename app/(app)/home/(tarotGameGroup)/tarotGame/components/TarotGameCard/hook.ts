@@ -6,6 +6,7 @@ import {
     useState
 } from "react"
 import { 
+    Easing,
     Extrapolation,
     interpolate,
     runOnJS,
@@ -15,6 +16,7 @@ import {
     useDerivedValue, 
     useSharedValue, 
     withDelay, 
+    withSequence, 
     withTiming 
 } from "react-native-reanimated"
 import { Gesture } from "react-native-gesture-handler"
@@ -40,6 +42,7 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
         cardDimensions,
         tarotGameDeckTopSideCardEndingLayout,
         cardStartAnimationDuration,
+        startAnimationLastCardTranslateXInterpolate,
         cardReOrdinateAnimationDuration,
         cardEndingLayoutAnimationDuration,
         spaceBetweenCards,
@@ -59,9 +62,10 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
     
     const cardIndex = useSharedValue<number | null>(null)
     const cardZIndex = useSharedValue<number>(deckIndex)
+    const cardOpacity = useSharedValue<0 | 1>(0)
     const cardPreviousIndex = useSharedValue<number | null>(null)
     const cardPhase = useSharedValue<TTarotGameCardPhases>(null)
-    const cardToggleMaximumRight = useSharedValue<0 | 1>(0)
+    const cardToggleMaximumRight = useSharedValue<0 | 1>(1)
     const cardToggleReOrdinate = useSharedValue<0 | 1>(0)
     const cardToggleMoveToTopDeck = useSharedValue<0 | 1>(0)
     const cardsMinimumLeftDV = useSharedValue(0)
@@ -287,6 +291,7 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
         return{
             height:cardDimensionsDV.value.height,
             width:cardDimensionsDV.value.width,
+            opacity:cardOpacity.value,
             zIndex:cardZIndex.value,
             transform:[
                 {translateX:cardCenterToDeckSideTranslate.value.x},
@@ -326,13 +331,17 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
         )
     },[])
 
-    const handleTarotCardMoveCardToRightStartAnimation = useCallback(()=>{
-        'worklet'
+    const handleTarotCardMoveCardToRightStartAnimation:TTarotGameCardRefProps['handleTarotCardMoveCardToRightStartAnimation'] = useCallback((
+        easing
+    )=>{
         cardPhase.value = 'startAnimation'
+        cardToggleMaximumRight.value = 0
+        cardOpacity.value = 1
         cardToggleMaximumRight.value = withTiming(
             1,
             {
-                duration:cardStartAnimationDuration
+                duration:cardStartAnimationDuration,
+                easing
             },
             (finished)=>{
                 if(finished){
@@ -340,6 +349,7 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
                 }
             }
         )
+        
     },[])
     const handleTarotCardMoveCardToEndGameLayout = useCallback(()=>{
         'worklet'
@@ -430,9 +440,6 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
     useAnimatedReaction(
         ()=>deckPhase.value,
         ()=>{
-            if(deckPhase.value === 'startGame' && cardPhase.value === null){
-                handleTarotCardMoveCardToRightStartAnimation()
-            }
             if(deckPhase.value === 'endGame'){
                 handleTarotCardMoveCardToEndGameLayout()
             }
@@ -440,9 +447,25 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
     )
 
     useAnimatedReaction(
+        ()=>startAnimationLastCardTranslateXInterpolate.value,
+        ()=>{
+            if(
+                deckPhase.value === 'startGame' &&
+                cardPhase.value === null
+            ){
+                if(startAnimationLastCardTranslateXInterpolate.value >= cardMaximumRight.value){
+                    cardOpacity.value = 1
+                    cardPhase.value = 'drawingCard'
+                }
+            }
+        }
+    )
+ 
+    useAnimatedReaction(
         ()=>cardMaximumRightInterpolate.value,
         ()=>{
             if(
+                cardPhase.value === null ||
                 cardPhase.value === 'startAnimation' ||
                 cardPhase.value === 'drawingCard' ||
                 cardPhase.value === 'moveCardToTop' ||
@@ -531,15 +554,17 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
             )
         )
         cardIndex.value = frontFace.index
-    },[frontFace.index])
+    },[frontFace.index,frontFace.deckSide])
 
     useEffect(()=>{
-        if(frontFace.deckSide === 'topSide' && tarotGameDeckTopSideCardEndingLayout){
-            const cardEndingPosition = handleTarotGameTopDeckCardEndingLayout(
-                frontFace.index,
-                tarotGameDeckTopSideCardEndingLayout
-            )
-            cardEndingLayoutRowColumn.value = cardEndingPosition
+        if(frontFace.deckSide === 'topSide'){
+            if(tarotGameDeckTopSideCardEndingLayout){
+                const cardEndingPosition = handleTarotGameTopDeckCardEndingLayout(
+                    frontFace.index,
+                    tarotGameDeckTopSideCardEndingLayout
+                )
+                cardEndingLayoutRowColumn.value = cardEndingPosition
+            }
         }
     },[frontFace.deckSide])
 

@@ -1,4 +1,4 @@
-import { DerivedValue,MeasuredDimensions, SharedValue } from "react-native-reanimated"
+import { DerivedValue,EasingFunction,EasingFunctionFactory,MeasuredDimensions, SharedValue } from "react-native-reanimated"
 
 import { TTarotGameCardFaceData } from "../TarotGameCardFace/type"
 import { TTarotGameCardDrawningNumberLayout, TTarotGameDeck, TTarotGameDeckPhases } from "../TarotGameDeck/type"
@@ -37,6 +37,7 @@ export type  TTarotGameCardProps = {
         heigth: number;
     } | null>
     cardStartAnimationDuration: number
+    startAnimationLastCardTranslateXInterpolate: DerivedValue<number>
     cardReOrdinateAnimationDuration: number
     spaceBetweenCards: DerivedValue<number | null>
     previousSpaceBetweenCards: DerivedValue<number | null>
@@ -65,6 +66,7 @@ export type TTarotGameCardHookProps = Pick<TTarotGameCardProps,
     'pageCenter' |
     'cardDimensions' |
     'cardStartAnimationDuration' |
+    'startAnimationLastCardTranslateXInterpolate' |
     'cardReOrdinateAnimationDuration' |
     'spaceBetweenCards' |
     'previousSpaceBetweenCards' |
@@ -80,7 +82,7 @@ export type TTarotGameCardHookProps = Pick<TTarotGameCardProps,
 
 export type TTarotGameCardRefProps = {
     handleTarotCardMoveCardToRightStartAnimation: (
-        animationDuration:number
+        easing?:EasingFunction | EasingFunctionFactory | undefined
     ) => void
     handleMoveTarotCardFromBottomDeckToTopDeck:(
         animationDuration:number

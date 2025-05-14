@@ -6,9 +6,14 @@ import {
     useRef 
 } from "react"
 import { 
+    Easing,
+    interpolate,
     measure,
     runOnUI,
-    useAnimatedRef, 
+    useAnimatedRef,
+    useDerivedValue,
+    useSharedValue,
+    withTiming, 
 } from "react-native-reanimated"
 
 import { 
@@ -29,17 +34,45 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
     const {
         ref,
         deckData,
-        deckMeasure
+        deckMeasure,
+        deckBottomSideFrontFacesIndexLength,
+        deckBottomSideSpaceBetweenCards
     } = props
     
     var cardReOrdinateAnimationDuration = 2000
     var cardStartAnimationDuration = 3000
+    var startAnimationLastCardEasing = Easing.bezier(0.75, 0, 0.25, 1)
 
     const setTarotGameCardModalData = useTarotGameStore((state)=>state.setTarotGameCardModalData)
 
     const tarotGameDeckCardsRef = useRef<Array<TTarotGameCardRefProps>>([])
     
     const tarotGameDeckAnimatedRef = useAnimatedRef()
+
+    const startAnimationLastCardTranslateXToggle = useSharedValue<0 | 1>(0)
+
+    const deckLastCardMaximumRightTranslateX = useDerivedValue(()=>{
+        return (
+            deckBottomSideFrontFacesIndexLength.value !== null &&
+            deckBottomSideSpaceBetweenCards.value !== null
+        )? (
+            deckBottomSideFrontFacesIndexLength.value * deckBottomSideSpaceBetweenCards.value
+        )
+        :
+        null
+    })
+
+    const startAnimationLastCardTranslateXInterpolate = useDerivedValue(()=>{
+        return (
+            deckLastCardMaximumRightTranslateX.value !== null
+        ) ? interpolate(
+            startAnimationLastCardTranslateXToggle.value,
+            [0,1],
+            [0,deckLastCardMaximumRightTranslateX.value]
+        )
+        :
+        0
+    })
 
     const handleTarotGameDeckCardsRef = useCallback((cardRef:RefObject<TTarotGameCardRefProps | null>,cardIndex:number)=>{
         if(cardRef.current){
@@ -69,6 +102,26 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
         return cardStartAnimationDuration
     },[])
 
+
+    const handleStartGame = useCallback(()=>{
+        if(tarotGameDeckCardsRef.current){
+            
+            tarotGameDeckCardsRef.current[tarotGameDeckCardsRef.current.length-1].handleTarotCardMoveCardToRightStartAnimation(
+                startAnimationLastCardEasing
+            )
+
+            startAnimationLastCardTranslateXToggle.value = withTiming(
+                1,
+                {
+                    duration:cardStartAnimationDuration,
+                    easing:startAnimationLastCardEasing
+                }
+            )
+
+
+        }
+    },[])
+
     const handleReOrdinateCards:TTarotGameDeckRefProps['handleReOrdinateCards'] = useCallback((
         deckTopSideSelectedCardIndex
     )=>{
@@ -77,7 +130,12 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
                 if(
                     deckTopSideSelectedCardIndex !== index
                 ){
-                    cardRef.handleReOrdinateCard()
+                    if(deckData?.frontFaces[index].deckSide === 'topSide'){
+                        cardRef.handleReOrdinateCard()
+                    }
+                    else{
+                        
+                    }
                 }
             })
         }
@@ -123,6 +181,7 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
         ref,
         ()=>{
             return{
+                handleStartGame,
                 handleGetTarotGameDeckStartAnimation,
                 handleMoveTarotCardFromBottomDeckToTopDeck,
                 handleReOrdinateCards,
@@ -134,6 +193,7 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
     return{
         tarotGameDeckAnimatedRef,
         cardStartAnimationDuration,
+        startAnimationLastCardTranslateXInterpolate,
         cardReOrdinateAnimationDuration,
         handleOnLayout,
         handleTarotGameDeckCardsRef,

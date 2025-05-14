@@ -25,7 +25,7 @@ export const TarotGameSettingsSize = {
     },
     tarotGameSettingsOnboardScreenContainer:{
         activityIndicator:48/PixelRatio.get(),
-        fallBackFontSize:16/PixelRatio.get()
+        fallBackFontSize:24/PixelRatio.get()
     },
     tarotGameSettingsOnboardScreen:{
         title:16/PixelRatio.getFontScale()
@@ -33,7 +33,40 @@ export const TarotGameSettingsSize = {
 }
 
 export const TarotGameSizes={
+    TarotGameSelectionContainer:{
+        textHeaderFontSize:48/PixelRatio.get(),
+    },
+     TarotGameSelectionSection:{
+        textFontSize:36/PixelRatio.get(),
+        tarotGameSelectionSectionBoxContainer:{
+            width: Math.round(48 / PixelRatio.get()),
+            height: Math.round(48 / PixelRatio.get()),
+        },
+        TarotGameSelectionSectionBox:{
+            width: Math.round(36 / PixelRatio.get()),
+            height: Math.round(36 / PixelRatio.get()),
+        }
+    },
+    TarotGameDataFetch:{
+        FallbackContainerText:{
+            fontSize:24/PixelRatio.get()
+        }
+    },
+    TarotGameCardModal:{
+        tarotGameCardModalTextFontSize:24/PixelRatio.get()
+    },
     IconButtons:{
         buttonSize:64 / PixelRatio.get(),
     }
+}
+
+export const DataLoadingSizes={
+    dataLoadingTitleTextFontSize:36/PixelRatio.get(),
+    dataLoadingProgressBarPercentTextFontsize:24/PixelRatio.get(),
+    dataLoadingCurrentItemTextFontSize:24/PixelRatio.get()
+}
+
+export const ErrorViewSizes={
+    errowViewTitleFontSize:48/PixelRatio.get(),
+    errorViewDescriptionFontSize:24/PixelRatio.get()
 }

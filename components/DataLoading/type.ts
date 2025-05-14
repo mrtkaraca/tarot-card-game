@@ -8,7 +8,7 @@ export type TDataLoadingData = {
 }
 
 export type TDataLoadingProps = {
-    dataLoadingData:SharedValue<TDataLoadingData | null>;
+    dataLoadingDataSV:SharedValue<TDataLoadingData | null>;
 }
 
 export type TDataLoadingHookProps = TDataLoadingProps

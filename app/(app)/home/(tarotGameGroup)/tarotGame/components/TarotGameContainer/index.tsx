@@ -12,16 +12,19 @@ export const TarotGameContainer = ()=>{
         startFetch,
         isGameStarted,
         tarotGameDataWithoutBackground,
+        tarotGameImageQualitys,
+        tarotGameSelectionsPaginationData,
         handleOnFetchStart,
         handleAfterFetch,
-    } = useTarotGameContainerHook({})
-
-
+    } = useTarotGameContainerHook({
+        
+    })
 
 
     if(startFetch){
         return(
             <TarotGameDataFetch
+                tarotGameImageQualitys={tarotGameImageQualitys}
                 handleAfterFetch={handleAfterFetch}
             />
         )
@@ -37,6 +40,7 @@ export const TarotGameContainer = ()=>{
     
     return(
         <TarotGameSelectionsPaginationContainer
+            tarotGameSelectionsPaginationData={tarotGameSelectionsPaginationData}
             handleOnFetchStart={handleOnFetchStart}
         />
     )

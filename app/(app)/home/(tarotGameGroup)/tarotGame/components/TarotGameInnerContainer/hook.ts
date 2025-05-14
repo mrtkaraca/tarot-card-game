@@ -80,6 +80,7 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
     const deckPhase = useSharedValue<TTarotGameDeckPhases>('startGame')
     const deckMeasure = useSharedValue<MeasuredDimensions | null>(null)
     const deckCardStartAndEndAnimationInterpolateToggle = useSharedValue<0 | 1>(0)
+    const deckSelectedCardDeckIndex = useSharedValue<number | null>(null)
     const deckTopSideSelectedCardIndex = useSharedValue<number | null>(null)
     const deckTopSidePreviousFrontFacesLength = useSharedValue<number | null>(null)
     const deckBottomSideSelectedCardIndex = useSharedValue<number | null>(null)
@@ -455,8 +456,8 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
             :
             null
     })
+
     
-    // wtf bro
     const handleShuffleDeck = useCallback(()=>{
         const frontFacesLength = tarotGameDataWithoutBackground.tarotDeck.frontFaces.length
         for(let i = 0 ; i < frontFacesLength; i++){
@@ -466,6 +467,7 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
             tarotGameDataWithoutBackground.tarotDeck.frontFaces[randomNum] = tempFrontFace
         }
 
+        
         // let c = tarotGameDataWithoutBackground.tarotDeck.frontFaces.filter((va,ind)=> ind < 15)
         // tarotGameDataWithoutBackground.tarotDeck.frontFaces = c
 
@@ -521,16 +523,16 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
                 return frontFace
             })
 
+
+            deckSelectedCardDeckIndex.value = selectedCardDeckIndex
+            deckTopSideSelectedCardIndex.value = topSideTotalCardLength
+            deckBottomSideSelectedCardIndex.value = selectedCardIndex
+
             setDeck((prev)=>(prev ? {
                 ...prev,
                 frontFaces:newFrontFaces
             } : prev))
 
-            return{
-                deckTopSideSelectedCardIndex:topSideTotalCardLength,
-                selectedCardDeckIndex:selectedCardDeckIndex,
-                newFrontFaces:newFrontFaces
-            }
         }
     },[deck])
 
@@ -545,36 +547,7 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
             deckTopSidePreviousFrontFacesLength.value = deckTopSideFrontFacesLength.value
             tarotGameDrawnedCardCount.current += 1
 
-            const adjustedIndexs = handleDeckSideAndCardsIndex(cursorStoppedIndex)
-
-            if(adjustedIndexs){
-                deckTopSideSelectedCardIndex.value = adjustedIndexs.deckTopSideSelectedCardIndex
-                deckBottomSideSelectedCardIndex.value = cursorStoppedIndex
-                
-                deckRef.current.handleReOrdinateCards(
-                    adjustedIndexs.selectedCardDeckIndex
-                )
-
-                deckRef.current.handleTopSideDeckCardsZIndex(
-                    adjustedIndexs.selectedCardDeckIndex
-                )
-
-                deckRef.current.handleMoveTarotCardFromBottomDeckToTopDeck(
-                    adjustedIndexs.selectedCardDeckIndex,
-                    cursorAndCardMoveToTopSideDeckDuration
-                )
-
-                cursorRef.current.handleMoveCursorToTopkAndBackToBottomDeck(
-                    cursorAndCardMoveToTopSideDeckDuration,
-                    tarotGameDrawnedCardCount.current === tarotGameDrawningCardNumber ? (
-                       ()=>handleEndOfGame(adjustedIndexs.newFrontFaces)
-                    )
-                    :
-                    (
-                        undefined
-                    )
-                )
-            }
+            handleDeckSideAndCardsIndex(cursorStoppedIndex)
 
         }
     },[handleDeckSideAndCardsIndex])   
@@ -603,7 +576,8 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
     const handleBottomDeckStartGame = useCallback(()=>{
         if(deckRef.current && cursorRef.current){
             setIsDeckReady(true)
-            deckPhase.value = 'startGame'
+            // deckPhase.value = 'startGame'
+            deckRef.current.handleStartGame()
             let deckStartAnimationDuration = deckRef.current.handleGetTarotGameDeckStartAnimation()
             setTimeout(() => {
                 cursorRef.current?.handleStartCursorAnimation()
@@ -666,6 +640,44 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
         handleShuffleDeck()
         handleSetInitalDeckSideAndIndexToCards()
     },[handleShuffleDeck,handleSetInitalDeckSideAndIndexToCards])
+
+    useEffect(()=>{
+        if(
+            deck !== null &&
+            deckRef.current &&
+            cursorRef.current
+        ){
+            const topSideFrontFacesLenght = deck.frontFaces.filter((card)=>card.deckSide === 'topSide').length 
+            if(
+                topSideFrontFacesLenght >=1 &&
+                deckSelectedCardDeckIndex.value !== null
+            ){
+                deckRef.current.handleReOrdinateCards(
+                    deckSelectedCardDeckIndex.value
+                )
+
+                deckRef.current.handleTopSideDeckCardsZIndex(
+                    deckSelectedCardDeckIndex.value
+                )
+
+                deckRef.current.handleMoveTarotCardFromBottomDeckToTopDeck(
+                    deckSelectedCardDeckIndex.value,
+                    cursorAndCardMoveToTopSideDeckDuration
+                )
+
+                cursorRef.current.handleMoveCursorToTopkAndBackToBottomDeck(
+                    cursorAndCardMoveToTopSideDeckDuration,
+                    tarotGameDrawnedCardCount.current === tarotGameDrawningCardNumber ? (
+                    ()=>handleEndOfGame(deck.frontFaces)
+                    )
+                    :
+                    (
+                        undefined
+                    )
+                )
+            }
+        }
+    },[deck?.frontFaces])
 
     return{
         isGameEnded,

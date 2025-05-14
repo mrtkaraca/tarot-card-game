@@ -1,3 +1,5 @@
+import { TarotGameColors } from "@/constants/color"
+import { TarotGameSizes } from "@/constants/size"
 import { PixelRatio, StyleSheet } from "react-native"
 
 export default undefined
@@ -10,29 +12,30 @@ export const TarotGameSelectionSectionStyle = StyleSheet.create({
     TarotGameSelectionSectionInnerContainer:{
         flexDirection:'row',
         justifyContent:'space-between',
+        alignItems:'center',
         gap:24/PixelRatio.get(),
         padding:16/PixelRatio.get()
     },
     TarotGameSelectionSectionTextContainer:{
-        justifyContent:'center',
+        flexShrink:1
     },
     TarotGameSelectionSectionText:{
-        fontSize:16/PixelRatio.getFontScale(),
+        fontSize:TarotGameSizes.TarotGameSelectionSection.textFontSize,
     },
     TarotGameSelectionSectionBoxContainer:{
-        width: Math.round(48 / PixelRatio.get()),
-        height: Math.round(48 / PixelRatio.get()),
+        width: TarotGameSizes.TarotGameSelectionSection.tarotGameSelectionSectionBoxContainer.width,
+        height: TarotGameSizes.TarotGameSelectionSection.tarotGameSelectionSectionBoxContainer.height,
         borderRadius: 4,
         borderWidth: 1,
         justifyContent:'center',
         alignItems:'center',
-        borderColor: 'green',
+        borderColor: TarotGameColors.TarotGameSelectionSection.tarotGameSelectionSectionBoxContainer.borderColor,
     },
     TarotGameSelectionSectionBox:{
-        width: Math.round(36 / PixelRatio.get()),
-        height: Math.round(36 / PixelRatio.get()),
+        width: TarotGameSizes.TarotGameSelectionSection.TarotGameSelectionSectionBox.width,
+        height: TarotGameSizes.TarotGameSelectionSection.TarotGameSelectionSectionBox.height,
         borderRadius: 2,
-        backgroundColor: 'green',
+        backgroundColor: TarotGameColors.TarotGameSelectionSection.tarotGameSelectionSectionBox.backgroundColor,
     },
     TarotGameSelectionSectionOpacityContainer:{
         position:'absolute',

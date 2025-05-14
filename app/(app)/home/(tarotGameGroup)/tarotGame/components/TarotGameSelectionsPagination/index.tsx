@@ -8,51 +8,47 @@ import Animated from "react-native-reanimated"
 import { TarotGameSelectionContainer } from "../TarotGameSelectionContainer"
 
 import { 
-    TTarotGameSelectionsPaginationProps, 
-    TTarotGameSelectionsPaginationRefProps 
+    TTarotGameSelectionsPaginationProps
 } from "./type"
 import { useTarotGameSelectionsPaginationHook } from "./hook"
+import { TarotGameSelectionsPaginationStyle } from "./style"
 
 
 export default {}
 
-export const TarotGameSelectionsPagination= forwardRef<TTarotGameSelectionsPaginationRefProps,TTarotGameSelectionsPaginationProps>((props,ref)=>{
+export const TarotGameSelectionsPagination = (props:TTarotGameSelectionsPaginationProps)=>{
 
     const {
-        selectionsPaginationData,
+        ref,
+        tarotGameSelectionsPaginationData,
         tarotGameSelectionPaginationCurrentIndex,
-        tarotGameSelectionsPaginationDataIndexLength
+        tarotGameSelectionsPaginationDataLength
     } = props
 
     const {
         tarotGameSelectionsPaginationContainerAnimatedStyle
     } = useTarotGameSelectionsPaginationHook({
+        ref,
         tarotGameSelectionPaginationCurrentIndex,
-        tarotGameSelectionsPaginationDataIndexLength
-    },ref)
+        tarotGameSelectionsPaginationDataLength
+    })
     
 
     return(
         <View
             style={[
-                {
-                    flex:1,
-                    flexDirection:'row'
-                },
+                TarotGameSelectionsPaginationStyle.TarotGameSelectionsPaginationContainer,
                 tarotGameSelectionsPaginationContainerAnimatedStyle
             ]}
         >
-            {selectionsPaginationData.map((selectionPaginationData)=>{
+            {tarotGameSelectionsPaginationData.map((selectionPaginationData)=>{
                 return(
                     <Fragment
                         key={selectionPaginationData.id}
                     >
                         <Animated.View
                             style={[
-                                {
-                                    width:'100%',
-                                    height:'100%'
-                                },
+                                TarotGameSelectionsPaginationStyle.TarotGameSelectionsPaginationAnimationContainer,
                                 tarotGameSelectionsPaginationContainerAnimatedStyle
                             ]}
                         > 
@@ -65,4 +61,4 @@ export const TarotGameSelectionsPagination= forwardRef<TTarotGameSelectionsPagin
             })}
         </View>
     )
-})
+}

@@ -13,9 +13,14 @@ import {
 import { useDataLoadingHook } from "./hook";
 import { TDataLoadingProps } from "./type";
 import { DataLoadingStyle } from "./style";
+import { DataLoadingColors } from "@/constants/color";
 
 
 export const DataLoading = (props:TDataLoadingProps)=>{
+
+    const {
+        dataLoadingDataSV
+    } = props
 
     const {
         animatedBarHeight,
@@ -23,8 +28,9 @@ export const DataLoading = (props:TDataLoadingProps)=>{
         dataLoadingContainerRef,
         dataLoadingData,
         animatedBarCanvasLayout,
-        animatedDataLoadingContainerStyle
-    } = useDataLoadingHook(props)
+    } = useDataLoadingHook({
+        dataLoadingDataSV
+    })
 
     return(
         <Fragment>
@@ -35,7 +41,6 @@ export const DataLoading = (props:TDataLoadingProps)=>{
                     <Animated.View
                         ref={dataLoadingContainerRef}
                         style={[
-                            animatedDataLoadingContainerStyle,
                             DataLoadingStyle.DataLoadingInnerContainer
                         ]}
                     >
@@ -56,7 +61,7 @@ export const DataLoading = (props:TDataLoadingProps)=>{
                                 style={DataLoadingStyle.DataLoadingProgressBarContainer}
                             >
                                 <Canvas style={DataLoadingStyle.DataLoadingProgressBarCanvasContainer} onSize={animatedBarCanvasLayout}>
-                                    <Rect height={animatedBarHeight} width={animatedBarWidth} color={'blue'} />
+                                    <Rect height={animatedBarHeight} width={animatedBarWidth} color={DataLoadingColors.dataLoadingProgressBarCanvasContainerColor} />
                                 </Canvas>
                             </View>
                             <View style={DataLoadingStyle.DataLoadingProgressBarPercentContainer} >

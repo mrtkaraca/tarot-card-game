@@ -5,6 +5,8 @@ import { TextButton } from "@/components/TextButton"
 
 import { TTarotGameSelectionsFooterContainerProps } from "./type"
 import { useTarotGameSelectionsFooterContainerHook } from "./hook"
+import { TarotGameSelectionsFooterContainerStyle } from "./style"
+import { TarotGameColors } from "@/constants/color"
 
 export default {}
 
@@ -14,11 +16,12 @@ export const TarotGameSelectionsFooterContainer = (props:TTarotGameSelectionsFoo
         tarotGameSelectionsPaginationContainerRef,
         tarotGameSelectionPaginationCurrentIndex,
         tarotGameSelectionPaginationCurrentId,
-        tarotGameSelectionsPaginationDataIndexLength,
+        tarotGameSelectionsPaginationDataLength,
         handleOnFetchStart
     } = props
 
     const {
+        t,
         tarotGameSelectionPaginationCurrentIndex:tgspcis,
         tarotGameIsCurrentSelectionPaginationItemSelected,
         handleTarotGameSelectionPaginationPrevious,
@@ -34,30 +37,38 @@ export const TarotGameSelectionsFooterContainer = (props:TTarotGameSelectionsFoo
 
     return(
         <View
-            style={{padding:8,justifyContent:'space-between',flexDirection:'row'}}
+            style={TarotGameSelectionsFooterContainerStyle.TarotGameSelectionsFooterContainerContainer}
         >
             <View>
                 {tgspcis !== 0 &&
                     <TextButton
-                        textButtonTextLabel="Prev"
-                        textButtonOpacityColor="#00000055"
+                        textButtonTextLabel={t('tarotGame.tarotGameSelectionsFooterContainer.leftButtonTextLabel')}
+                        textButtonOpacityColor={TarotGameColors.TextButtons.buttonOpacityColor}
                         numberOfLines={1}
                         handleOnPress={handleTarotGameSelectionPaginationPrevious}
-                        style={{
-                            color:'blue'
-                        }}
                     />
                 }
             </View>
             <View>
                 <TextButton
                     disabled={!tarotGameIsCurrentSelectionPaginationItemSelected}
-                    textButtonTextLabel={tgspcis !== (tarotGameSelectionsPaginationDataIndexLength) ? 'Next' : 'Ok'}
-                    textButtonOpacityColor="#00000055"
+                    textButtonTextLabel={tgspcis !== (tarotGameSelectionsPaginationDataLength-1) ? 
+                        t('tarotGame.tarotGameSelectionsFooterContainer.rightButtonTextLabel')
+                        : 
+                        t('tarotGame.tarotGameSelectionsFooterContainer.rightButtonEndTextLabel')
+                    }
+                    textButtonOpacityColor={TarotGameColors.TextButtons.buttonOpacityColor}
                     numberOfLines={1}
-                    handleOnPress={tgspcis !== tarotGameSelectionsPaginationDataIndexLength ? handleTarotGameSelectionPaginationNext : handleTarotGameSelectionPaginatinOk}
+                    handleOnPress={tgspcis !== (tarotGameSelectionsPaginationDataLength-1) ? 
+                        handleTarotGameSelectionPaginationNext 
+                        : 
+                        handleTarotGameSelectionPaginatinOk
+                    }
                     style={{
-                        color:tarotGameIsCurrentSelectionPaginationItemSelected ? 'blue' : 'grey'
+                        color:tarotGameIsCurrentSelectionPaginationItemSelected ? 
+                            TarotGameColors.tarotGameSelectionsFooterContainer.currentPaginationItemIsSelected
+                            : 
+                            TarotGameColors.tarotGameSelectionsFooterContainer.currentPaginationItemIsNotSelected
                     }}
                 />
             </View>

@@ -10,7 +10,7 @@ export const useTarotGameHeaderHook = (props:TTarotGameHeaderHookProps)=>{
             router.back()
         }
         else{
-            router.navigate('/tarotEvent')
+            router.replace('/home/tarotGameSettings')
         }
     }
 

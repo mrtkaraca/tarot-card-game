@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from "react"
+import { useCallback, useEffect, useLayoutEffect, useState } from "react"
 import {
     Easing,
     measure,
@@ -12,19 +12,22 @@ import {
     withTiming
 } from "react-native-reanimated"
 
+import { SkSize } from "@shopify/react-native-skia"
+
 import { 
     TDataLoadingData, 
     TDataLoadingHookProps 
 } from "./type"
-import { SkSize } from "@shopify/react-native-skia"
 
 export const useDataLoadingHook = (props:TDataLoadingHookProps)=>{
+
+    const {
+        dataLoadingDataSV
+    } = props
     
     const [dataLoadingData,setDataLoadingData] = useState<TDataLoadingData | null>(null)
 
     const dataLoadingContainerRef = useAnimatedRef()
-
-    const animatedDataLoadingContainerBorderRadious = useSharedValue(0)
 
     const animatedBarCanvasLayout = useSharedValue<SkSize>({
         height:0,
@@ -41,19 +44,15 @@ export const useDataLoadingHook = (props:TDataLoadingHookProps)=>{
         return Number(animatedBarCanvasLayout.value.width/animatedBarWidthMaxPercent)
     })
 
-    const animatedDataLoadingContainerStyle = useAnimatedStyle(()=>({
-        borderRadius:animatedDataLoadingContainerBorderRadious.value
-    }))
-
     const animDuration = 100
 
     const workletHandleDataLoadingProgress = ()=>{
         'worklet';
-        let dataLoadingDataCurrentProgressPercent = Number(Math.floor(animatedBarWidthMaxPercent * (Number(props.dataLoadingData.value?.dataLoadCurrentProgress)/Number(props.dataLoadingData.value?.dataLoadMaxDataLength))))
+        let dataLoadingDataCurrentProgressPercent = Number(Math.floor(animatedBarWidthMaxPercent * (Number(dataLoadingDataSV.value?.dataLoadCurrentProgress)/Number(dataLoadingDataSV.value?.dataLoadMaxDataLength))))
         let animatedbarCurrentProgressWidth = Number(animatedBarWidthPerPercent.value * dataLoadingDataCurrentProgressPercent )
         
         let newDataLoadingDataObj:TDataLoadingData = {
-            ...props.dataLoadingData.value,
+            ...dataLoadingDataSV.value,
             dataLoadCurrentProgress:dataLoadingDataCurrentProgressPercent,
             dataLoadMaxDataLength:animatedBarWidthMaxPercent
         }
@@ -68,33 +67,22 @@ export const useDataLoadingHook = (props:TDataLoadingHookProps)=>{
         )
     }
 
+
     useAnimatedReaction(
-        ()=>props.dataLoadingData.value,
+        ()=>dataLoadingDataSV.value,
         ()=>{
-            if(props.dataLoadingData.value){
+            if(dataLoadingDataSV.value){
                 workletHandleDataLoadingProgress()
             }
         }
     )
 
-    useLayoutEffect(()=>{
-        runOnUI(()=>{
-            if(dataLoadingContainerRef.current){
-                const mes = measure(dataLoadingContainerRef)
-                if(mes){
-                    animatedDataLoadingContainerBorderRadious.value = Number(mes.height/10)
-                }
-            }
-        })()
-    })
-
-
+   
     return{
         animatedBarHeight,
         animatedBarWidth,
         dataLoadingContainerRef,
         dataLoadingData,
-        animatedBarCanvasLayout,
-        animatedDataLoadingContainerStyle
+        animatedBarCanvasLayout
     }
 }

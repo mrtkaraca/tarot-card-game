@@ -1,3 +1,5 @@
+import { DataLoadingColors } from "@/constants/color";
+import { DataLoadingSizes } from "@/constants/size";
 import { 
     PixelRatio, 
     StyleSheet 
@@ -12,7 +14,8 @@ export const DataLoadingStyle = StyleSheet.create({
     DataLoadingInnerContainer:{
         width:'75%',
         borderWidth:1,
-        borderColor:'black',
+        borderColor:DataLoadingColors.dataLoadingInnerContainerBorderColor,
+        borderRadius:8/PixelRatio.get(),
         padding:16/PixelRatio.get(),
         gap:12/PixelRatio.get()
     },
@@ -21,7 +24,7 @@ export const DataLoadingStyle = StyleSheet.create({
     },
     DataLoadingTitleContainerText:{
         fontWeight:'500',
-        fontSize:24/PixelRatio.getFontScale()
+        fontSize:DataLoadingSizes.dataLoadingTitleTextFontSize
     },
     DataLoadingProgressContainer:{
         flexDirection:'row',
@@ -30,7 +33,7 @@ export const DataLoadingStyle = StyleSheet.create({
     DataLoadingProgressBarContainer:{
         flex:.9,
         borderRadius:9999,
-        borderBlockColor:'black',
+        borderBlockColor:DataLoadingColors.dataLoadingProgressBarContainerBorderColor,
         borderWidth:1,
         marginRight:8/PixelRatio.get(),
         overflow:'hidden'
@@ -38,15 +41,11 @@ export const DataLoadingStyle = StyleSheet.create({
     DataLoadingProgressBarCanvasContainer:{
         flex:1
     },
-    DataLoadingProgressBar:{
-        flex:1,
-        backgroundColor:'blue'
-    },
     DataLoadingProgressBarPercentContainer:{
         flex:.1
     },
     DataLoadingProgressBarPercent:{
-        fontSize:16/PixelRatio.getFontScale(),
+        fontSize:DataLoadingSizes.dataLoadingProgressBarPercentTextFontsize,
         textAlign:'center'
     },
     DataLoadingCurrentItemContainer:{
@@ -54,7 +53,7 @@ export const DataLoadingStyle = StyleSheet.create({
     },
     DataLoadingCurrentItemText:{
         fontWeight:'500',
-        fontSize:16/PixelRatio.getFontScale()
+        fontSize:DataLoadingSizes.dataLoadingCurrentItemTextFontSize
     }
 
 

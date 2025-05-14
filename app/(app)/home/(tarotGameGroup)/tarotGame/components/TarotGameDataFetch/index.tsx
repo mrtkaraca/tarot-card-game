@@ -4,23 +4,32 @@ import { ErrorView } from "@/components/ErrorView"
 import { useTarotGameDataFetchHook } from "./hook"
 import { TTarotGameDataFetchProps } from "./type"
 import { View,Text } from "react-native"
+import { TTarotGameDataFetcStyle } from "./style"
 
 export default undefined
 
 export const TarotGameDataFetch = (props:TTarotGameDataFetchProps)=>{
 
+    const {
+        tarotGameImageQualitys,
+        handleAfterFetch
+    } = props
 
     const {
+        t,
         checkTarotGameData,
         isPending,
         errorViewData,
-        dataLoadingData
-    } = useTarotGameDataFetchHook(props)
+        dataLoadingDataSV
+    } = useTarotGameDataFetchHook({
+        tarotGameImageQualitys,
+        handleAfterFetch
+    })
 
     if(isPending){
         return(
             <DataLoading
-                dataLoadingData={dataLoadingData}
+                dataLoadingDataSV={dataLoadingDataSV}
             />
         )
     } 
@@ -36,10 +45,14 @@ export const TarotGameDataFetch = (props:TTarotGameDataFetchProps)=>{
 
     if(checkTarotGameData){
         return(
-            <View style={{height:'100%',width:'100%',justifyContent:'center',alignItems:'center',gap:12}}>
-                <Text>{!checkTarotGameData.tarotBackground && 'Goruntulenebilcek bir arkaplan yok!'}</Text>
-                <Text>{!checkTarotGameData.tarotCursor && 'Goruntulenebilcek bir imlecyok!'}</Text>
-                <Text>{!checkTarotGameData.tarotDeck && 'Goruntulenebilcek bir deste yok!'}</Text>
+            <View style={TTarotGameDataFetcStyle.TarotGameDataFetchFallbackContainer}>
+                <Text
+                    style={TTarotGameDataFetcStyle.TarotGameDataFetchFallbackContainerText}
+                >
+                    {!checkTarotGameData.tarotBackground && t('tarotGame.tarotGameDataFetch.noTarotBackground') + '\n\n'}
+                    {!checkTarotGameData.tarotCursor && t('tarotGame.tarotGameDataFetch.noTarotCursor') + '\n\n'}
+                    {!checkTarotGameData.tarotDeck && t('tarotGame.tarotGameDataFetch.noTarotDeck')}
+                </Text>
             </View>
         )
     }

@@ -1,5 +1,5 @@
 import { View } from "react-native"
-import { Image, ImageBackground } from 'expo-image'
+import { ImageBackground } from 'expo-image'
 
 import { TTarotGameBackgroundProps } from "./type"
 import { TarotGameBackgroundStyle } from "./style"
@@ -10,8 +10,14 @@ export default undefined
 export const TarotGameBackground = (props:TTarotGameBackgroundProps)=>{
 
     const {
+        children
+    } = props
+
+    const {
         tarotBackgroundData
-    } = useTarotGameBackgroundHook({})
+    } = useTarotGameBackgroundHook({
+
+    })
 
     return(
         <View
@@ -20,14 +26,10 @@ export const TarotGameBackground = (props:TTarotGameBackgroundProps)=>{
             <ImageBackground
                 source={tarotBackgroundData && tarotBackgroundData.image.url}
                 allowDownscaling={false}
-                style={{
-                    position:'absolute',
-                    height:'100%',
-                    width:'100%',
-                }}
+                style={TarotGameBackgroundStyle.TarotGameBackground}
                 contentFit='cover'
             >
-                {props.children}
+                {children}
             </ImageBackground>
         </View>
     )

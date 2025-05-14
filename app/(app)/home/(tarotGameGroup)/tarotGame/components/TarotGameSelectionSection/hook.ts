@@ -18,20 +18,20 @@ export const useTarotGameSelectionSectionHook = (props:TTarotGameSelectionSectio
         handleOnSelect
     } = props
 
-    const selectionOpacity = useSharedValue(0);
+    const isActive = useSharedValue(false)
 
     const boxOpacity = useDerivedValue(()=>{
         return isSelected ? 1 : 0
     })
     
-    const panGesture = Gesture.Pan()
+    const tapGesture = Gesture.Tap()
     .shouldCancelWhenOutside(true)
     .onBegin(()=>{
-        selectionOpacity.value = withTiming(1,{duration:100})
+        isActive.value = true
     })
     .onFinalize((e)=>{
-        selectionOpacity.value = withTiming(0,{duration:100})
-        if(e.state !== 3){
+        isActive.value = false
+        if(e.state !== 1 && e.state !== 3 ){
             runOnJS(handleOnSelect)()
         }
     })
@@ -44,13 +44,18 @@ export const useTarotGameSelectionSectionHook = (props:TTarotGameSelectionSectio
 
     const selectionAnimatedStyle = useAnimatedStyle(()=>{
         return{
-            opacity:selectionOpacity.value,
+            opacity:withTiming(
+                isActive.value ? 1 : 0,
+                {
+                    duration:100
+                }
+            ),
         }
     })
 
     
     return{
-        panGesture,
+        tapGesture,
         boxAnimatedStyle,
         selectionAnimatedStyle
     }

@@ -1,13 +1,14 @@
-import { ScrollView, View } from "react-native"
+import { 
+    ScrollView
+} from "react-native"
+
+import { TarotGameColors } from "@/constants/color"
 
 import {TarotGameSelectionSection} from "../TarotGameSelectionSection"
 
 import { TTarotGameSelectionSectionsContainerProps } from "./type"
 import { useTarotGameSelectionSectionsContainerHook } from "./hook"
 import { TarotGameSelectionSectionsContainerStyle } from "./style"
-
-
-export default {}
 
 export const TarotGameSelectionSectionsContainer = (props:TTarotGameSelectionSectionsContainerProps)=>{
     
@@ -35,11 +36,15 @@ export const TarotGameSelectionSectionsContainer = (props:TTarotGameSelectionSec
                         key={index}
                         selection={selection}
                         isSelected={tarotGameSelectionPaginationSelectedItem === selection.id ? true : false}
-                        selectionOpacitiyColor="#00000030"
+                        selectionOpacitiyColor={TarotGameColors.TarotGameSelectionSection.selectionOpacitiyColor}
                         handleOnSelect={()=>setTarotGameSelectionsPaginationSelectedItems(tarotGameSelectionSectionsId,selection.id)}
                     />
                 )
             })}
         </ScrollView>
     )
+}
+
+export default {
+    TarotGameSelectionSectionsContainer
 }

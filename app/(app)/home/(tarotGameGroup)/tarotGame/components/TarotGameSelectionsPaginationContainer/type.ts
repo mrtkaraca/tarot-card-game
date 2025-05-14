@@ -1,13 +1,5 @@
-import { TTarotEventStore } from "contexts/tarotEvent/type";
+import { TTarotGameStore } from "@/contexts/tarotGame/type";
 import { TTarotGameAsset } from "../../type";
-
-export type TTarotGameSelectionsPaginationContainerProps = {
-    handleOnFetchStart: () => void
-}
-
-export type TTarotGameSelectionsPaginationContainerHookProps = {
-
-}
 
 export type TarotGameImageQuality = 'veryLow' | 'low' | 'medium' | 'high' | 'veryHigh'
 
@@ -34,15 +26,24 @@ export type TTarotGameImageQualitysConfig = Array<TTarotGameImageQualityConfig>
 
 export type TTarotGameCardDrawningNumbersConfig = Array<TTarotGameCardDrawningNumberConfig>
 
-export type TTarotGameSelectionPaginationDataId = keyof TTarotEventStore['tarotGameSelectionsPaginationSelectedItems']
+export type TTarotGameSelectionPaginationDataId = keyof TTarotGameStore['tarotGameSelectionsPaginationSelectedItems']
 
 export type TTarotGameSelectionPaginationData = ({
-    id:keyof Pick<TTarotEventStore['tarotGameSelectionsPaginationSelectedItems'],'tarotGameDrawningCardNumber'>,
+    id:keyof Pick<TTarotGameStore['tarotGameSelectionsPaginationSelectedItems'],'tarotGameDrawningCardNumber'>,
     data:TTarotGameCardDrawningNumbersConfig
 } | {
-    id:keyof Pick<TTarotEventStore['tarotGameSelectionsPaginationSelectedItems'],'tarotGameImageQuality'>,
+    id:keyof Pick<TTarotGameStore['tarotGameSelectionsPaginationSelectedItems'],'tarotGameImageQuality'>,
     data:TTarotGameImageQualitysConfig
 }) & {
     title:string
 }
 export type TTarotGameSelectionsPaginationData = Array<TTarotGameSelectionPaginationData>
+
+export type TTarotGameSelectionsPaginationContainerProps = {
+    tarotGameSelectionsPaginationData: TTarotGameSelectionsPaginationData
+    handleOnFetchStart: () => void
+}
+
+export type TTarotGameSelectionsPaginationContainerHookProps = Pick<TTarotGameSelectionsPaginationContainerProps,
+    'tarotGameSelectionsPaginationData'
+>

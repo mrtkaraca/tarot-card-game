@@ -33,22 +33,48 @@ export const TarotGameSettingsColors = {
         currentScreenItemIsSelected:'blue',
         currentScreenItemIsNotSelected:'grey',
     },
+    tarotGameSettingsHeader:{
+        skipDataReady:'blue',
+        skipDataNotReady:'grey'
+    },
     IconButtons:{
         iconColor:'black',
         buttonOpacityColor:Colors.BlackOpacity
     },
     TextButtons:{
-        tarotGameSettingsHeader:{
-            skipDataReady:'blue',
-            skipDataNotReady:'grey'
-        },
         buttonOpacityColor:Colors.BlackOpacity
     }
 }
 
 export const TarotGameColors = {
+    TarotGameSelectionSection:{
+        selectionOpacitiyColor:"#00000030",
+        tarotGameSelectionSectionBoxContainer:{
+            borderColor:'green'
+        },
+        tarotGameSelectionSectionBox:{
+            backgroundColor:'green'
+        }
+    },
+    tarotGameSelectionsFooterContainer:{
+        currentPaginationItemIsSelected:'blue',
+        currentPaginationItemIsNotSelected:'grey',
+    },
+    tarotGameCardModal:{
+        tarotGameCardModalContainerBackgroundColor:'#000000cc',
+        TarotGameCardModalTextColor:'white'
+    },
+    TextButtons:{
+        buttonOpacityColor:Colors.BlackOpacity
+    },
     IconButtons:{
         iconColor:'black',
-        buttonOpacityColor:'grey'
+        buttonOpacityColor:Colors.BlackOpacity
     }
+}
+
+export const DataLoadingColors = {
+    dataLoadingInnerContainerBorderColor:'black',
+    dataLoadingProgressBarCanvasContainerColor:'blue',
+    dataLoadingProgressBarContainerBorderColor:'black'
 }

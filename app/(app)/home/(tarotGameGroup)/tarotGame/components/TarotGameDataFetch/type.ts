@@ -1,8 +1,10 @@
 import { TTarotGameAsset } from "../../type"
+import { TTarotGameImageQualitysConfig } from "../TarotGameSelectionsPaginationContainer/type"
 
 export default undefined
 
 export type TTarotGameDataFetchProps = {
+    tarotGameImageQualitys: TTarotGameImageQualitysConfig
     handleAfterFetch: () => void
 }
 
@@ -15,4 +17,7 @@ export type TTarotGamePrefetchMap= {
 }
 
 
-export type TTarotGameDataFetchHookProps = TTarotGameDataFetchProps
+export type TTarotGameDataFetchHookProps = Pick<TTarotGameDataFetchProps,
+    'tarotGameImageQualitys' |
+    'handleAfterFetch'
+>

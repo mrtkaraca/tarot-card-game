@@ -3,6 +3,8 @@ import {
     StyleSheet 
 } from "react-native"
 
+import { TarotGameSizes } from "@/constants/size"
+
 export default {}
 
 export const TarotGameSelectionContainerStyle = StyleSheet.create({
@@ -16,7 +18,7 @@ export const TarotGameSelectionContainerStyle = StyleSheet.create({
     },
     TarotGameSelectionContainerTextHeader:{
         textAlign:'center',
-        fontSize:24/PixelRatio.getFontScale(),
+        fontSize:TarotGameSizes.TarotGameSelectionContainer.textHeaderFontSize,
         fontWeight:'500'
     }
 })

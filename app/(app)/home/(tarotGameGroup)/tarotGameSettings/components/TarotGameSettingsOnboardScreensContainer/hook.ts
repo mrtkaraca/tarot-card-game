@@ -18,6 +18,7 @@ import { useTarotGameSettingsStore } from "@/contexts/tarotGameSettings"
 import { TTarotGameSettingsData, TTarotGameSettingsScreens } from "../type"
 import { TarotGameSettingsColors } from "@/constants/color"
 import { TOnboardScreensData } from "./type"
+import { useApiErrorHandler } from "@/api/hook"
 
 
 
@@ -26,6 +27,10 @@ export const useTarotGameSettingsOnboardScreensContainerHook = ()=>{
     const {
         t
     } = useTranslation()
+
+    const {
+        errorResponseHandler
+    } = useApiErrorHandler()
 
     const tarotGameSettingsData = useTarotGameSettingsStore((state)=>state.tarotGameSettingsData)
     const tarotGameSettingsSelectedItems = useTarotGameGroupStore((state)=>state.tarotGameSettingsSelectedItems)
@@ -86,7 +91,10 @@ export const useTarotGameSettingsOnboardScreensContainerHook = ()=>{
     },[tarotGameSettingsSelectedItems])
 
     const fetchData = async(abortSignal:AbortSignal)=>{
-        const [res,err] = await getTarotGameSettingsData(abortSignal);
+        const [res,err] = await getTarotGameSettingsData(
+            abortSignal,
+            errorResponseHandler
+        );
         if(res){
             compareTarotGameSettingsSelectedItemsWithTarotGameSettingsData(res)
             setTarotGameSettingsData(res)

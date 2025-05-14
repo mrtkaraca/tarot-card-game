@@ -1,4 +1,3 @@
-
 import { useTarotGameStore } from "@/contexts/tarotGame"
 import { 
     TTarotGameSelectionSectionsContainerHookProps, 
@@ -11,6 +10,7 @@ export const useTarotGameSelectionSectionsContainerHook = (props:TTarotGameSelec
     const {
         tarotGameSelectionSectionsId
     } = props
+
 
     const tarotGameSelectionPaginationSelectedItem = useTarotGameStore((state)=>state.tarotGameSelectionsPaginationSelectedItems[tarotGameSelectionSectionsId])
     const setTarotGameSelectionsPaginationSelectedItems = useTarotGameStore((state)=>state.setTarotGameSelectionsPaginationSelectedItems)

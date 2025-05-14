@@ -11,8 +11,6 @@ import { TTarotGameCardModal } from "./type"
 import { useTarotGameCardModalHook } from "./hook"
 import { TarotGameCardModalStyle } from "./style"
 
-export default undefined
-
 export const TarotGameCardModal = (props:TTarotGameCardModal)=>{
     const {
 
@@ -29,23 +27,11 @@ export const TarotGameCardModal = (props:TTarotGameCardModal)=>{
         <Fragment>
             {tarotGameCardModalData.isModalVisible &&
                 <View
-                    style={{
-                        top:0,
-                        left:0,
-                        bottom:0,
-                        right:0,
-                        position:'absolute',
-                        backgroundColor:'#000000cc',
-                        justifyContent:'center'
-                    }}
+                    style={TarotGameCardModalStyle.TarotGameCardModalContainer}
                 >
                     <TouchableWithoutFeedback onPress={handleCloseModal} >
                         <View
-                            style={{
-                                flex:1,
-                                justifyContent:'center',
-                                alignItems:'center'
-                            }}
+                            style={TarotGameCardModalStyle.TarotGameCardModalInnerContainer}
                         >
                             <TarotGameCardModalCardContainer
                                 cardData={tarotGameCardModalData.cardData}
@@ -64,4 +50,8 @@ export const TarotGameCardModal = (props:TTarotGameCardModal)=>{
         </Fragment>
    
     )
+}
+
+export default {
+    TarotGameCardModal
 }

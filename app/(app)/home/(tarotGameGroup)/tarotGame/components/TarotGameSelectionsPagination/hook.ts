@@ -22,11 +22,12 @@ import {
 
 export default {}
 
-export const useTarotGameSelectionsPaginationHook = (props:TTarotGameSelectionsPaginationHookProps,ref:React.ForwardedRef<TTarotGameSelectionsPaginationRefProps>)=>{
+export const useTarotGameSelectionsPaginationHook = (props:TTarotGameSelectionsPaginationHookProps)=>{
 
     const {
+        ref,
         tarotGameSelectionPaginationCurrentIndex,
-        tarotGameSelectionsPaginationDataIndexLength
+        tarotGameSelectionsPaginationDataLength
     } = props
 
     const { width } = useWindowDimensions();
@@ -39,7 +40,7 @@ export const useTarotGameSelectionsPaginationHook = (props:TTarotGameSelectionsP
     const tarotGameSelectionPaginationPhase = useSharedValue<TTarotGameSelectionsPaginationPhases>(null)
 
     const selectionsPaginationDataIndexLength = useDerivedValue(()=>{
-        return tarotGameSelectionsPaginationDataIndexLength
+        return tarotGameSelectionsPaginationDataLength - 1
     })
 
     const tarotGameSelectionPaginationTranslateXInterpolate = useDerivedValue(()=>{

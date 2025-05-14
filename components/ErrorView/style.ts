@@ -1,3 +1,4 @@
+import { ErrorViewSizes } from "@/constants/size"
 import { PixelRatio, StyleSheet } from "react-native"
 
 export const ErrorViewStyle = StyleSheet.create(({
@@ -12,7 +13,7 @@ export const ErrorViewStyle = StyleSheet.create(({
         
     },
     ErrorViewTitle:{
-        fontSize:24/PixelRatio.getFontScale(),
+        fontSize:ErrorViewSizes.errowViewTitleFontSize,
         fontWeight:'500'
     },
     ErrorViewCode:{
@@ -22,7 +23,7 @@ export const ErrorViewStyle = StyleSheet.create(({
         
     },
     ErrorViewDescription:{
-        fontSize:16/PixelRatio.getFontScale()
+        fontSize:ErrorViewSizes.errorViewDescriptionFontSize
     },
     ErrorViewButtonContainer:{
         

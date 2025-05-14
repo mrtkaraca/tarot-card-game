@@ -1,3 +1,6 @@
+import { RefObject } from "react"
+import { ScrollView } from "react-native"
+
 export default undefined
 
 export type TTarotGameSelectionSectionProps = {

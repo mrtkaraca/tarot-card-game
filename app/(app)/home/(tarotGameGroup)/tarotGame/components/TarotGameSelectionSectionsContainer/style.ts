@@ -4,6 +4,7 @@ export default {}
 
 export const TarotGameSelectionSectionsContainerStyle = StyleSheet.create({
     TarotGameSelectionSectionsContainerContainer:{
-        flexGrow:0
+        flexGrow:0,
+        maxWidth:'100%'
     }
 })

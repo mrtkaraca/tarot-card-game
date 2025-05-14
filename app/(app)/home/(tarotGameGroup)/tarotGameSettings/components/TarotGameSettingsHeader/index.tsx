@@ -78,9 +78,9 @@ export const TarotGameSettingsHeader = (props:TTarotGameSettingsHeaderProps) =>{
                     numberOfLines={1}
                     style={{
                         color:isTarotGameSettingsDataReady ? 
-                            TarotGameSettingsColors.TextButtons.tarotGameSettingsHeader.skipDataReady 
+                            TarotGameSettingsColors.tarotGameSettingsHeader.skipDataReady 
                             : 
-                            TarotGameSettingsColors.TextButtons.tarotGameSettingsHeader.skipDataNotReady ,
+                            TarotGameSettingsColors.tarotGameSettingsHeader.skipDataNotReady ,
                     }}
                     textButtonTextLabel={t('tarotGameSettings.tarotGameSettingsHeader.skip')}
                     textButtonOpacityColor={TarotGameSettingsColors.TextButtons.buttonOpacityColor}

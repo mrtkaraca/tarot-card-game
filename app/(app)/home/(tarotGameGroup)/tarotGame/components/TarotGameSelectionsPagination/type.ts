@@ -1,18 +1,21 @@
 import { SharedValue } from "react-native-reanimated"
 
 import { TTarotGameSelectionsPaginationData } from "../TarotGameSelectionsPaginationContainer/type"
+import { RefObject } from "react"
 
 export default {}
 
 export type TTarotGameSelectionsPaginationProps = {
-    selectionsPaginationData:TTarotGameSelectionsPaginationData
+    ref:RefObject<TTarotGameSelectionsPaginationRefProps | null>
+    tarotGameSelectionsPaginationData:TTarotGameSelectionsPaginationData
     tarotGameSelectionPaginationCurrentIndex: SharedValue<number>
-    tarotGameSelectionsPaginationDataIndexLength: number
+    tarotGameSelectionsPaginationDataLength: number
 }
 
 export type TTarotGameSelectionsPaginationHookProps =  Pick<TTarotGameSelectionsPaginationProps,
+    'ref' |
     'tarotGameSelectionPaginationCurrentIndex' |
-    'tarotGameSelectionsPaginationDataIndexLength'
+    'tarotGameSelectionsPaginationDataLength'
 >
 
 export type TTarotGameSelectionsPaginationRefProps = {

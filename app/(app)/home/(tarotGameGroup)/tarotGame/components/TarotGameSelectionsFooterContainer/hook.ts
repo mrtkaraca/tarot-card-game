@@ -9,6 +9,7 @@ import {
 
 import { TTTarotGameSelectionsFooterContainerHookProps } from "./type"
 import { useTarotGameStore } from "@/contexts/tarotGame"
+import { useTranslation } from "react-i18next"
 
 export default {}
 
@@ -21,6 +22,9 @@ export const useTarotGameSelectionsFooterContainerHook = (props:TTTarotGameSelec
         handleOnFetchStart
     } = props
 
+    const {
+        t
+    } = useTranslation()
 
     const [tarotGameSelectionPaginationCurrentIndex,setTarotGameSelectionPaginationCurrentIndex] = useState<number | null>(null)
     const [tarotGameSelectionPaginationCurrentId,setTarotGameSelectionPaginationCurrentId] = useState<typeof tgspcida.value>(tgspcida.get)
@@ -58,6 +62,7 @@ export const useTarotGameSelectionsFooterContainerHook = (props:TTTarotGameSelec
     )
 
     return{
+        t,
         tarotGameSelectionPaginationCurrentIndex,
         tarotGameSelectionPaginationCurrentId,
         tarotGameIsCurrentSelectionPaginationItemSelected,

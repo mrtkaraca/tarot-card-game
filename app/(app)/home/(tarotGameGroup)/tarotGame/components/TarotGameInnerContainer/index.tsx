@@ -65,6 +65,7 @@ export const TarotGameInnerContainer = (props:TTarotGameInnerContainerProps)=>{
                     deckMeasure={deckMeasure}
                     deckCardDimensions={deckCardDimensions}
                     deckBottomSidePageCenter={deckBottomSidePageCenter}
+                    deckBottomSideFrontFacesIndexLength={deckBottomSideFrontFacesIndexLength}
                     deckBottomSideCardsMinimumLeft={deckBottomSideCardsMinimumLeft}
                     deckBottomSideCardsPreviousMinimumLeft={deckBottomSideCardsPreviousMinimumLeft}
                     deckBottomSideSpaceBetweenCards={deckBottomSideSpaceBetweenCards}

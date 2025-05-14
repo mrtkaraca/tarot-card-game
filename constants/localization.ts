@@ -31,5 +31,77 @@ export const en = {
             rightButtonTextLabel:'Next',
             rightButtonEndTextLabel:'Okay'
         }
+    },
+    tarotGame:{
+        tarotGameSelectionsPaginationContainer:{
+            tarotGameImageQualitys:{
+                veryLow:'Very Low',
+                low:'Low',
+                medium:'Medium',
+                high:'High',
+                veryHigh:'Very High'
+            },
+            tarotGameCardDrawningNumbers:{
+                1:'1',
+                3:'3',
+                5:'5',
+                7:'7',
+                9:'9'
+            },
+            tarotGameSelectionsPaginationData:{
+                tarotGameImageQualityTitle:'Select Quality of Images',
+                tarotGameCardDrawningNumbersTitle:'Select Number of Drawing Cards'
+            }
+        },
+        tarotGameDataFetch:{
+            noTarotCursor:'Seems like no cursor to use!',
+            noTarotDeck:'Seems like no deck to use!',
+            noTarotBackground:'Seems like no background to use!'
+        },
+        tarotGameSelectionsFooterContainer:{
+            leftButtonTextLabel:'Prev',
+            rightButtonTextLabel:'Next',
+            rightButtonEndTextLabel:'Okay'
+        }
+    },
+    errorResponseHandler:{
+        unknownError:{
+            errorTitleMessage:'Unexpected error code!',
+            errorDescriptionMessage:'Error was unexpected, try later!'
+        },
+        networkError:{
+            '0':{
+                errorTitleMessage:'No Connection!',
+                errorDescriptionMessage:'Reconnect to net!'
+            }
+        },
+        tarotGameSettings:{
+            '400':{
+                errorTitleMessage:"Hmm...",
+                errorDescriptionMessage:"Bad request to server!"
+            },
+            '401':{
+                errorTitleMessage:"Oh no...",
+                errorDescriptionMessage:"My middleware dont like you!"
+            },
+            '503':{
+                errorTitleMessage:"Ups...",
+                errorDescriptionMessage:"Something really wrong. Try Later!"
+            }
+        },
+        tarotGame:{
+            '400':{
+                errorTitleMessage:"Hmm...",
+                errorDescriptionMessage:"Bad request to server!"
+            },
+            '401':{
+                errorTitleMessage:"Oh no...",
+                errorDescriptionMessage:"My middleware dont like you!"
+            },
+            '503':{
+                errorTitleMessage:"Ups...",
+                errorDescriptionMessage:"Something really wrong. Try Later!"
+            }
+        }
     }
 }
