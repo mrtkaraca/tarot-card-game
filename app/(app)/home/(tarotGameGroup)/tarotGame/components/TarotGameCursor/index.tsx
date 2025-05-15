@@ -48,21 +48,23 @@ export const TarotGameCursor = memo(forwardRef<TTarotGameCursorRefProps,TTarotGa
 
 
     return(
-        <Animated.View
-            ref={cursorViewRef}
-            exiting={FadeOut.duration(500)}
-            onLayout={handleOnLayout}
-            style={[
-                TarotGameCursorStyle.TarotGameCursorContainer,
-                cursorAnimatedStyle
-            ]}
-        >
-            <Image
-                source={cursorData.image.url}
-                allowDownscaling={false}
-                style={TarotGameCursorStyle.TarotGameCursorImage}
-                contentFit="cover"
-            />
-        </Animated.View>
+       
+            <Animated.View
+                ref={cursorViewRef}
+                exiting={FadeOut.duration(500)}
+                onLayout={handleOnLayout}
+                style={[
+                    TarotGameCursorStyle.TarotGameCursorContainer,
+                    cursorAnimatedStyle
+                ]}
+            >
+                <Image
+                    source={cursorData.image.url}
+                    allowDownscaling={false}
+                    style={TarotGameCursorStyle.TarotGameCursorImage}
+                    contentFit="cover"
+                />
+            </Animated.View>
+       
     )
 }))

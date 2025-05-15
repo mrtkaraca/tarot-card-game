@@ -331,6 +331,13 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
         )
     },[])
 
+    const handleGetTarotCardDeckSideAndIndex:TTarotGameCardRefProps['handleGetTarotCardDeckSideAndIndex'] = useCallback(()=>{
+        return {
+            deckSide:frontFace.deckSide,
+            index:frontFace.index
+        }
+    },[frontFace])
+
     const handleTarotCardMoveCardToRightStartAnimation:TTarotGameCardRefProps['handleTarotCardMoveCardToRightStartAnimation'] = useCallback((
         easing
     )=>{
@@ -386,14 +393,21 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
             }
         )
     },[])
-    const handleReOrdinateCard:TTarotGameCardRefProps['handleReOrdinateCard'] = useCallback(()=>{
+    const handleTarotCardPhase:TTarotGameCardRefProps['handleTarotCardPhase'] = useCallback((
+        phase
+    )=>{
+        cardPhase.value = phase
+    },[])
+    const handleReOrdinateCard:TTarotGameCardRefProps['handleReOrdinateCard'] = useCallback((
+        animationDuration
+    )=>{
         cardToggleReOrdinate.value = 0
         cardPhase.value ='reOrdinateCard'
 
         cardToggleReOrdinate.value = withTiming(
             1,
             {
-                duration:cardReOrdinateAnimationDuration
+                duration:animationDuration ? animationDuration : cardReOrdinateAnimationDuration
             },
             (finished)=>{
                 if(finished){
@@ -536,7 +550,7 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
 
     useEffect(()=>{
         handleTarotGameDeckCardsRef(cardRef,deckIndex)
-    },[deckIndex])
+    },[deckIndex,frontFace])
 
 
     useEffect(()=>{
@@ -572,6 +586,8 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
         cardRef,
         ()=>{
             return{
+                handleTarotCardPhase,
+                handleGetTarotCardDeckSideAndIndex,
                 handleTarotCardMoveCardToRightStartAnimation,
                 handleMoveTarotCardFromBottomDeckToTopDeck,
                 handleReOrdinateCard,

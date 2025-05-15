@@ -74,11 +74,16 @@ export type TTarotGameDeckProps = {
 export type TTarotGameDeckRefProps = {
     handleStartGame: () => void
     handleGetTarotGameDeckStartAnimation:()=>number
+    handlePrepareCardsPhase:(
+        deckBottomSideCardStoppedIndex:number
+    )=>void
     handleReOrdinateCards:(
-        selectedCardDeckIndex:number
+        deckTopSideSelectedCardIndex:number,
+        deckBottomSideSelectedCardIndex:number
     )=>void
     handleTopSideDeckCardsZIndex:(
-        selectedCardDeckIndex:number
+        deckBottomSideSelectedCardIndex:number,
+        deckTopSideSelectedCardIndex:number
     )=>void
     handleMoveTarotCardFromBottomDeckToTopDeck:(
         selectedCardDeckIndex:number,
@@ -88,7 +93,6 @@ export type TTarotGameDeckRefProps = {
 
 export type TTarotGameDeckHookProps = Pick<TTarotGameDeckProps,
     'ref' |
-    'deckData' |
     'deckMeasure' |
     'deckBottomSideFrontFacesIndexLength' |
     'deckBottomSideSpaceBetweenCards'

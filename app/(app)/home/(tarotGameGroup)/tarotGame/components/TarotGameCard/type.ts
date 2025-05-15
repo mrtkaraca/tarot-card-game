@@ -81,13 +81,19 @@ export type TTarotGameCardHookProps = Pick<TTarotGameCardProps,
 >
 
 export type TTarotGameCardRefProps = {
+    handleGetTarotCardDeckSideAndIndex:() => TTarotGameCardDeckSideData
     handleTarotCardMoveCardToRightStartAnimation: (
         easing?:EasingFunction | EasingFunctionFactory | undefined
     ) => void
+    handleTarotCardPhase:(
+        phase:TTarotGameCardPhases
+    )=>void
     handleMoveTarotCardFromBottomDeckToTopDeck:(
         animationDuration:number
     )=>void
-    handleReOrdinateCard:()=>void
+    handleReOrdinateCard:(
+        animationDuration?:number
+    )=>void
     handleCardZIndex:(
         zIndex:number
     )=>void

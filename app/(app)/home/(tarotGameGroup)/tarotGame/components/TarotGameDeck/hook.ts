@@ -34,13 +34,13 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
 
     const {
         ref,
-        deckData,
         deckMeasure,
         deckBottomSideFrontFacesIndexLength,
         deckBottomSideSpaceBetweenCards
     } = props
     
     var cardReOrdinateAnimationDuration = 2000
+    var cardReOrdinateAnimationCallPerTimeoutFunction = 10
     var cardStartAnimationDuration = 3000
     var startAnimationLastCardEasing = Easing.bezier(0.75, 0, 0.25, 1)
 
@@ -133,50 +133,189 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
     },[])
 
     const handleReOrdinateCards:TTarotGameDeckRefProps['handleReOrdinateCards'] = useCallback((
-        deckTopSideSelectedCardIndex
+        deckTopSideSelectedCardIndex,
+        deckBottomSideSelectedCardIndex
     )=>{
         if(tarotGameDeckCardsRef.current){
-            tarotGameDeckCardsRef.current.forEach((cardRef,index)=>{
+
+            const topSideDeckOrdered = tarotGameDeckCardsRef.current.filter(
+                (cardRef)=> (
+                    cardRef.handleGetTarotCardDeckSideAndIndex().deckSide === 'topSide'
+                )
+            ).sort(
+                (cardRefOne,cardRefTwo)=> (
+                    cardRefOne.handleGetTarotCardDeckSideAndIndex().index - 
+                    cardRefTwo.handleGetTarotCardDeckSideAndIndex().index
+                )
+            )
+            
+            const bottomSideDeckOrdered = tarotGameDeckCardsRef.current.filter(
+                (cardRef)=> (
+                    cardRef.handleGetTarotCardDeckSideAndIndex().deckSide === 'bottomSide'
+                )
+            ).sort(
+                (cardRefOne,cardRefTwo)=> (
+                    cardRefOne.handleGetTarotCardDeckSideAndIndex().index - 
+                    cardRefTwo.handleGetTarotCardDeckSideAndIndex().index
+                )
+            )
+
+            topSideDeckOrdered.forEach((cardRef,index)=>{
                 if(
                     deckTopSideSelectedCardIndex !== index
                 ){
-                    if(deckData?.frontFaces[index].deckSide === 'topSide'){
-                        cardRef.handleReOrdinateCard()
-                    }
-                    else{
-                        
-                    }
+                    cardRef.handleReOrdinateCard()
                 }
             })
+
+    
+            if(bottomSideDeckOrdered.length > cardReOrdinateAnimationCallPerTimeoutFunction){
+
+                var animationDurationPerCard = cardReOrdinateAnimationDuration/Number((bottomSideDeckOrdered.length/cardReOrdinateAnimationCallPerTimeoutFunction).toFixed(0))
+
+                if(
+                    (deckBottomSideSelectedCardIndex-1) < bottomSideDeckOrdered.length/3
+                ){
+                    bottomSideDeckOrdered.reverse().forEach((cardRef,index)=>{
+                        setTimeout(() => {
+                            cardRef.handleReOrdinateCard(
+                                animationDurationPerCard
+                            )
+                        }, ((index/cardReOrdinateAnimationCallPerTimeoutFunction)*animationDurationPerCard));
+                    })
+                }
+                else{
+                    if(
+                        (deckBottomSideSelectedCardIndex-1) > bottomSideDeckOrdered.length/3 && 
+                        (deckBottomSideSelectedCardIndex-1) < (bottomSideDeckOrdered.length/3)*2
+                    ){
+                        for(let i = 0; i <= bottomSideDeckOrdered.length/2; i++){
+                            for(let j = bottomSideDeckOrdered.length-1; j >= bottomSideDeckOrdered.length/2; j--){
+                                if(i !== j){
+                                    setTimeout(() => {
+                                        bottomSideDeckOrdered[j].handleReOrdinateCard(
+                                            animationDurationPerCard
+                                        )
+                                        bottomSideDeckOrdered[i].handleReOrdinateCard(
+                                            animationDurationPerCard
+                                        )
+                                    }, (i/cardReOrdinateAnimationCallPerTimeoutFunction)*animationDurationPerCard);
+                                }
+                                else{
+                                    setTimeout(() => {
+                                        bottomSideDeckOrdered[i].handleReOrdinateCard(
+                                            animationDurationPerCard
+                                        )
+                                    }, (i/cardReOrdinateAnimationCallPerTimeoutFunction)*animationDurationPerCard);
+                                }
+                            }
+                        }
+                    }
+                    else{
+                        bottomSideDeckOrdered.forEach((cardRef,index)=>{
+                            setTimeout(() => {
+                                cardRef.handleReOrdinateCard(
+                                    animationDurationPerCard
+                                )
+                            }, ((index/cardReOrdinateAnimationCallPerTimeoutFunction)*animationDurationPerCard));
+                        })
+                    }
+                }
+            }
+            else{
+                bottomSideDeckOrdered.forEach((cardRef)=>{
+                    cardRef.handleReOrdinateCard()
+                })
+            }
+            
+
         }
-    },[deckData])
+    },[])
+
+    const handlePrepareCardsPhase:TTarotGameDeckRefProps['handlePrepareCardsPhase'] = useCallback((
+        deckBottomSideCardStoppedIndex
+    )=>{
+          const bottomSideDeckOrdered = tarotGameDeckCardsRef.current.filter(
+                (cardRef)=> (
+                    cardRef.handleGetTarotCardDeckSideAndIndex().deckSide === 'bottomSide'
+                )
+            ).sort(
+                (cardRefOne,cardRefTwo)=> (
+                    cardRefOne.handleGetTarotCardDeckSideAndIndex().index - 
+                    cardRefTwo.handleGetTarotCardDeckSideAndIndex().index
+                )
+            )
+
+            const topSideDeck = tarotGameDeckCardsRef.current.filter(
+                (cardRef)=> (
+                    cardRef.handleGetTarotCardDeckSideAndIndex().deckSide === 'topSide'
+                )
+            )
+
+            bottomSideDeckOrdered.forEach((cardRef,index)=>{
+                if(index === deckBottomSideCardStoppedIndex){
+                    cardRef.handleTarotCardPhase('moveCardToTop')
+                }
+                else{
+                    cardRef.handleTarotCardPhase('reOrdinateCard')
+                }
+            })
+
+            topSideDeck.forEach((cardRef)=>{
+                cardRef.handleTarotCardPhase('reOrdinateCard')
+            })
+    },[])
 
     const handleTopSideDeckCardsZIndex:TTarotGameDeckRefProps['handleTopSideDeckCardsZIndex'] = useCallback((
-        selectedCardDeckIndex
+        deckBottomSideSelectedCardIndex,
+        deckTopSideSelectedCardIndex
     )=>{
         if(
-            tarotGameDeckCardsRef.current &&
-            deckData?.frontFaces.length
+            tarotGameDeckCardsRef.current
         ){
-            const topSideCardLength = deckData.frontFaces.filter((frontFace)=>frontFace.deckSide === 'topSide').length
+            
+            const topSideDeckOrdered = tarotGameDeckCardsRef.current.filter(
+                (cardRef)=> (
+                    cardRef.handleGetTarotCardDeckSideAndIndex().deckSide === 'topSide'
+                )
+            ).sort(
+                (cardRefOne,cardRefTwo)=> (
+                    cardRefOne.handleGetTarotCardDeckSideAndIndex().index - 
+                    cardRefTwo.handleGetTarotCardDeckSideAndIndex().index
+                )
+            )
+            
+            const topSideCardLength = topSideDeckOrdered.length
 
-            tarotGameDeckCardsRef.current.forEach((cardRef,index)=>{
-                if(
-                    deckData.frontFaces[index].deckSide === 'topSide'
-                ){
-                    let newZIndex = (selectedCardDeckIndex - topSideCardLength) + deckData.frontFaces[index].index
+            topSideDeckOrdered.forEach((cardRef,index)=>{
+                if(deckTopSideSelectedCardIndex !== index){
+                    let cardIndex = cardRef.handleGetTarotCardDeckSideAndIndex().index
+                    let newZIndex = (deckBottomSideSelectedCardIndex - topSideCardLength) + cardIndex
                     cardRef.handleCardZIndex(newZIndex)
                 }
             })
+
         }
-    },[deckData])
+    },[])
 
     const handleMoveTarotCardFromBottomDeckToTopDeck:TTarotGameDeckRefProps['handleMoveTarotCardFromBottomDeckToTopDeck'] = useCallback((
         deckTopSideSelectedCardIndex,
         cursorAndCardMoveToDeckTopSidekDuration
     )=>{
         if(tarotGameDeckCardsRef.current){
-            tarotGameDeckCardsRef.current[deckTopSideSelectedCardIndex].handleMoveTarotCardFromBottomDeckToTopDeck(
+
+            const topSideDeckOrdered = tarotGameDeckCardsRef.current.filter(
+                (cardRef)=> (
+                    cardRef.handleGetTarotCardDeckSideAndIndex().deckSide === 'topSide'
+                )
+            ).sort(
+                (cardRefOne,cardRefTwo)=> (
+                    cardRefOne.handleGetTarotCardDeckSideAndIndex().index - 
+                    cardRefTwo.handleGetTarotCardDeckSideAndIndex().index
+                )
+            )
+
+            topSideDeckOrdered[deckTopSideSelectedCardIndex].handleMoveTarotCardFromBottomDeckToTopDeck(
                 cursorAndCardMoveToDeckTopSidekDuration
             )
         }
@@ -191,6 +330,7 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
         ref,
         ()=>{
             return{
+                handlePrepareCardsPhase,
                 handleStartGame,
                 handleGetTarotGameDeckStartAnimation,
                 handleMoveTarotCardFromBottomDeckToTopDeck,

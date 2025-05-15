@@ -46,7 +46,6 @@ export const useTarotGameSettingsTarotDeckScreenItemModalItemHook = (props:TTaro
     const handleImageOnLayout = useCallback(()=>{
         runOnUI(()=>{
             const imageMes = measure(imageRef)
-            console.log(imageMes,'wew')
             if(imageMes){
                 imageSize.value = {
                     width:imageMes.width,

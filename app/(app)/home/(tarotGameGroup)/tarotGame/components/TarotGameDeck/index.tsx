@@ -49,7 +49,6 @@ export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
         setTarotGameCardModalData
     } = useTarotGameDeckHook({
         ref,
-        deckData,
         deckMeasure,
         deckBottomSideFrontFacesIndexLength,
         deckBottomSideSpaceBetweenCards
