@@ -15,7 +15,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.mrtkaraca.tarotcardgame"
     },
     "web": {
       "bundler": "metro",
@@ -59,7 +60,10 @@
       "typedRoutes": true
     },
     "extra": {
-      "router": {}
+      "router": {},
+      "eas": {
+        "projectId": "405a87d0-4755-4d58-b7e9-8e44e5399fee"
+      }
     }
   }
 }
