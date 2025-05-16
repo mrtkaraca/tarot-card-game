@@ -13,15 +13,12 @@ import {
 } from "react-native-reanimated";
 import { router } from "expo-router";
 
-import { useCustomRoute } from "@/app/hooks";
-
 import { useAlertModalContext } from "@/contexts/alertModal";
 
 import { useTarotGameSettingsStore } from "@/contexts/tarotGameSettings";
 import { useTarotGameGroupStore } from "@/contexts/tarotGameGroup";
 
 import { TTarotGameSettingsScreens } from "../type";
-import { tarotGameSettingsAlertModalDescription } from "./helper";
 import { TTarotGameSettingsHeaderHookProps } from "./type";
 import { useTranslation } from "react-i18next";
 
@@ -37,6 +34,14 @@ export const useTarotGameSettingsHeaderHook = (props:TTarotGameSettingsHeaderHoo
     const tarotGameSettingsSelectedItems = useTarotGameGroupStore((state)=>state.tarotGameSettingsSelectedItems)
     const isTarotGameSettingsDataReady = useTarotGameSettingsStore((state)=>state.tarotGameSettingsData ? true : false)
     const setTarotGameSettingsSelectedItems = useTarotGameGroupStore((state)=>state.setTarotGameSettingsSelectedItems)
+
+
+    const tarotGameSettingsAlertModalDescription = {
+        tarotBackground:t('tarotGameSettings.tarotGameSettingsHeader.alertModalDescription.tarotBackground'),
+        tarotCursor:t('tarotGameSettings.tarotGameSettingsHeader.alertModalDescription.tarotCursor'),
+        tarotDeck:t('tarotGameSettings.tarotGameSettingsHeader.alertModalDescription.tarotDeck'),
+        descriptionPart:t('tarotGameSettings.tarotGameSettingsHeader.alertModalDescription.descriptionPart'),
+    }
 
     const leftSideRef = useAnimatedRef();
     const rightSideRef = useAnimatedRef();

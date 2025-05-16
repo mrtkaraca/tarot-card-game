@@ -8,6 +8,7 @@ import { TTarotGameCardModalCardContainerProps } from "./type"
 import { useTarotGameCardModalCardContainerHook } from "./hook"
 import { GestureDetector } from "react-native-gesture-handler"
 import { TarotGameCardModalCard } from "../TarotGameCardModalCard"
+import { TarotGameCardModalCardContainerStyle } from "./style"
 
 
 export const TarotGameCardModalCardContainer = (props:TTarotGameCardModalCardContainerProps)=>{
@@ -16,6 +17,7 @@ export const TarotGameCardModalCardContainer = (props:TTarotGameCardModalCardCon
     } = props
 
     const {
+        imageAspectRatio,
         panGesture,
         rotateX,
         rotateY
@@ -29,7 +31,12 @@ export const TarotGameCardModalCardContainer = (props:TTarotGameCardModalCardCon
         >
             <View
                 onStartShouldSetResponder={()=>true}
-                style={{flex:0.75,aspectRatio:600/1000,justifyContent:'center',alignItems:'center'}}
+                style={[
+                    TarotGameCardModalCardContainerStyle.tarotGameCardModalCardContainer,
+                    {
+                        aspectRatio:imageAspectRatio
+                    }
+                ]}
             >
                 <TarotGameCardModalCard
                     isFrontFace={true}

@@ -10,16 +10,12 @@ import { TTarotGameSettingsTarotDeckScreenItemModalItemProps } from "./type"
 export const TarotGameSettingsTarotDeckScreenItemModalItem = (props:TTarotGameSettingsTarotDeckScreenItemModalItemProps)=>{
   
     const {
-        imageRef,
         containerAnimatedStyle,
-        handleImageOnLayout
     } = useTarotGameSettingsTarotDeckScreenItemModalItemHook({
         isFrontFace:props.isFrontFace,
         rotateX:props.rotateX,
         rotateY:props.rotateY
     })
-
-    const AnimatedImage = Animated.createAnimatedComponent(Image)
 
     return(
         <Animated.View
@@ -28,9 +24,7 @@ export const TarotGameSettingsTarotDeckScreenItemModalItem = (props:TTarotGameSe
                 containerAnimatedStyle
             ]} 
         >
-            <AnimatedImage
-                ref={imageRef}
-                onLayout={handleImageOnLayout}
+            <Image
                 cachePolicy={'disk'}
                 style={[
                     TarotGameSettingsTarotDeckScreenItemModalItemStyle.TarotGameSettingsTarotDeckScreenItemModalItemImageContainer,

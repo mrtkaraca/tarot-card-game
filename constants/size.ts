@@ -26,7 +26,10 @@ export const TarotGameSettingsSize = {
         fallBackFontSize:24/PixelRatio.get()
     },
     tarotGameSettingsOnboardScreen:{
-        title:16/PixelRatio.getFontScale()
+        title:24/PixelRatio.get()
+    },
+    tarotGameSettingsScreenItemModalContainer:{
+        textFontSize:24/PixelRatio.get()
     }
 }
 

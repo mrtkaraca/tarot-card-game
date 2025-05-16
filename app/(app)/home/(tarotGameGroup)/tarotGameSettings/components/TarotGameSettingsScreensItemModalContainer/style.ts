@@ -1,3 +1,5 @@
+import { TarotGameSettingsColors } from "@/constants/color"
+import { TarotGameSettingsSize } from "@/constants/size"
 import { PixelRatio, StyleSheet } from "react-native"
 
 export const TarotGameSettingsScreenItemModalContainerStyle = StyleSheet.create({
@@ -7,7 +9,7 @@ export const TarotGameSettingsScreenItemModalContainerStyle = StyleSheet.create(
         right:0,
         bottom:0,
         position:'absolute',
-        backgroundColor:'#000000cc',
+        backgroundColor:TarotGameSettingsColors.tarotGameSettingsScreenItemModalContainer.backgroundColor
     },
     TarotGameSettingsScreenItemModalInnerContainer:{
         height:'100%',
@@ -23,15 +25,15 @@ export const TarotGameSettingsScreenItemModalContainerStyle = StyleSheet.create(
         alignItems:'center',
     },
     TarotGameSettingsScreenItemModalItemInnerContainer:{
-        flex:.75,
+        flex:0.75,
     },
     TarotGameSettingsScreenItemModalItemInnerContaierTextContainer:{
         justifyContent:'center',
-        padding:24
+        padding:24/PixelRatio.get()
     },
     TarotGameSettingsScreenItemModalItemInnerContaierText:{
-        color:'white',
-        fontSize:16/PixelRatio.getFontScale(),
+        color:TarotGameSettingsColors.tarotGameSettingsScreenItemModalContainer.textColor,
+        fontSize:TarotGameSettingsSize.tarotGameSettingsScreenItemModalContainer.textFontSize,
         fontWeight:'500',
         textAlign:'center'
     }

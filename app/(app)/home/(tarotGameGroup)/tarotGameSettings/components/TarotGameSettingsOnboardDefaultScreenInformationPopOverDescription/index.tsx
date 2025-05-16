@@ -1,19 +1,26 @@
 import { Fragment } from "react"
 import { Text } from "react-native"
 
+import { useTarotGameSettingsOnboardDefaultScreenInformationPopOverDescription } from "./hook"
+
 export const TarotGameSettingsOnboardDefaultScreenInformationPopOverDescription = ()=>{
+
+    const {
+        t
+    } = useTarotGameSettingsOnboardDefaultScreenInformationPopOverDescription()
+
     return(
         <Fragment>
             <Text>
-                {"One Tap: "}
+                {t('tarotGameSettings.tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription.oneTap.title') + '\n'}
                 <Text>
-                    {'Click once to the image that u wanna select it. \n'}
+                    {t('tarotGameSettings.tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription.oneTap.description') + '\n'}
                 </Text>
             </Text>
             <Text>
-                {"Dobule Tap: "}
+                {t('tarotGameSettings.tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription.doubleTap.title') + '\n'}
                 <Text>
-                    {'Click twice to the image that u show full screen image.'}
+                    {t('tarotGameSettings.tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription.doubleTap.description') + '\n'}
                 </Text>
             </Text>
         </Fragment>

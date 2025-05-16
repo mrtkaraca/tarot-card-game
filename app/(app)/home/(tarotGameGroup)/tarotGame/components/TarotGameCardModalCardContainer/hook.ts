@@ -2,8 +2,11 @@ import { useSharedValue } from "react-native-reanimated";
 import { Gesture } from "react-native-gesture-handler";
 
 import { TTarotGameCardModalCardContainerHookProps } from "./type"
+import { tarotGameCardModalCardSizes } from "./helper";
 
 export const useTarotGameCardModalCardContainerHook = (props:TTarotGameCardModalCardContainerHookProps)=>{
+
+    const imageAspectRatio = tarotGameCardModalCardSizes.width/tarotGameCardModalCardSizes.height
     
     const startRotateX = useSharedValue(0);
     const startRotateY = useSharedValue(0);
@@ -21,6 +24,7 @@ export const useTarotGameCardModalCardContainerHook = (props:TTarotGameCardModal
     })
 
     return{
+        imageAspectRatio,
         panGesture,
         rotateX,
         rotateY

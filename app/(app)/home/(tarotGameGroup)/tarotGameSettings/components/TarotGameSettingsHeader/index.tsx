@@ -15,7 +15,6 @@ import { TarotGameSettingsIcons } from "@/constants/icon"
 import { useTarotGameSettingsHeaderHook } from "./hook"
 import { TarotGameSettingsHeaderStyle } from "./style"
 import { TTarotGameSettingsHeaderProps } from "./type"
-import { useTranslation } from "react-i18next"
 
 
 export const TarotGameSettingsHeader = (props:TTarotGameSettingsHeaderProps) =>{

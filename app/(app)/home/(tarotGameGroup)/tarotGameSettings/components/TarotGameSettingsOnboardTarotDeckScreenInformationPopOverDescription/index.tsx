@@ -1,28 +1,32 @@
 import { Fragment } from "react"
-import { 
-    ScrollView, 
+import {  
     Text 
 } from "react-native"
+import { useTarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescriptionHook } from "./hook"
 
 export const TarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription = ()=>{
+    const {
+        t
+    } = useTarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescriptionHook()
+    
     return(
         <Fragment>
             <Text>
-                {"One Tap: "}
+                {t('tarotGameSettings.tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription.oneTap.title') + '\n'}
                 <Text>
-                    {'Click once to the image that u wanna select it. \n'}
+                    {t('tarotGameSettings.tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription.oneTap.description') + '\n'}
                 </Text>
             </Text>
             <Text>
-                {"Dobule Tap: "}
+                {t('tarotGameSettings.tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription.doubleTap.title') + '\n'}
                 <Text>
-                    {'Click twice to the image that u show full screen image. \n'}
+                    {t('tarotGameSettings.tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription.doubleTap.description') + '\n'}
                 </Text>
             </Text>
             <Text>
-                {"Slide Image: "}
+                {t('tarotGameSettings.tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription.slideImage.title') + '\n'}
                 <Text>
-                    {'Slide image to see next image.'}
+                    {t('tarotGameSettings.tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription.slideImage.description')}
                 </Text>
             </Text>
         </Fragment>

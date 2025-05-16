@@ -24,7 +24,7 @@ export const TarotGameSettingsTarotDeckScreenItemModalItemContainer = (props:TTa
             <GestureDetector 
                 gesture={panGesture}
             >
-                <View style={{flex:1}} >
+                <View style={TarotGameSettingsTarotDeckScreenItemModalItemContainerStyle.TarotGameSettingsTarotDeckScreenItemModalInnerContainer} >
                     <TarotGameSettingsTarotDeckScreenItemModalItem
                         data={props.data.randomFrontFace}
                         isFrontFace={true}

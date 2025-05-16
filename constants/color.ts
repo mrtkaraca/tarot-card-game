@@ -24,6 +24,10 @@ export const TarotGameSettingsColors = {
         skipDataReady:'blue',
         skipDataNotReady:'grey'
     },
+    tarotGameSettingsScreenItemModalContainer:{
+        backgroundColor:'#000000cc',
+        textColor:'white'
+    },
     IconButtons:{
         iconColor:'black',
         buttonOpacityColor:Colors.BlackOpacity

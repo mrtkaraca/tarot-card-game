@@ -1,24 +1,13 @@
-import { useCallback, useLayoutEffect } from "react"
 import { 
-    useAnimatedRef, 
     useSharedValue, 
     useDerivedValue, 
     useAnimatedStyle, 
-    useAnimatedReaction, 
-    runOnUI, 
-    measure 
+    useAnimatedReaction,
 } from "react-native-reanimated"
 
 import { TTarotGameSettingsTarotDeckScreenItemModalItemHookProps } from "./type"
 
 export const useTarotGameSettingsTarotDeckScreenItemModalItemHook = (props:TTarotGameSettingsTarotDeckScreenItemModalItemHookProps)=>{
-
-    const imageRef = useAnimatedRef()
-
-    const imageSize = useSharedValue< {
-        width:number,
-        height:number
-    }| null>(null)
 
     const rotateX = useSharedValue(0)
     const rotateY = useSharedValue(0)
@@ -43,18 +32,6 @@ export const useTarotGameSettingsTarotDeckScreenItemModalItemHook = (props:TTaro
     })
 
 
-    const handleImageOnLayout = useCallback(()=>{
-        runOnUI(()=>{
-            const imageMes = measure(imageRef)
-            if(imageMes){
-                imageSize.value = {
-                    width:imageMes.width,
-                    height:imageMes.height
-                }
-            }
-        })()
-    },[])
-
     useAnimatedReaction(
         ()=>[props.rotateX?.value,props.rotateY?.value],
         ()=>{
@@ -71,22 +48,10 @@ export const useTarotGameSettingsTarotDeckScreenItemModalItemHook = (props:TTaro
         }
     )
 
-    useLayoutEffect(()=>{
-        runOnUI(()=>{
-            const imageMes = measure(imageRef)
-            if(imageMes){
-                imageSize.value = {
-                    width:imageMes.width,
-                    height:imageMes.height
-                }
-            }
-        })()
-    },[])
+
 
     return{
-        imageRef,
-        containerAnimatedStyle,
-        handleImageOnLayout
+        containerAnimatedStyle
     }
 }
 

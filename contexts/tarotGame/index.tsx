@@ -32,7 +32,7 @@ export const useTarotGameStore = <U,>(selector: (state:TTarotGameStore ) => U)=>
 export const TarotGameProvider = (props:TTarotGameProviderProps) =>{
 
     const {globalMMKVStorage} = useGlobalMMKVContext()
-
+    
     const [value] = useState(()=>createTarotGameStore(globalMMKVStorage,globalMMKVKeys.tarotGame));
 
     return(

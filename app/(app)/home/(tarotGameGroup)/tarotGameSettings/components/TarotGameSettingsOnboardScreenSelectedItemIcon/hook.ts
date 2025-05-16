@@ -1,7 +1,9 @@
-import { runOnJS, useAnimatedReaction, useAnimatedStyle } from "react-native-reanimated"
+import { 
+    useAnimatedStyle 
+} from "react-native-reanimated"
 
 import { TTarotGameSettingsOnboardScreenSelectedItemIconHookProps } from "./type"
-import { useState } from "react"
+
 
 export const useTarotGameSettingsOnboardScreenSelectedItemIconHook = (props:TTarotGameSettingsOnboardScreenSelectedItemIconHookProps)=>{
     

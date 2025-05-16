@@ -1,4 +1,6 @@
-import { useCallback } from "react"
+import { BackHandler } from "react-native"
+import { useCallback, useLayoutEffect } from "react"
+
 import { useTarotGameStore } from "@/contexts/tarotGame"
 
 import { TTarotGameCardModalHookProps } from "./type"
@@ -12,6 +14,22 @@ export const useTarotGameCardModalHook = (props:TTarotGameCardModalHookProps)=>{
         setTarotGameCardModalData({isModalVisible:false} as any)
     },[])
    
+
+    useLayoutEffect(()=>{
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            ()=>{
+                if(tarotGameCardModalData.isModalVisible){
+                    handleCloseModal();
+                    return true
+                }
+                return false
+            },
+        );
+
+        return () => backHandler.remove();
+
+    },[tarotGameCardModalData])
 
     return{
         tarotGameCardModalData,

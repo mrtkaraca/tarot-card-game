@@ -4,6 +4,9 @@ export const TarotGameSettingsTarotDeckScreenItemModalItemContainerStyle = Style
     TarotGameSettingsTarotDeckScreenItemModalContainer:{
         height:'100%',
         width:'100%'
+    },
+    TarotGameSettingsTarotDeckScreenItemModalInnerContainer:{
+        flex:1,
     }
 })
 

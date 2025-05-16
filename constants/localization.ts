@@ -11,6 +11,12 @@ export const en = {
                 alertModalTitle:'Alert',
                 leftButtonTextLabel:'Cancel',
                 rightButtonTextLabel:'Contiune'
+            },
+            alertModalDescription:{
+                tarotBackground:'Tarot Background',
+                tarotCursor:'Tarot Cursor',
+                tarotDeck:'Tarot Deck',
+                descriptionPart:'will choosen randomly.'
             }
         },
         tarotGameSettingsOnboardScreensContainer:{
@@ -24,6 +30,20 @@ export const en = {
                 tarotBackground:'Choose Tarot Background',
                 tarotCursor:'Choose Tarot Cursor',
                 tarotDeck:'Choose Tarot Deck'
+            }
+        },
+        tarotGameSettingsOnboardTarotDeckScreenInformationPopOverDescription:{
+            oneTap:{
+                title:"One Tap:",
+                description:"Click once to the image that u wanna select it."
+            },
+            doubleTap:{
+                title:"Dobule Tap:",
+                description:"Click twice to the image that u show full screen image."
+            },
+            slideImage:{
+                title:"Slide Image:",
+                description:"Slide image to see next image."
             }
         },
         tarotGameSettingsFooter:{
