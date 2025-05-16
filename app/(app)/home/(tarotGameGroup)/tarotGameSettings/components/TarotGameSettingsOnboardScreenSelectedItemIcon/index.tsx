@@ -7,11 +7,7 @@ import { useTarotGameSettingsOnboardScreenSelectedItemIconHook } from "./hook"
 import { TarotGameSettingsOnboardScreenSelectedItemIconStyle } from "./style"
 import { TTarotGameSettingsOnboardTarotDeckScreenSelectedItemProps } from "./type"
 
-
-
 export const  TarotGameSettingsOnboardScreenSelectedItemIcon = (props:TTarotGameSettingsOnboardTarotDeckScreenSelectedItemProps)=>{
-
-    
 
     const {
         animStyle,
@@ -40,4 +36,8 @@ export const  TarotGameSettingsOnboardScreenSelectedItemIcon = (props:TTarotGame
             }
         </>
     )
+}
+
+export default {
+    TarotGameSettingsOnboardScreenSelectedItemIcon
 }

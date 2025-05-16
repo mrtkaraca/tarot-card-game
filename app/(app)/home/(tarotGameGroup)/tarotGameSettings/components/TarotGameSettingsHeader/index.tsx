@@ -90,3 +90,7 @@ export const TarotGameSettingsHeader = (props:TTarotGameSettingsHeaderProps) =>{
         </Animated.View>
     )
 }
+
+export default {
+    TarotGameSettingsHeader
+}

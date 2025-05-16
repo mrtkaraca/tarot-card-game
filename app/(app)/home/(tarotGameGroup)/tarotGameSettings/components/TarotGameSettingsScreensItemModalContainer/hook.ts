@@ -45,3 +45,7 @@ export const useTarotGameSettingsScreenItemModalContainerHook = ()=>{
         handleModalVisibility
     }
 }
+
+export default {
+    useTarotGameSettingsScreenItemModalContainerHook
+}

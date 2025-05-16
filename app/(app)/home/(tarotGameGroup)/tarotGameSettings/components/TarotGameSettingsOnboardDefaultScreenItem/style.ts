@@ -22,3 +22,7 @@ export const TarotGameSettingsOnboardScreenItemStyle = StyleSheet.create({
         height:'100%'
     }
 })
+
+export default {
+    TarotGameSettingsOnboardScreenItemStyle
+}

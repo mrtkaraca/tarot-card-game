@@ -1,7 +1,5 @@
 import { DerivedValue, MeasuredDimensions, SharedValue } from "react-native-reanimated";
 
-export default undefined
-
 export type TTarotGameCursorData = {
     id:string;
     name:string;
@@ -78,3 +76,7 @@ export type TTarotGameCursorHookProps = Pick<TTarotGameCursorProps,
     'bottomDeckFrontFacesIndexLength' |
     'bottomDeckPreviousFrontFacesIndexLength'
 >
+
+export default {
+    
+}

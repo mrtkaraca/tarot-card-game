@@ -12,3 +12,7 @@ export const TarotGameSettingsBackground = (props:TTarotGameSettingsBackgroundPr
         </View>
     )
 }
+
+export default {
+    TarotGameSettingsBackground
+}

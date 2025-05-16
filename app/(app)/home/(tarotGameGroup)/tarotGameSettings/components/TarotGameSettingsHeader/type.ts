@@ -11,3 +11,7 @@ export type TTarotGameSettingsHeaderProps = {
 export type TTarotGameSettingsHeaderHookProps = Pick<TTarotGameSettingsHeaderProps,
     'onboardScreensPagination'
 >
+
+export default {
+    
+}

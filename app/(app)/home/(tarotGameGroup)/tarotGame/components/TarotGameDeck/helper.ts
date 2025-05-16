@@ -7,3 +7,7 @@ export const TarotGameDrawningNumbersEndingLayout:TTarotGameDrawningNumbersEndin
     '7':[[0,0],[0,0,0],[0,0]],
     '9':[[0,0,0],[0,0,0],[0,0,0]]
 }
+
+export default {
+    TarotGameDrawningNumbersEndingLayout
+}

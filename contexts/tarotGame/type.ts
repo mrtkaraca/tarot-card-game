@@ -6,7 +6,7 @@ import {
     TarotGameImageQuality, 
     TTarotGameCardDrawningNumber 
 } from "@/app/(app)/home/(tarotGameGroup)/tarotGame/components/TarotGameSelectionsPaginationContainer/type";
-import { TTarotGameData } from "@/app/(app)/home/(tarotGameGroup)/tarotGame/type";
+import { TTarotGameData } from "@/app/(app)/home/(tarotGameGroup)/tarotGame/components/type";
 
 
 export type TTarotGameProviderProps = {

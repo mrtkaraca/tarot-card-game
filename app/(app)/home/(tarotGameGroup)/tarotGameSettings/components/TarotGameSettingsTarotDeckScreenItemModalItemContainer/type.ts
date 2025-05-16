@@ -4,3 +4,7 @@ export type TTarotGameSettingsTarotDeckScreenItemModalItemContainerProps = {
     data: TTarotGameSettingsTarotDeckScreenData 
     screenName:Extract<TTarotGameSettingsScreens,'tarotDeck'>
 }
+
+export default {
+    
+}

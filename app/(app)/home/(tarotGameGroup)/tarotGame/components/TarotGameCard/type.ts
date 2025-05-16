@@ -4,8 +4,6 @@ import { TTarotGameCardFaceData } from "../TarotGameCardFace/type"
 import { TTarotGameCardDrawningNumberLayout, TTarotGameDeck, TTarotGameDeckPhases } from "../TarotGameDeck/type"
 import { TTarotGameStore } from "@/contexts/tarotGame/type"
 
-export default undefined
-
 export type TTarotGameCardPhases = 
     'startAnimation' | 
     'drawingCard' | 
@@ -97,4 +95,8 @@ export type TTarotGameCardRefProps = {
     handleCardZIndex:(
         zIndex:number
     )=>void
+}
+
+export default {
+    
 }

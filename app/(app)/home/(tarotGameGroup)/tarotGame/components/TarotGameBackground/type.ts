@@ -1,5 +1,3 @@
-export default undefined
-
 export type TTarotGameBackgroundProps = {
     children:React.ReactNode
 }
@@ -16,4 +14,8 @@ export type TTarotGameBackgroundData = {
         blurhash:string,
         ext:string
     }
+}
+
+export default {
+
 }

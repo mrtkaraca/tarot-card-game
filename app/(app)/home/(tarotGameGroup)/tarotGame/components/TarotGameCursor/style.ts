@@ -1,7 +1,5 @@
 import { StyleSheet } from "react-native"
 
-export default undefined
-
 export const TarotGameCursorStyle = StyleSheet.create({
     TarotGameCursorContainer:{
         position:'absolute',
@@ -13,3 +11,7 @@ export const TarotGameCursorStyle = StyleSheet.create({
         width:'100%',
     }
 })
+
+export default {
+    TarotGameCursorStyle
+}

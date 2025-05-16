@@ -62,3 +62,7 @@ export const TarotGameSettingsFooter = (props:TTarotGameSettingsFooterProps)=>{
         </View>
     )
 }
+
+export default {
+    TarotGameSettingsFooter
+}

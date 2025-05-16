@@ -54,3 +54,7 @@ export const TarotGameSettingsOnboardTarotDeckScreenItemContainer = memo((props:
         </View>
     )
 })
+
+export default {
+    TarotGameSettingsOnboardTarotDeckScreenItemContainer
+}

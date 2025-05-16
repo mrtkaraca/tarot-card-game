@@ -7,3 +7,7 @@ export const TarotGameSettingsFooterStyle = StyleSheet.create({
         padding:6
     }
 })
+
+export default {
+    TarotGameSettingsFooterStyle
+}

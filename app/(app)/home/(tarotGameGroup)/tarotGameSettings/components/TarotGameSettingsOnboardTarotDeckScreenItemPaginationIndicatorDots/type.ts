@@ -11,3 +11,7 @@ export type TTarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDotsH
     'pagingIndicatorSize' |
     'currentImageIndex'
 >
+
+export default {
+    
+}

@@ -12,8 +12,6 @@ import { Gesture } from "react-native-gesture-handler"
 
 import { TTarotGameCursorGestureHookProps } from "./type"
 
-export default undefined
-
 export const useTarotGameCursorGestureHook = (props:TTarotGameCursorGestureHookProps)=>{
 
     const {
@@ -48,4 +46,8 @@ export const useTarotGameCursorGestureHook = (props:TTarotGameCursorGestureHookP
         cursorGestureAnimatedRef,
         handleOnLayout
     }
+}
+
+export default {
+    useTarotGameCursorGestureHook
 }

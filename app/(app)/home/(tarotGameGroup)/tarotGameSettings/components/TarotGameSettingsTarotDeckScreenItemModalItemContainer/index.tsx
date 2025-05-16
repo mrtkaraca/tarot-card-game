@@ -43,3 +43,7 @@ export const TarotGameSettingsTarotDeckScreenItemModalItemContainer = (props:TTa
 
     )
 }
+
+export default {
+    TarotGameSettingsTarotDeckScreenItemModalItemContainer
+}

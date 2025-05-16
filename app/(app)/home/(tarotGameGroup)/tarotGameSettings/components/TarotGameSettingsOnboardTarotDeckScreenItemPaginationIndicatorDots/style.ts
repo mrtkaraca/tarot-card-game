@@ -14,3 +14,7 @@ export const TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDotsS
         color:'black'
     }
 })
+
+export default {
+    TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDotsStyle
+}

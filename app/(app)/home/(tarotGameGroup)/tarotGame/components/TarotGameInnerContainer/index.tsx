@@ -1,5 +1,6 @@
 import { 
-    View 
+    View ,
+    Text
 } from "react-native"
 
 import {TarotGameCursorGesture} from "../TarotGameCursorGesture"
@@ -9,7 +10,7 @@ import { TarotGameCursor } from "../TarotGameCursor"
 import { TTarotGameInnerContainerProps } from "./type"
 import { useTarotGameInnerContainerHook } from "./hook"
 import { TarotGameInnerContainerStyle } from "./stlye"
-import { Suspense } from "react"
+import { Fragment, Suspense } from "react"
 
 
 export const TarotGameInnerContainer = (props:TTarotGameInnerContainerProps)=>{
@@ -19,6 +20,7 @@ export const TarotGameInnerContainer = (props:TTarotGameInnerContainerProps)=>{
     } = props
 
     const {
+        isDeckReady,
         isGameEnded,
         cursorGestureMeasure,
         deck,
@@ -52,56 +54,66 @@ export const TarotGameInnerContainer = (props:TTarotGameInnerContainerProps)=>{
     } = useTarotGameInnerContainerHook(props)
 
     return(
-
-        <TarotGameCursorGesture
-            cursorGestureMeasure={cursorGestureMeasure}
-            handleTarotGameCursorGesture={handleTarotGameCursorGesture}
-        >
-            <View
-                style={TarotGameInnerContainerStyle.TarotGameInnerContainerPaddingContainer}
+        <Fragment>
+            {!isDeckReady && 
+                <View style={{top:0,left:0,right:0,bottom:0,backgroundColor:'white',position:'absolute',zIndex:1}} >
+                    <View
+                        style={{justifyContent:'center',alignItems:'center'}}
+                    >
+                       <Text style={{fontSize:64}} >preparing game</Text>
+                    </View>
+                </View> 
+            }
+            <TarotGameCursorGesture
+                cursorGestureMeasure={cursorGestureMeasure}
+                handleTarotGameCursorGesture={handleTarotGameCursorGesture}
             >
-                <TarotGameDeck
-                    ref={deckRef}
-                    deckData={deck}
-                    deckPhase={deckPhase}
-                    deckMeasure={deckMeasure}
-                    deckCardDimensions={deckCardDimensions}
-                    deckBottomSidePageCenter={deckBottomSidePageCenter}
-                    deckBottomSideFrontFacesIndexLength={deckBottomSideFrontFacesIndexLength}
-                    deckBottomSideCardsMinimumLeft={deckBottomSideCardsMinimumLeft}
-                    deckBottomSideCardsPreviousMinimumLeft={deckBottomSideCardsPreviousMinimumLeft}
-                    deckBottomSideSpaceBetweenCards={deckBottomSideSpaceBetweenCards}
-                    deckBottomSidePreviousSpaceBetweenCards={deckBottomSidePreviousSpaceBetweenCards}
-                    deckTopSidePageCenter={deckTopSidePageCenter}
-                    deckTopSideCardsMinimumLeft={deckTopSideCardsMinimumLeft}
-                    deckTopSideCardsPreviousMinimumLeft={deckTopSideCardsPreviousMinimumLeft}
-                    deckTopSideSpaceBetweenCards={deckTopSideSpaceBetweenCards}
-                    deckTopSidePreviousSpaceBetweenCards={deckTopSidePreviousSpaceBetweenCards}
-                    deckTopSideSelectedCardPage={deckTopSideSelectedCardPage}
-                    deckBottomSideSelectedCardPage={deckBottomSideSelectedCardPage}
-                    cardEndingLayoutAnimationDuration={cardEndingLayoutAnimationDuration}
-                    tarotGameDeckTopSideCardEndingLayout={tarotGameDeckTopSideCardEndingLayout}
-                />
-                {!isGameEnded &&
-                    <TarotGameCursor
-                        ref={cursorRef}
-                        cursorMeasure={cursorMeasure}
-                        cursorData={tarotGameDataWithoutBackground.tarotCursor}
-                        cursorDimensions={cursorDimensions}
-                        cursorMaximumRight={cursorMaximumRightTranslateX}
-                        cursorPreviousMaximumRight={cursorPreviousMaximumRightTranslateX}
-                        cursorCenterToDeckBottomSidePage={cursorCenterToDeckBottomSidePage}
-                        cardsMinimumLeft={deckBottomSideCardsMinimumLeft}
-                        cardsPreviousMinimumLeft={deckBottomSideCardsPreviousMinimumLeft}
-                        spaceBetweenCards={deckBottomSideSpaceBetweenCards}
-                        bottomDeckFrontFacesIndexLength={deckBottomSideFrontFacesIndexLength}
-                        bottomDeckPreviousFrontFacesIndexLength={deckBottomSidePreviousFrontFacesIndexLength}
-                        topDeckSelectedCardPage={deckTopSideSelectedCardPage}
-                        bottomDeckSelectedCardPage={deckBottomSideSelectedCardPage}
+                <View
+                    style={TarotGameInnerContainerStyle.TarotGameInnerContainerPaddingContainer}
+                >
+                    <TarotGameDeck
+                        ref={deckRef}
+                        deckData={deck}
+                        deckPhase={deckPhase}
+                        deckMeasure={deckMeasure}
+                        deckCardDimensions={deckCardDimensions}
+                        deckBottomSidePageCenter={deckBottomSidePageCenter}
+                        deckBottomSideFrontFacesIndexLength={deckBottomSideFrontFacesIndexLength}
+                        deckBottomSideCardsMinimumLeft={deckBottomSideCardsMinimumLeft}
+                        deckBottomSideCardsPreviousMinimumLeft={deckBottomSideCardsPreviousMinimumLeft}
+                        deckBottomSideSpaceBetweenCards={deckBottomSideSpaceBetweenCards}
+                        deckBottomSidePreviousSpaceBetweenCards={deckBottomSidePreviousSpaceBetweenCards}
+                        deckTopSidePageCenter={deckTopSidePageCenter}
+                        deckTopSideCardsMinimumLeft={deckTopSideCardsMinimumLeft}
+                        deckTopSideCardsPreviousMinimumLeft={deckTopSideCardsPreviousMinimumLeft}
+                        deckTopSideSpaceBetweenCards={deckTopSideSpaceBetweenCards}
+                        deckTopSidePreviousSpaceBetweenCards={deckTopSidePreviousSpaceBetweenCards}
+                        deckTopSideSelectedCardPage={deckTopSideSelectedCardPage}
+                        deckBottomSideSelectedCardPage={deckBottomSideSelectedCardPage}
+                        cardEndingLayoutAnimationDuration={cardEndingLayoutAnimationDuration}
+                        tarotGameDeckTopSideCardEndingLayout={tarotGameDeckTopSideCardEndingLayout}
                     />
-                }
-            </View>
-        </TarotGameCursorGesture>
+                    {!isGameEnded &&
+                        <TarotGameCursor
+                            ref={cursorRef}
+                            cursorMeasure={cursorMeasure}
+                            cursorData={tarotGameDataWithoutBackground.tarotCursor}
+                            cursorDimensions={cursorDimensions}
+                            cursorMaximumRight={cursorMaximumRightTranslateX}
+                            cursorPreviousMaximumRight={cursorPreviousMaximumRightTranslateX}
+                            cursorCenterToDeckBottomSidePage={cursorCenterToDeckBottomSidePage}
+                            cardsMinimumLeft={deckBottomSideCardsMinimumLeft}
+                            cardsPreviousMinimumLeft={deckBottomSideCardsPreviousMinimumLeft}
+                            spaceBetweenCards={deckBottomSideSpaceBetweenCards}
+                            bottomDeckFrontFacesIndexLength={deckBottomSideFrontFacesIndexLength}
+                            bottomDeckPreviousFrontFacesIndexLength={deckBottomSidePreviousFrontFacesIndexLength}
+                            topDeckSelectedCardPage={deckTopSideSelectedCardPage}
+                            bottomDeckSelectedCardPage={deckBottomSideSelectedCardPage}
+                        />
+                    }
+                </View>
+            </TarotGameCursorGesture>
+        </Fragment>
     )
 }
 

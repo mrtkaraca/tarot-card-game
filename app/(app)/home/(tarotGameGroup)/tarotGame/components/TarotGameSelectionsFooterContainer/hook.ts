@@ -11,7 +11,6 @@ import { TTTarotGameSelectionsFooterContainerHookProps } from "./type"
 import { useTarotGameStore } from "@/contexts/tarotGame"
 import { useTranslation } from "react-i18next"
 
-export default {}
 
 export const useTarotGameSelectionsFooterContainerHook = (props:TTTarotGameSelectionsFooterContainerHookProps)=>{
 
@@ -70,4 +69,8 @@ export const useTarotGameSelectionsFooterContainerHook = (props:TTTarotGameSelec
         handleTarotGameSelectionPaginationNext,
         handleTarotGameSelectionPaginatinOk
     }
+}
+
+export default {
+    useTarotGameSelectionsFooterContainerHook
 }

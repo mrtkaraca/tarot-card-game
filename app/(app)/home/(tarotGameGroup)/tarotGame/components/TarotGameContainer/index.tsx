@@ -4,8 +4,6 @@ import {TarotGameSelectionsPaginationContainer} from "../TarotGameSelectionsPagi
 
 import { useTarotGameContainerHook } from "./hook"
 
-export default undefined
-
 export const TarotGameContainer = ()=>{
 
     const {
@@ -45,4 +43,8 @@ export const TarotGameContainer = ()=>{
         />
     )
     
+}
+
+export default {
+    TarotGameContainer
 }

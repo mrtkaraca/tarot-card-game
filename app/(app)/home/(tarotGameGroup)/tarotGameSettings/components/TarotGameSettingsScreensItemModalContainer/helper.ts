@@ -12,3 +12,7 @@ export const imageSize = {
         heigth:1920
     }
 }
+
+export default {
+    imageSize
+}

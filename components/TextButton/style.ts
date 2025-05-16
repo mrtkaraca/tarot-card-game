@@ -1,4 +1,10 @@
-import { StyleSheet,PixelRatio } from "react-native";
+import { 
+    StyleSheet,
+    PixelRatio 
+} from "react-native";
+
+import { TextButtonSizes } from "@/constants/size";
+import { TextButtonColors } from "@/constants/color";
 
 export const TextButtonStyle = StyleSheet.create({
     TextButtonStyleContainer:{
@@ -11,10 +17,10 @@ export const TextButtonStyle = StyleSheet.create({
         overflow:'hidden',
     },
     TextButtonStyleInnerContainerDefaultText:{
-        color:'blue',
+        color:TextButtonColors.textButtonInnerContainerDefaultTextStyle.color,
         textAlign:'center',
         alignSelf:'center',
-        fontSize:32/PixelRatio.get(),
+        fontSize:TextButtonSizes.textButtonInnerContainerDefaultTextStyle.fontSize,
         paddingHorizontal:24/PixelRatio.get(),
         paddingVertical:16/PixelRatio.get()
     },

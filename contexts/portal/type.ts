@@ -1,4 +1,4 @@
-import { TPortalProps } from "components/Portal/type"
+import { TPortalProps } from "@/components/Portal/type"
 
 
 export type TPortalStore = {

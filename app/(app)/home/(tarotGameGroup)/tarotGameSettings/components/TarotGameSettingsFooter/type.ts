@@ -13,3 +13,7 @@ export type TTarotGameSettingsFooterHookProps = Pick<TTarotGameSettingsFooterPro
     'onboardScreensPagination' |
     'onboardScreensData'
 >
+
+export default {
+    
+}

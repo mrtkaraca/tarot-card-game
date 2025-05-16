@@ -4,3 +4,6 @@ export type TTarotGameSettingsDefaultScreenItemModalItemContainerProps = {
     data: TTarotGameSettingsScreensDefaultData
     screenName:Exclude<TTarotGameSettingsScreens,'tarotDeck'>
 }
+
+export default {
+}

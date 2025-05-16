@@ -40,3 +40,7 @@ export const TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDots 
         </Animated.View>
     )
 }
+
+export default {
+    TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDots
+}

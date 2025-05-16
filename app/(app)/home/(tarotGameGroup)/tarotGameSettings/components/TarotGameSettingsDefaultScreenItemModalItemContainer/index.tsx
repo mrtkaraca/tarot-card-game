@@ -21,3 +21,7 @@ export const TarotGameSettingsDefaultScreenItemModalItemContainer = (props:TTaro
         />
     )
 }
+
+export default {
+    TarotGameSettingsDefaultScreenItemModalItemContainer
+}

@@ -84,3 +84,7 @@ export const useTarotGameSettingsOnboardDefaultScreenItemHook = (props:TTarotGam
         itemImageViewportSizeSource
     }
 }
+
+export default {
+    useTarotGameSettingsOnboardDefaultScreenItemHook
+}

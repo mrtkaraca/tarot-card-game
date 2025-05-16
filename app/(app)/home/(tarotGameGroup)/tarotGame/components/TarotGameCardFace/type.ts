@@ -1,7 +1,5 @@
 import { SharedValue } from "react-native-reanimated";
 
-export default undefined
-
 export type TTarotGameCardFaceData = {
     id: string;
     name: string;
@@ -22,3 +20,7 @@ export type TTarotGameCardFaceHookProps = Pick<TTarotGameCardFaceProps,
     'isCardFrontFace' | 
     'cardRotateY'
 >
+
+export default {
+
+}

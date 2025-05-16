@@ -21,3 +21,7 @@ export const useTarotGameSettingsHook = ()=>{
         onboardScreensPagination
     }
 }
+
+export default {
+    useTarotGameSettingsHook
+}

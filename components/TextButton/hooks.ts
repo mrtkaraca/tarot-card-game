@@ -1,9 +1,12 @@
 import { Gesture } from "react-native-gesture-handler";
-import { measure, runOnJS, useAnimatedRef, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
+import { 
+    runOnJS, 
+    useAnimatedStyle, 
+    useSharedValue, 
+    withTiming 
+} from "react-native-reanimated";
 
 import { TTextButtonHookProps } from "./type";
-import { LayoutChangeEvent } from "react-native";
-import { useLayoutEffect } from "react";
 
 export const useTextButtonHook = (props:TTextButtonHookProps)=>{
 

@@ -80,3 +80,7 @@ export const  TarotGameSettingsOnboardDefaultScreenItem = (props:TTarotGameSetti
         </Animated.View>
     )
 }
+
+export default {
+    TarotGameSettingsOnboardDefaultScreenItem
+}

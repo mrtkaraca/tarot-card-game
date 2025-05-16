@@ -2,8 +2,6 @@ import { TarotGameColors } from "@/constants/color"
 import { TarotGameSizes } from "@/constants/size"
 import { PixelRatio, StyleSheet } from "react-native"
 
-export default undefined
-
 
 export const TarotGameSelectionSectionStyle = StyleSheet.create({
     TarotGameSelectionSectionContainer:{
@@ -46,3 +44,7 @@ export const TarotGameSelectionSectionStyle = StyleSheet.create({
         zIndex:1
     }
 }) 
+
+export default {
+    TarotGameSelectionSectionStyle
+}

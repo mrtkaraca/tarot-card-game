@@ -1,8 +1,6 @@
 import { useTarotGameStore } from "@/contexts/tarotGame"
 import { TTarotGameBackgroundHookProps } from "./type"
 
-export default undefined
-
 export const useTarotGameBackgroundHook = (props:TTarotGameBackgroundHookProps)=>{
 
     const tarotBackgroundData = useTarotGameStore((state)=>state.tarotGameData?.tarotBackground)
@@ -10,4 +8,8 @@ export const useTarotGameBackgroundHook = (props:TTarotGameBackgroundHookProps)=
     return{
         tarotBackgroundData
     }
+}
+
+export default {
+    useTarotGameBackgroundHook
 }

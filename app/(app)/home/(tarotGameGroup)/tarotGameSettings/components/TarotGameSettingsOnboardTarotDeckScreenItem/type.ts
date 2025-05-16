@@ -18,3 +18,7 @@ export type TTarotGameSettingsOnboardTarotDeckScreenItemHookProps = Pick<TTarotG
     'itemSize' |
     'itemImageViewportSizes'
 >
+
+export default {
+    
+}

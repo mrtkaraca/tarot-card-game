@@ -21,3 +21,7 @@ export const HomeStyle = StyleSheet.create({
         width:'100%',
     }
 })
+
+export default {
+    HomeStyle
+}

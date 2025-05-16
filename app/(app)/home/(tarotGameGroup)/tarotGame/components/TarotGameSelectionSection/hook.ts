@@ -9,8 +9,6 @@ import {
 
 import { TTarotGameSelectionSectionHookProps } from "./type"
 
-export default undefined
-
 export const useTarotGameSelectionSectionHook = (props:TTarotGameSelectionSectionHookProps)=>{
 
     const {
@@ -59,4 +57,8 @@ export const useTarotGameSelectionSectionHook = (props:TTarotGameSelectionSectio
         boxAnimatedStyle,
         selectionAnimatedStyle
     }
+}
+
+export default {
+    useTarotGameSelectionSectionHook
 }

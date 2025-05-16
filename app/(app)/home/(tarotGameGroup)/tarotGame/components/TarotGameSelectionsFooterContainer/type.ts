@@ -3,8 +3,6 @@ import { SharedValue } from "react-native-reanimated"
 import { TTarotGameSelectionsPaginationRefProps } from "../TarotGameSelectionsPagination/type"
 import { TTarotGameSelectionPaginationData, TTarotGameSelectionsPaginationContainerProps } from "../TarotGameSelectionsPaginationContainer/type"
 
-export default {}
-
 export type TTarotGameSelectionsFooterContainerProps = {
     tarotGameSelectionsPaginationContainerRef:React.RefObject<TTarotGameSelectionsPaginationRefProps | null>
     tarotGameSelectionPaginationCurrentIndex: SharedValue<number>
@@ -19,3 +17,5 @@ export type TTTarotGameSelectionsFooterContainerHookProps =  Pick<TTarotGameSele
     'tarotGameSelectionPaginationCurrentId' |
     'handleOnFetchStart' 
 >
+
+export default {}

@@ -17,3 +17,7 @@ export type TTarotGameSettingsOnboardDefaultScreenItemHookProps = Pick<TTarotGam
     'itemSize' |
     'itemImageViewportSizes'
 >
+
+export default {
+    
+}

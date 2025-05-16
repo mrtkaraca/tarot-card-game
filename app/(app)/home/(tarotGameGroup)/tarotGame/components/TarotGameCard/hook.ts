@@ -27,8 +27,6 @@ import {
     TTarotGameCardRefProps 
 } from "./type"
 
-export default undefined
-
 export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
 
     const {
@@ -602,4 +600,8 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
         cardAnimatedStyle,
         cardRotateY,
     }
+}
+
+export default {
+    useTarotGameCardHook
 }

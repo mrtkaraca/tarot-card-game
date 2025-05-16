@@ -32,8 +32,6 @@ import {
     TTarotGameCursorRefProps 
 } from "./type"
 
-export default undefined
-
 export const useTarotGameCursorHook = (props:TTarotGameCursorHookProps,ref:React.ForwardedRef<TTarotGameCursorRefProps>)=>{
 
 
@@ -453,4 +451,8 @@ export const useTarotGameCursorHook = (props:TTarotGameCursorHookProps,ref:React
         cursorAnimatedStyle,
         handleOnLayout
     }
+}
+
+export default {
+    useTarotGameCursorHook
 }

@@ -2,10 +2,6 @@ import { useCallback, useLayoutEffect } from "react"
 import { TarotGameCardModalCardHookProps } from "./type"
 import { measure, runOnUI, useAnimatedReaction, useAnimatedRef, useAnimatedStyle, useDerivedValue, useSharedValue } from "react-native-reanimated"
 
-
-
-export default undefined
-
 export const useTarotGameCardModalCardHook = (props:TarotGameCardModalCardHookProps)=>{
 
     const {
@@ -15,11 +11,6 @@ export const useTarotGameCardModalCardHook = (props:TarotGameCardModalCardHookPr
     } = props
 
     const imageRef = useAnimatedRef()
-
-    const imageSize = useSharedValue<{
-        width:number,
-        height:number
-    }| null>(null)
 
     const rotateX = useSharedValue(0)
     const rotateY = useSharedValue(0)
@@ -35,7 +26,6 @@ export const useTarotGameCardModalCardHook = (props:TarotGameCardModalCardHookPr
 
     const containerAnimatedStyle = useAnimatedStyle(()=>{
         return{
-            borderRadius:imageSize.value ? imageSize.value.width/20 : undefined,
             transform:[
                 {rotateY:isFrontFace ? '180deg' : '0deg'},
                 {rotateX:rotateXDegree.value},
@@ -43,18 +33,6 @@ export const useTarotGameCardModalCardHook = (props:TarotGameCardModalCardHookPr
             ]
         }
     })
-
-    const handleOnLayout = useCallback(()=>{
-        runOnUI(()=>{
-            const imageMes = measure(imageRef)
-            if(imageMes){
-                imageSize.value = {
-                    width:imageMes.width,
-                    height:imageMes.height
-                }
-            }
-        })()
-    },[])
 
     useAnimatedReaction(
         ()=>[
@@ -73,21 +51,12 @@ export const useTarotGameCardModalCardHook = (props:TarotGameCardModalCardHookPr
         }
     )
 
-    useLayoutEffect(()=>{
-        runOnUI(()=>{
-            const imageMes = measure(imageRef)
-            if(imageMes){
-                imageSize.value = {
-                    width:imageMes.width,
-                    height:imageMes.height
-                }
-            }
-        })()
-    },[])
-
     return{
         imageRef,
-        containerAnimatedStyle,
-        handleOnLayout
+        containerAnimatedStyle
     }
+}
+
+export default {
+    useTarotGameCardModalCardHook
 }

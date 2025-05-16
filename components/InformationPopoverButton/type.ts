@@ -1,4 +1,4 @@
-import { TInformationPopOverProps } from "components/InformationPopOver/type";
+import { TInformationPopOverProps } from "@/components/InformationPopOver/type";
 
 export type TInformationPopoverButtonProps = {
     children:React.ReactNode;

@@ -1,10 +1,10 @@
+import { TarotGameColors } from "@/constants/color"
 import { StyleSheet } from "react-native"
-
-export default undefined
 
 export const TarotGameBackgroundStyle = StyleSheet.create({
     TarotGameBackgroundContainer:{
         flex:1,
+        backgroundColor:TarotGameColors.tarotGameBackground.backgroundColor
     },
     TarotGameBackground:{
         position:'absolute',
@@ -12,3 +12,7 @@ export const TarotGameBackgroundStyle = StyleSheet.create({
         width:'100%',
     }
 })
+
+export default {
+    TarotGameBackgroundStyle
+}

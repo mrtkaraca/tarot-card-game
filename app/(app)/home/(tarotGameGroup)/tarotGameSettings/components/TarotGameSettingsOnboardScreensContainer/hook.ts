@@ -20,8 +20,6 @@ import { TarotGameSettingsColors } from "@/constants/color"
 import { TOnboardScreensData } from "./type"
 import { useApiErrorHandler } from "@/api/hook"
 
-
-
 export const useTarotGameSettingsOnboardScreensContainerHook = ()=>{
 
     const {
@@ -150,4 +148,8 @@ export const useTarotGameSettingsOnboardScreensContainerHook = ()=>{
         onboardScreenDimensions,
         handleOnboardScreensDimensions,
     }
+}
+
+export default {
+    useTarotGameSettingsOnboardScreensContainerHook
 }

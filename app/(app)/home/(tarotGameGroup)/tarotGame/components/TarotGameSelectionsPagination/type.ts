@@ -3,8 +3,6 @@ import { SharedValue } from "react-native-reanimated"
 import { TTarotGameSelectionsPaginationData } from "../TarotGameSelectionsPaginationContainer/type"
 import { RefObject } from "react"
 
-export default {}
-
 export type TTarotGameSelectionsPaginationProps = {
     ref:RefObject<TTarotGameSelectionsPaginationRefProps | null>
     tarotGameSelectionsPaginationData:TTarotGameSelectionsPaginationData
@@ -24,3 +22,7 @@ export type TTarotGameSelectionsPaginationRefProps = {
 }
 
 export type TTarotGameSelectionsPaginationPhases = 'idle' | 'pagination' | null
+
+export default {
+    
+}

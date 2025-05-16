@@ -7,3 +7,7 @@ export const TarotGameSettingsBackgroundStyle = StyleSheet.create({
         backgroundColor:TarotGameSettingsColors.tarotGameSettingsBackground.backgroundColor,
     }
 })
+
+export default {
+    TarotGameSettingsBackgroundStyle
+}

@@ -36,3 +36,7 @@ export const TarotGameSettingsScreenItemModalContainerStyle = StyleSheet.create(
         textAlign:'center'
     }
 })
+
+export default {
+    TarotGameSettingsScreenItemModalContainerStyle
+}

@@ -3,8 +3,6 @@ import {
     TTarotGameSelectionSectionsContainerHookProps, 
 } from "./type"
 
-export default {}
-
 export const useTarotGameSelectionSectionsContainerHook = (props:TTarotGameSelectionSectionsContainerHookProps)=>{
 
     const {
@@ -20,4 +18,8 @@ export const useTarotGameSelectionSectionsContainerHook = (props:TTarotGameSelec
         tarotGameSelectionPaginationSelectedItem,
         setTarotGameSelectionsPaginationSelectedItems
     }
+}
+
+export default {
+    useTarotGameSelectionSectionsContainerHook
 }

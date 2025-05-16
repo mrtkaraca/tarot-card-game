@@ -46,3 +46,7 @@ export const TarotGameSettingsTarotDeckScreenItemModalItem = (props:TTarotGameSe
         </Animated.View>
     )
 }
+
+export default {
+    TarotGameSettingsTarotDeckScreenItemModalItem
+}

@@ -2,8 +2,6 @@ import { TarotGameColors } from "@/constants/color"
 import { TarotGameSizes } from "@/constants/size"
 import { PixelRatio, StyleSheet } from "react-native"
 
-export default undefined
-
 export const TarotGameCardModalStyle = StyleSheet.create({
     TarotGameCardModalContainer:{
         top:0,
@@ -30,3 +28,7 @@ export const TarotGameCardModalStyle = StyleSheet.create({
         textAlign:'center'
     }
 })
+
+export default {
+    TarotGameCardModalStyle
+}

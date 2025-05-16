@@ -5,8 +5,6 @@ import { TTarotGameCardFaceProps } from "./type"
 import { TarotGameCardFaceStyle } from "./style"
 import { useTarotGameCardFaceHook } from "./hook"
 
-export default undefined
-
 export const TarotGameCardFace = (props:TTarotGameCardFaceProps)=>{
 
     const {
@@ -38,4 +36,8 @@ export const TarotGameCardFace = (props:TTarotGameCardFaceProps)=>{
             />
         </Animated.View>
     )
+}
+
+export default {
+    TarotGameCardFace
 }

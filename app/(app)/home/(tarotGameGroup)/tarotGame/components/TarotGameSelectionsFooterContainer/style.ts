@@ -9,4 +9,6 @@ export const TarotGameSelectionsFooterContainerStyle = StyleSheet.create({
 })
 
 
-export default {}
+export default {
+    TarotGameSelectionsFooterContainerStyle
+}

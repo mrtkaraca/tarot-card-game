@@ -31,3 +31,7 @@ export const TarotGameSettingsHeaderStyle = StyleSheet.create({
         alignItems:'center'
     }
 })
+
+export default {
+    TarotGameSettingsHeaderStyle
+}

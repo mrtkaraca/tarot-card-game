@@ -1,5 +1,3 @@
-export default undefined
-
 export type TTarotGameContainerProps = {
 
 }
@@ -8,3 +6,6 @@ export type TTarotGameContainerHookProps = {
 
 }
 
+export default {
+
+}

@@ -1,8 +1,6 @@
 import { TarotGameSizes } from "@/constants/size"
 import { PixelRatio, StyleSheet } from "react-native"
 
-export default undefined
-
 export const TTarotGameDataFetcStyle = StyleSheet.create({
     TarotGameDataFetchFallbackContainer:{
         flex:1,
@@ -15,3 +13,7 @@ export const TTarotGameDataFetcStyle = StyleSheet.create({
         textAlign:'center'
     }
 })
+
+export default {
+    TTarotGameDataFetcStyle
+}

@@ -12,3 +12,7 @@ export const TarotGameSettingsOnboardScreenSelectedItemIconStyle = StyleSheet.cr
         height:'100%',
     }
 })
+
+export default {
+    TarotGameSettingsOnboardScreenSelectedItemIconStyle
+}

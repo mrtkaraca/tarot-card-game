@@ -14,3 +14,7 @@ export type TTarotGameSettingsOnboardScreenItemContainerHookProps = Pick<TTarotG
     'onboardScreenDimensions' |
     'screenName' 
 >
+
+export default {
+    
+}

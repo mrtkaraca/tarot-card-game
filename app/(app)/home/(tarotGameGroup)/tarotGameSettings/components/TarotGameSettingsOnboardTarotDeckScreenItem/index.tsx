@@ -105,3 +105,7 @@ export const  TarotGameSettingsOnboardTarotDeckScreenItem = (props:TTarotGameSet
         </Suspense>
     )
 }
+
+export default {
+    TarotGameSettingsOnboardTarotDeckScreenItem
+}

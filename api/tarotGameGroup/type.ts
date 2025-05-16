@@ -1,4 +1,4 @@
-import { TTarotGameData } from "@/app/(app)/home/(tarotGameGroup)/tarotGame/type"
+import { TTarotGameData } from "@/app/(app)/home/(tarotGameGroup)/tarotGame/components/type"
 import { TTarotGameSettingsData } from "@/app/(app)/home/(tarotGameGroup)/tarotGameSettings/components/type"
 
 

@@ -20,3 +20,7 @@ export const TarotGameSettingsOnboardScreenStyle = StyleSheet.create({
         fontWeight:'500'
     }
 })
+
+export default {
+    TarotGameSettingsOnboardScreenStyle
+}

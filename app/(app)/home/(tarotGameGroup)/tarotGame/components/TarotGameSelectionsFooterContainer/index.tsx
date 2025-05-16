@@ -8,8 +8,6 @@ import { useTarotGameSelectionsFooterContainerHook } from "./hook"
 import { TarotGameSelectionsFooterContainerStyle } from "./style"
 import { TarotGameColors } from "@/constants/color"
 
-export default {}
-
 export const TarotGameSelectionsFooterContainer = (props:TTarotGameSelectionsFooterContainerProps)=>{
 
     const {
@@ -74,4 +72,8 @@ export const TarotGameSelectionsFooterContainer = (props:TTarotGameSelectionsFoo
             </View>
         </View>
     )
+}
+
+export default {
+    TarotGameSelectionsFooterContainer
 }

@@ -5,3 +5,6 @@ export const tarotGameSettingsAlertModalDescription = {
     descriptionPart:'will choosen randomly.'
 }
 
+export default {
+    tarotGameSettingsAlertModalDescription
+}

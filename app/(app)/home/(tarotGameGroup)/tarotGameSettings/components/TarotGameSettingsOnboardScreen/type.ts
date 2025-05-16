@@ -21,3 +21,7 @@ export type TTarotGameSettingsOnboardScreenHookProps = Pick<TTarotGameSettingsOn
     'onboardScreenDimensions' |
     'onboardScreensPagination'
 >
+
+export default {
+    
+}

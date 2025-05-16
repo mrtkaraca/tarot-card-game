@@ -13,3 +13,7 @@ export type TTarotGameSettingsTarotDeckScreenItemModalItemHookProps = Pick<TTaro
     'rotateX' |
     'rotateY'
 >
+
+export default {
+    
+}

@@ -89,3 +89,7 @@ export const useTarotGameSettingsTarotDeckScreenItemModalItemHook = (props:TTaro
         handleImageOnLayout
     }
 }
+
+export default {
+    useTarotGameSettingsTarotDeckScreenItemModalItemHook
+}

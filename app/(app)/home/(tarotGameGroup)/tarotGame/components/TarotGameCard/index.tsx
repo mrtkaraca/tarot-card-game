@@ -12,8 +12,6 @@ import { useTarotGameCardHook } from "./hook"
 import { TarotGameCardStyle } from "./style"
 import { Gesture, GestureDetector } from "react-native-gesture-handler"
 
-export default undefined
-
 export const TarotGameCard = memo((props:TTarotGameCardProps)=>{
 
     const {
@@ -101,3 +99,7 @@ export const TarotGameCard = memo((props:TTarotGameCardProps)=>{
         </GestureDetector>
     )
 })
+
+export default {
+    TarotGameCard
+}

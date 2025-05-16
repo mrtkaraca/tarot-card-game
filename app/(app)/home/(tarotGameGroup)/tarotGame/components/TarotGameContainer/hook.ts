@@ -12,8 +12,6 @@ import { TTarotGameCardDrawningNumbersConfig, TTarotGameImageQualitysConfig, TTa
 import { useTranslation } from "react-i18next"
 
 
-export default undefined
-
 export const useTarotGameContainerHook = (props:TTarotGameContainerHookProps)=>{
 
     const {
@@ -182,4 +180,8 @@ export const useTarotGameContainerHook = (props:TTarotGameContainerHookProps)=>{
         handleOnFetchStart,
         handleAfterFetch
     }
+}
+
+export default {
+    useTarotGameContainerHook
 }

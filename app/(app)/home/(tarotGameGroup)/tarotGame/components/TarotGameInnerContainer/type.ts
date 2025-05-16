@@ -1,6 +1,6 @@
 import { 
     TTarotGameData 
-} from "../../type"
+} from "../type"
 
 
 export type TTarotGameInnerContainerProps = {

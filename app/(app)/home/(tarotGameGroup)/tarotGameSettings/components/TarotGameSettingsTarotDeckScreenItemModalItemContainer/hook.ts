@@ -25,3 +25,7 @@ export const useTarotGameSettingsTarotDeckScreenItemModalItemContainerHook = ()=
     }
 
 }
+
+export default {
+    useTarotGameSettingsTarotDeckScreenItemModalItemContainerHook
+}

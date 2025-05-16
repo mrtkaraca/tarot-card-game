@@ -41,6 +41,8 @@ export type TTarotGameSettingsData = {
     tarotDeck:TTarotGameSettingsTarotDeckData | null
 }
 
-
+export default {
+    
+}
 
 

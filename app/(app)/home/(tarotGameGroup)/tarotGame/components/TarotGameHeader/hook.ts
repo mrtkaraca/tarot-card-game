@@ -2,8 +2,6 @@ import { router } from "expo-router"
 
 import { TTarotGameHeaderHookProps } from "./type"
 
-export default undefined
-
 export const useTarotGameHeaderHook = (props:TTarotGameHeaderHookProps)=>{
     const handleOnPress = ()=>{
         if(router.canGoBack()){
@@ -17,4 +15,8 @@ export const useTarotGameHeaderHook = (props:TTarotGameHeaderHookProps)=>{
     return{
         handleOnPress
     }
+}
+
+export default {
+    useTarotGameHeaderHook
 }

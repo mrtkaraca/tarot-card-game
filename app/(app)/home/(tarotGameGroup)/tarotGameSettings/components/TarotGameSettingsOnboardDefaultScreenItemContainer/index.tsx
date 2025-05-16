@@ -10,8 +10,6 @@ import { useTarotGameSettingsOnboardScreenItemContainerHook } from "./hook";
 import { TTarotGameSettingsOnboardDefaultScreenItemContainerProps } from "./type";
 import { TarotGameSettingsOnboardScreenItemContainerStyle } from "./style";
 
-export default undefined
-
 export const  TarotGameSettingsOnboardDefaultScreenItemContainer = memo((props:TTarotGameSettingsOnboardDefaultScreenItemContainerProps)=>{
 
 
@@ -61,3 +59,6 @@ export const  TarotGameSettingsOnboardDefaultScreenItemContainer = memo((props:T
     )
 })
  
+export default {
+    TarotGameSettingsOnboardDefaultScreenItemContainer
+}

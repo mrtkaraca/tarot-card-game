@@ -1,7 +1,5 @@
 import { StyleSheet } from "react-native";
 
-export default undefined
-
 export const TarotGameCardFaceStyle = StyleSheet.create({
     TarotGameCardFaceContainer:{
         height:'100%',
@@ -14,3 +12,7 @@ export const TarotGameCardFaceStyle = StyleSheet.create({
         width:'100%',
     }
 })
+
+export default {
+    TarotGameCardFaceStyle
+}

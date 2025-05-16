@@ -1,17 +1,9 @@
-import { Fragment } from "react"
-import {
-    TouchableWithoutFeedback,
-    View,
-    Text
-} from "react-native"
 import { Image } from 'expo-image'
 import Animated from "react-native-reanimated"
 
 import { TarotGameCardModalCardProps } from "./type"
 import { useTarotGameCardModalCardHook } from "./hook"
 
-
-export default undefined
 
 export const TarotGameCardModalCard = (props:TarotGameCardModalCardProps)=>{
     const {
@@ -23,8 +15,7 @@ export const TarotGameCardModalCard = (props:TarotGameCardModalCardProps)=>{
 
     const {
         imageRef,
-        containerAnimatedStyle,
-        handleOnLayout
+        containerAnimatedStyle
     } = useTarotGameCardModalCardHook({
         isFrontFace,
         rotateX,
@@ -33,8 +24,7 @@ export const TarotGameCardModalCard = (props:TarotGameCardModalCardProps)=>{
 
     return(
         <Animated.View
-            ref={imageRef} 
-            onLayout={handleOnLayout}
+            ref={imageRef}
             style={[
                 {
                     backfaceVisibility: "hidden",
@@ -63,4 +53,8 @@ export const TarotGameCardModalCard = (props:TarotGameCardModalCardProps)=>{
         </Animated.View>
 
     )
+}
+
+export default {
+    TarotGameCardModalCard
 }

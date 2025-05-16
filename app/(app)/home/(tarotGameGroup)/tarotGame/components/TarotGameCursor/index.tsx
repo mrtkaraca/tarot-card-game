@@ -6,10 +6,7 @@ import { TTarotGameCursorProps, TTarotGameCursorRefProps } from "./type"
 import { useTarotGameCursorHook } from "./hook"
 import { TarotGameCursorStyle } from "./style"
 
-export default undefined
-
 export const TarotGameCursor = memo(forwardRef<TTarotGameCursorRefProps,TTarotGameCursorProps>((props,ref)=>{
-
 
     const {
         cursorData,
@@ -68,3 +65,7 @@ export const TarotGameCursor = memo(forwardRef<TTarotGameCursorRefProps,TTarotGa
        
     )
 }))
+
+export default {
+    TarotGameCursor
+}

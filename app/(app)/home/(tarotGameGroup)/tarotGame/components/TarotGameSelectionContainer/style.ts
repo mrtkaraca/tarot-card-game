@@ -5,8 +5,6 @@ import {
 
 import { TarotGameSizes } from "@/constants/size"
 
-export default {}
-
 export const TarotGameSelectionContainerStyle = StyleSheet.create({
     TarotGameSelectionContainerContainer:{
         flex:1,
@@ -22,3 +20,7 @@ export const TarotGameSelectionContainerStyle = StyleSheet.create({
         fontWeight:'500'
     }
 })
+
+export default {
+    TarotGameSelectionContainerStyle
+}

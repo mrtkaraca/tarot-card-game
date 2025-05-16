@@ -189,3 +189,7 @@ export const useTarotGameSettingsHeaderHook = (props:TTarotGameSettingsHeaderHoo
     }
 
 }
+
+export default {
+    useTarotGameSettingsHeaderHook
+}

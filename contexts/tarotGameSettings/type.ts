@@ -1,5 +1,3 @@
-import { StateStorage } from "zustand/middleware";
-
 import { 
     TTarotGameSettingsData, 
     TTarotGameSettingsScreens,
@@ -29,9 +27,4 @@ export type TTarotGameSettingsStore={
     });
     setTarotGameSettingsData:(props:TTarotGameSettingsStore['tarotGameSettingsData'])=>void
     setTarotGameSettingsItemModal:(props: TTarotGameSettingsStore['tarotGameSettingsItemModal'])=>void;
-}
-
-export type TTarotEventPersistStorageConfig = {
-    key:string,
-    tarotGameSettingsZustandPersistStorage:StateStorage
 }

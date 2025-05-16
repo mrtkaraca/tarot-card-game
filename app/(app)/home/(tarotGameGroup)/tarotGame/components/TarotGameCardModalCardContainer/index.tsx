@@ -10,8 +10,6 @@ import { GestureDetector } from "react-native-gesture-handler"
 import { TarotGameCardModalCard } from "../TarotGameCardModalCard"
 
 
-export default undefined
-
 export const TarotGameCardModalCardContainer = (props:TTarotGameCardModalCardContainerProps)=>{
     const {
         cardData
@@ -48,4 +46,8 @@ export const TarotGameCardModalCardContainer = (props:TTarotGameCardModalCardCon
             </View>
         </GestureDetector>
     )
+}
+
+export default {
+    TarotGameCardModalCardContainer
 }

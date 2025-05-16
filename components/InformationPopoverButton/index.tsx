@@ -9,6 +9,8 @@ import { InformationPopOverButtonIcon } from "@/constants/icon"
 
 import { TInformationPopoverButtonProps } from "./type"
 import { useInformationPopoverButtonHook } from "./hook"
+import { InformationPopoverButtonColors } from "@/constants/color"
+import { InformationPopoverButtonSizes } from "@/constants/size"
 
 
 export const InformationPopoverButton = (props:TInformationPopoverButtonProps)=>{
@@ -26,9 +28,9 @@ export const InformationPopoverButton = (props:TInformationPopoverButtonProps)=>
         >
             <IconButton
                 icon={InformationPopOverButtonIcon.question}
-                iconColor="black"
-                buttonSize={48/PixelRatio.get()}
-                buttonOpacityColor="#d3d3d3"
+                iconColor={InformationPopoverButtonColors.IconButton.iconColor}
+                buttonSize={InformationPopoverButtonSizes.IconButton.buttonSize}
+                buttonOpacityColor={InformationPopoverButtonColors.IconButton.buttonOpacityColor}
                 handleOnPress={handleInformationPopOverButtonOnPress}
             />
             <Portal

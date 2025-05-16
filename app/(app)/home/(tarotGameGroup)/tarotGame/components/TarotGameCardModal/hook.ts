@@ -3,8 +3,6 @@ import { useTarotGameStore } from "@/contexts/tarotGame"
 
 import { TTarotGameCardModalHookProps } from "./type"
 
-export default undefined
-
 export const useTarotGameCardModalHook = (props:TTarotGameCardModalHookProps)=>{
 
     const tarotGameCardModalData = useTarotGameStore((state)=>state.tarotGameCardModalData)
@@ -19,4 +17,8 @@ export const useTarotGameCardModalHook = (props:TTarotGameCardModalHookProps)=>{
         tarotGameCardModalData,
         handleCloseModal
     }
+}
+
+export default {
+    useTarotGameCardModalHook
 }

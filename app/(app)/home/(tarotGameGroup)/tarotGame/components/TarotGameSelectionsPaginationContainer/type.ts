@@ -1,5 +1,5 @@
 import { TTarotGameStore } from "@/contexts/tarotGame/type";
-import { TTarotGameAsset } from "../../type";
+import { TTarotGameAsset } from "../type";
 
 export type TarotGameImageQuality = 'veryLow' | 'low' | 'medium' | 'high' | 'veryHigh'
 
@@ -47,3 +47,7 @@ export type TTarotGameSelectionsPaginationContainerProps = {
 export type TTarotGameSelectionsPaginationContainerHookProps = Pick<TTarotGameSelectionsPaginationContainerProps,
     'tarotGameSelectionsPaginationData'
 >
+
+export default {
+    
+}

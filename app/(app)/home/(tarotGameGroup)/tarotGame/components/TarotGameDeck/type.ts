@@ -7,8 +7,6 @@ import { TTarotGameCardFaceData } from "../TarotGameCardFace/type";
 import { TTarotGameCardDeckSideData } from "../TarotGameCard/type";
 import { TTarotGameCardDrawningNumber } from "../TarotGameSelectionsPaginationContainer/type"
 
-export default undefined
-
 export type TTarotGameDeckdData = {
     id:string;
     name:string;
@@ -97,3 +95,7 @@ export type TTarotGameDeckHookProps = Pick<TTarotGameDeckProps,
     'deckBottomSideFrontFacesIndexLength' |
     'deckBottomSideSpaceBetweenCards'
 >
+
+export default {
+    
+}

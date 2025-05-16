@@ -13,3 +13,7 @@ export const TarotGameSettingsOnboardScreenItemContainerStyle = StyleSheet.creat
         flexWrap:'wrap'
     }
 })
+
+export default {
+    TarotGameSettingsOnboardScreenItemContainerStyle
+}

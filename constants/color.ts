@@ -1,17 +1,4 @@
 export const Colors = {
-    Auth:{
-        InputBorder:"blue",
-        InputPlaceHolder:"grey",
-        IconColor:"blue",
-        IconValid:"green",
-        ButtonColor:"#a98adb",
-        ButtonOpacityColor:"#ffffff50"
-    },
-    Primary:'#7545C5',
-    White:'#F5F5F5',
-    PrimaryDisable:'#beb4d1',
-    PrimaryOpacity:'#a98adb',
-    RedError:"#de3126",
     BlackOpacity:'#00000044',
     BlackText:"black"
 }
@@ -47,6 +34,9 @@ export const TarotGameSettingsColors = {
 }
 
 export const TarotGameColors = {
+    tarotGameBackground:{
+        backgroundColor:'white'
+    },
     TarotGameSelectionSection:{
         selectionOpacitiyColor:"#00000030",
         tarotGameSelectionSectionBoxContainer:{
@@ -77,4 +67,17 @@ export const DataLoadingColors = {
     dataLoadingInnerContainerBorderColor:'black',
     dataLoadingProgressBarCanvasContainerColor:'blue',
     dataLoadingProgressBarContainerBorderColor:'black'
+}
+
+export const TextButtonColors={
+    textButtonInnerContainerDefaultTextStyle:{
+        color:'blue'
+    }
+}
+
+export const InformationPopoverButtonColors={
+    IconButton:{
+        iconColor:'black',
+        buttonOpacityColor:Colors.BlackOpacity
+    }
 }

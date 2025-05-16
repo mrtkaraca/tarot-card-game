@@ -202,3 +202,7 @@ export const useTarotGameSettingsOnboardTarotDeckScreenItemHook = (props:TTarotG
         randomFrontFaceImageViewportSizeSource,
     }
 }
+
+export default {
+    useTarotGameSettingsOnboardTarotDeckScreenItemHook
+}

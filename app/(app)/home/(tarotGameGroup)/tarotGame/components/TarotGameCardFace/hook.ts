@@ -2,8 +2,6 @@ import { useAnimatedStyle, useDerivedValue } from "react-native-reanimated"
 
 import { TTarotGameCardFaceHookProps } from "./type"
 
-export default undefined
-
 export const useTarotGameCardFaceHook = (props:TTarotGameCardFaceHookProps)=>{
 
     const cardFaceRotateY = useDerivedValue(()=>{
@@ -22,4 +20,8 @@ export const useTarotGameCardFaceHook = (props:TTarotGameCardFaceHookProps)=>{
     return{
         cardFaceAnimatedStyle
     }
+}
+
+export default {
+    useTarotGameCardFaceHook
 }

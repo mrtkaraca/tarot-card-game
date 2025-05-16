@@ -13,3 +13,7 @@ export const useHomeHook = (props:THomeHookProps)=>{
         handleNavigateToTarotGameSettings
     }
 }
+
+export default {
+    useHomeHook
+}

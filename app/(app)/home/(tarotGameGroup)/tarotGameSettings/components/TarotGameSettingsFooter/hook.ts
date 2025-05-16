@@ -65,3 +65,7 @@ export const useTarotGameSettingsFooterHook = (props:TTarotGameSettingsFooterHoo
         handleNavigateToTarotGame
     }
 }
+
+export default {
+    useTarotGameSettingsFooterHook
+}

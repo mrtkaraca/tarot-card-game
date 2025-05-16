@@ -5,8 +5,6 @@ import { TTarotGameBackgroundProps } from "./type"
 import { TarotGameBackgroundStyle } from "./style"
 import { useTarotGameBackgroundHook } from "./hook"
 
-export default undefined
-
 export const TarotGameBackground = (props:TTarotGameBackgroundProps)=>{
 
     const {
@@ -33,4 +31,8 @@ export const TarotGameBackground = (props:TTarotGameBackgroundProps)=>{
             </ImageBackground>
         </View>
     )
+}
+
+export default {
+    TarotGameBackground
 }

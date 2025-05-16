@@ -22,3 +22,7 @@ export type TTarotGameSettingsOnboardScreensContainerProps = {
         curr: number;
     }>
 }
+
+export default {
+    
+}

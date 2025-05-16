@@ -28,8 +28,6 @@ import {
 } from "./type"
 import { useTarotGameStore } from "@/contexts/tarotGame"
 
-export default undefined
-
 export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
 
     const {
@@ -350,4 +348,8 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
         handleTarotGameDeckCardsRef,
         setTarotGameCardModalData
     }
+}
+
+export default {
+    useTarotGameDeckHook
 }

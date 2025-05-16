@@ -7,12 +7,11 @@ import { useTranslation } from "react-i18next"
 
 import { TextButton } from "@/components/TextButton"
 import { HomeIcons } from "@/constants/icon"
-
-import { useHomeHook } from "./hook"
-import { HomeStyle } from "./style"
 import { HomeColors } from "@/constants/color"
 import { HomeSizes } from "@/constants/size"
 
+import { useHomeHook } from "./hook"
+import { HomeStyle } from "./style"
 
 const Home = ()=>{
 

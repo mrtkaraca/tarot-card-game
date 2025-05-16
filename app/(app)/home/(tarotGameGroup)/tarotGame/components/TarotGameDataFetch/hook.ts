@@ -21,13 +21,10 @@ import { TTarotGamePrefetchMap } from "./type";
 
 import { TCheckTarotGameData, TTarotGameDataFetchHookProps } from "./type"
 
-import { TTarotGameAsset, TTarotGameData } from "../../type";
+import { TTarotGameAsset, TTarotGameData } from "../type";
 
 import { TarotGameDataLoadingDataTitles } from "../TarotGameInnerContainer/helper";
 import { useTranslation } from "react-i18next";
-
-
-export default undefined
 
 export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
 
@@ -397,4 +394,8 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
         errorViewData,
         dataLoadingDataSV
     }
+}
+
+export default {
+    useTarotGameDataFetchHook
 }

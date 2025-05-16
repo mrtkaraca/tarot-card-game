@@ -3,8 +3,6 @@ import { Gesture } from "react-native-gesture-handler";
 
 import { TTarotGameCardModalCardContainerHookProps } from "./type"
 
-export default undefined
-
 export const useTarotGameCardModalCardContainerHook = (props:TTarotGameCardModalCardContainerHookProps)=>{
     
     const startRotateX = useSharedValue(0);
@@ -27,4 +25,8 @@ export const useTarotGameCardModalCardContainerHook = (props:TTarotGameCardModal
         rotateX,
         rotateY
     }
+}
+
+export default {
+    useTarotGameCardModalCardContainerHook
 }

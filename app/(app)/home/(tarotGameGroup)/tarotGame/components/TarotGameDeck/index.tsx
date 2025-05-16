@@ -11,8 +11,6 @@ import {
 } from "./type"
 import { TarotGameDeckStyle } from "./style"
 
-export default undefined
-
 export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
 
     const {
@@ -97,3 +95,7 @@ export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
         </Animated.View>
     )
 })
+
+export default {
+    TarotGameDeck
+}

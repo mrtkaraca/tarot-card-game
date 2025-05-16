@@ -1,10 +1,7 @@
 import { 
-    TTarotGameCardDrawningNumbersConfig, 
-    TTarotGameImageQualitysConfig, 
     TTarotGameSelectionPaginationData
 } from "../TarotGameSelectionsPaginationContainer/type"
 
-export default {}
 
 export type TTarotGameSelectionContainer = {
     selectionPaginationData: TTarotGameSelectionPaginationData
@@ -12,4 +9,8 @@ export type TTarotGameSelectionContainer = {
 
 export type TTarotGameSelectionContainerHookProps = {
     
+}
+
+export default {
+
 }

@@ -68,13 +68,13 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
     :
     null
     
-    const [isGameEnded,setIsGameEnded] = useState(false)
-
+    
     const deckRef = useRef<TTarotGameDeckRefProps>(null);
     const cursorRef = useRef<TTarotGameCursorRefProps>(null);
     const tarotGameDrawnedCardCount = useRef(0)
-
+    
     const [isDeckReady,setIsDeckReady] = useState(false)
+    const [isGameEnded,setIsGameEnded] = useState(false)
     const [deck,setDeck] = useState<TTarotGameDeckDataWithDeckSide | null>(null)
   
     const deckPhase = useSharedValue<TTarotGameDeckPhases>('startGame')
@@ -674,6 +674,7 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
     },[deck])
 
     return{
+        isDeckReady,
         isGameEnded,
         cursorGestureMeasure,
         deck,

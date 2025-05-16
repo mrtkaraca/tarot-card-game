@@ -13,3 +13,7 @@ export const TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicator = (p
         </View>
     )
 }
+
+export default {
+    TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicator
+}

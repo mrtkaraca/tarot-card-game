@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
 
-export default {}
+
 
 export const TarotGameSelectionSectionsContainerStyle = StyleSheet.create({
     TarotGameSelectionSectionsContainerContainer:{
@@ -8,3 +8,7 @@ export const TarotGameSelectionSectionsContainerStyle = StyleSheet.create({
         maxWidth:'100%'
     }
 })
+
+export default {
+    TarotGameSelectionSectionsContainerStyle
+}

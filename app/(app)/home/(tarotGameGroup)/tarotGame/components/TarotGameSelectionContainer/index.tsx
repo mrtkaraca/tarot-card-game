@@ -9,7 +9,6 @@ import { TTarotGameSelectionContainer } from "./type"
 import { TarotGameSelectionContainerStyle } from "./style"
 import { useTarotGameSelectionContainer } from "./hook"
 
-export default {}
 
 export const TarotGameSelectionContainer = (props:TTarotGameSelectionContainer)=>{
 
@@ -44,4 +43,8 @@ export const TarotGameSelectionContainer = (props:TTarotGameSelectionContainer)=
             />
         </View>
     )
+}
+
+export default {
+    TarotGameSelectionContainer
 }

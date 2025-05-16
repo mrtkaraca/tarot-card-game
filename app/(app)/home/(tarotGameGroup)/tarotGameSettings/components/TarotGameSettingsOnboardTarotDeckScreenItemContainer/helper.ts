@@ -39,3 +39,7 @@ export const imageSizeViewports = {
 
     ]
 }
+
+export default {
+    imageSizeViewports
+}

@@ -7,3 +7,7 @@ export const useTarotGameHook = ()=>{
     }
 
 }
+
+export default {
+    useTarotGameHook
+}

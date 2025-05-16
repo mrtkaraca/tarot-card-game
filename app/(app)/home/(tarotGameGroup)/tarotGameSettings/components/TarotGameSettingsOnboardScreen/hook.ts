@@ -125,3 +125,7 @@ export const useTarotGameSettingsOnboardScreenHook = (props:TTarotGameSettingsOn
         animateStyle,
     }
 }
+
+export default {
+    useTarotGameSettingsOnboardScreenHook
+}

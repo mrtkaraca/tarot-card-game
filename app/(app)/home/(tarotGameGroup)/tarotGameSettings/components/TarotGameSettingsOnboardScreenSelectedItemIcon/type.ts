@@ -8,3 +8,7 @@ export type TTarotGameSettingsOnboardTarotDeckScreenSelectedItemProps = {
 export type TTarotGameSettingsOnboardScreenSelectedItemIconHookProps = Pick<TTarotGameSettingsOnboardTarotDeckScreenSelectedItemProps,
     'itemSelectedIconSize'
 >
+
+export default {
+    
+}

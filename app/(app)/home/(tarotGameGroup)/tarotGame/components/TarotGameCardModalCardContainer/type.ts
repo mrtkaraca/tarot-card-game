@@ -7,3 +7,7 @@ export type TTarotGameCardModalCardContainerProps = {
 export type TTarotGameCardModalCardContainerHookProps = {
     
 }
+
+export default {
+    
+}

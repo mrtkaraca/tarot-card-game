@@ -40,3 +40,7 @@ export const useCustomRoute = ()=>{
     }
 }
 
+export default {
+    useCustomRoute
+}
+

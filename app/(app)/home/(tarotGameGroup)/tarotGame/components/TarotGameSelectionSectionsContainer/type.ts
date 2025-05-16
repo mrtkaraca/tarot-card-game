@@ -1,7 +1,4 @@
 import { TTarotGameSelectionContainer } from "../TarotGameSelectionContainer/type"
-import { TTarotGameSelectionSectionProps } from "../TarotGameSelectionSection/type"
-
-export default {}
 
 export type TTarotGameSelectionSectionsContainerProps = {
     tarotGameSelectionSectionsId:TTarotGameSelectionContainer['selectionPaginationData']['id']
@@ -11,3 +8,7 @@ export type TTarotGameSelectionSectionsContainerProps = {
 export type TTarotGameSelectionSectionsContainerHookProps = Pick<TTarotGameSelectionSectionsContainerProps,
     'tarotGameSelectionSectionsId'
 >
+
+export default {
+
+}

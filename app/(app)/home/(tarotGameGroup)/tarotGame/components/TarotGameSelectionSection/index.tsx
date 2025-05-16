@@ -13,9 +13,6 @@ import { TTarotGameSelectionSectionProps } from "./type"
 import { useTarotGameSelectionSectionHook } from "./hook"
 import { TarotGameSelectionSectionStyle } from "./style"
 
-
-export default undefined
-
 export const TarotGameSelectionSection = (props:TTarotGameSelectionSectionProps)=>{
 
     const {
@@ -74,4 +71,8 @@ export const TarotGameSelectionSection = (props:TTarotGameSelectionSectionProps)
             </View>
         </GestureDetector>
     )
+}
+
+export default {
+    TarotGameSelectionSection
 }

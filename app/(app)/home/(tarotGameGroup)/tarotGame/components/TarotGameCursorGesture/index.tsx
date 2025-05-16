@@ -7,8 +7,6 @@ import { TTarotGameCursorGestureProps } from "./type"
 import { TarotGameCursorGestureStyle } from "./style"
 import { useTarotGameCursorGestureHook } from "./hook"
 
-export default undefined
-
 export const TarotGameCursorGesture = (props:TTarotGameCursorGestureProps)=>{
 
     const {
@@ -38,4 +36,8 @@ export const TarotGameCursorGesture = (props:TTarotGameCursorGestureProps)=>{
         </Animated.View>
  
     )
+}
+
+export default {
+    TarotGameCursorGesture
 }

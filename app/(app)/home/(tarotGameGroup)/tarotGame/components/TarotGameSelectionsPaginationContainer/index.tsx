@@ -7,7 +7,6 @@ import { TTarotGameSelectionsPaginationContainerProps } from "./type"
 import { useTarotGameSelectionsPaginationContainerHook } from "./hook"
 import { TarotGameSelectionsPaginationContainerStyle } from "./style"
 
-export default {}
 
 export const TarotGameSelectionsPaginationContainer = (props:TTarotGameSelectionsPaginationContainerProps)=>{
 
@@ -43,4 +42,8 @@ export const TarotGameSelectionsPaginationContainer = (props:TTarotGameSelection
                 />
             </View>
         )
+}
+
+export default {
+    TarotGameSelectionsPaginationContainer
 }

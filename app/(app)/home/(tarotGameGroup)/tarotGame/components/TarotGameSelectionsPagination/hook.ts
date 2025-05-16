@@ -15,12 +15,10 @@ import {
 } from "react-native-reanimated"
 
 import { 
-    TTarotGameSelectionsPaginationHookProps, 
-    TTarotGameSelectionsPaginationRefProps, 
+    TTarotGameSelectionsPaginationHookProps,
     TTarotGameSelectionsPaginationPhases
 } from "./type"
 
-export default {}
 
 export const useTarotGameSelectionsPaginationHook = (props:TTarotGameSelectionsPaginationHookProps)=>{
 
@@ -145,4 +143,8 @@ export const useTarotGameSelectionsPaginationHook = (props:TTarotGameSelectionsP
     return{
         tarotGameSelectionsPaginationContainerAnimatedStyle
     }
+}
+
+export default {
+    useTarotGameSelectionsPaginationHook
 }

@@ -19,3 +19,7 @@ export const TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorStyle
         borderRadius:9999
     }
 })
+
+export default {
+    TarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorStyle
+}

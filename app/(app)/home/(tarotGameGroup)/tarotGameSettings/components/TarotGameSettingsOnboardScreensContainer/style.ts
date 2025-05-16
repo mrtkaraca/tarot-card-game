@@ -19,3 +19,7 @@ export const TarotGameSettingsOnboardScreensContainerStyle = StyleSheet.create({
         fontSize:TarotGameSettingsSize.tarotGameSettingsOnboardScreenContainer.fallBackFontSize
     }
 })
+
+export default {
+    TarotGameSettingsOnboardScreensContainerStyle
+}

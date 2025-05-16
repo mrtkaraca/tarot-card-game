@@ -124,3 +124,7 @@ export const TarotGameSettingsOnboardScreensContainer = (props:TTarotGameSetting
     return null
 
 }
+
+export default {
+    TarotGameSettingsOnboardScreensContainer
+}

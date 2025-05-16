@@ -64,3 +64,7 @@ export const useTarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDo
         animstyle
     }
 }
+
+export default {
+    useTarotGameSettingsOnboardTarotDeckScreenItemPaginationIndicatorDotsHook
+}

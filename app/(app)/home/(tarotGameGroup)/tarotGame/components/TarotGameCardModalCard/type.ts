@@ -17,3 +17,7 @@ export type TarotGameCardModalCardHookProps = Pick<TarotGameCardModalCardProps,
     'rotateX' |
     'rotateY'
 >
+
+export default {
+    
+}

@@ -6,8 +6,6 @@ import { TTarotGameDataFetchProps } from "./type"
 import { View,Text } from "react-native"
 import { TTarotGameDataFetcStyle } from "./style"
 
-export default undefined
-
 export const TarotGameDataFetch = (props:TTarotGameDataFetchProps)=>{
 
     const {
@@ -59,4 +57,8 @@ export const TarotGameDataFetch = (props:TTarotGameDataFetchProps)=>{
 
 
     return null
+}
+
+export default {
+    TarotGameDataFetch
 }

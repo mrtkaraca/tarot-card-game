@@ -1,7 +1,5 @@
 import { StyleSheet } from "react-native"
 
-export default {}
-
 export const TarotGameSelectionsPaginationStyle = StyleSheet.create({
     TarotGameSelectionsPaginationContainer:{
         flex:1,
@@ -12,3 +10,7 @@ export const TarotGameSelectionsPaginationStyle = StyleSheet.create({
         width:'100%'
     }
 })
+
+export default {
+    TarotGameSelectionsPaginationStyle
+}

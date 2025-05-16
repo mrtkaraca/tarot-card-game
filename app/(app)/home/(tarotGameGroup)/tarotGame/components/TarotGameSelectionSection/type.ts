@@ -1,8 +1,3 @@
-import { RefObject } from "react"
-import { ScrollView } from "react-native"
-
-export default undefined
-
 export type TTarotGameSelectionSectionProps = {
     selection:{
         id:string | number,
@@ -17,3 +12,7 @@ export type TTarotGameSelectionSectionHookProps = Pick<TTarotGameSelectionSectio
     'isSelected' |
     'handleOnSelect'
 >
+
+export default {
+
+}

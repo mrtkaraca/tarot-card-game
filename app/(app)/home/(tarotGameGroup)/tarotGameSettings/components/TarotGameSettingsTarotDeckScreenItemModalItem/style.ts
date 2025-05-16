@@ -13,3 +13,7 @@ export const TarotGameSettingsTarotDeckScreenItemModalItemStyle = StyleSheet.cre
         width: "100%",
     }
 })
+
+export default {
+    TarotGameSettingsTarotDeckScreenItemModalItemStyle
+}

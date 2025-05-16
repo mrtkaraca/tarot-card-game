@@ -6,3 +6,7 @@ export const TarotGameSettingsDefaultScreenItemModalStyle = StyleSheet.create({
         width:'100%'
     }
 })
+
+export default {
+    TarotGameSettingsDefaultScreenItemModalStyle
+}

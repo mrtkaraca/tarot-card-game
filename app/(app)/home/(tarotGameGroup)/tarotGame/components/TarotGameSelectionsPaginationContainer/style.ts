@@ -5,3 +5,7 @@ export const TarotGameSelectionsPaginationContainerStyle = StyleSheet.create({
         flex:1,
     }
 })
+
+export default {
+    TarotGameSelectionsPaginationContainerStyle
+}

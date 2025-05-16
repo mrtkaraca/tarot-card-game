@@ -14,8 +14,6 @@ import { useTarotGameSelectionsPaginationHook } from "./hook"
 import { TarotGameSelectionsPaginationStyle } from "./style"
 
 
-export default {}
-
 export const TarotGameSelectionsPagination = (props:TTarotGameSelectionsPaginationProps)=>{
 
     const {
@@ -61,4 +59,8 @@ export const TarotGameSelectionsPagination = (props:TTarotGameSelectionsPaginati
             })}
         </View>
     )
+}
+
+export default {
+    TarotGameSelectionsPagination
 }

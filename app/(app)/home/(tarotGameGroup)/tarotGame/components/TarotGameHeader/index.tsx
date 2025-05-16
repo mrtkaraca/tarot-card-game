@@ -10,8 +10,6 @@ import { TTarotGameHeaderProps } from "./type"
 import { TarotGameHeaderStyle } from "./style"
 import { useTarotGameHeaderHook } from "./hook"
 
-export default undefined
-
 export const TarotGameHeader = (props:TTarotGameHeaderProps)=>{
 
 
@@ -32,4 +30,8 @@ export const TarotGameHeader = (props:TTarotGameHeaderProps)=>{
             </View>
         </View>
     )
+}
+
+export default {
+    TarotGameHeader
 }

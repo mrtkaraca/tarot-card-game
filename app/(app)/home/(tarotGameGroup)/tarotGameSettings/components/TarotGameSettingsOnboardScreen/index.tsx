@@ -72,3 +72,7 @@ export const TarotGameSettingsOnboardScreen = memo((props:TTarotGameSettingsOnbo
         </Animated.View>
     )
 })
+
+export default {
+    TarotGameSettingsOnboardScreen
+}
