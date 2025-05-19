@@ -54,8 +54,7 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
     ))
     const tarotGameDeckTopSideCardEndingLayoutBiggestLenght = tarotGameDeckTopSideCardEndingLayout ? (
         (()=>{
-            var biggestLenght;
-            biggestLenght = tarotGameDeckTopSideCardEndingLayout.length
+            var biggestLenght = tarotGameDeckTopSideCardEndingLayout.length
             for(let row = 0; row < tarotGameDeckTopSideCardEndingLayout.length;row++){
                 if(tarotGameDeckTopSideCardEndingLayout[row].length > tarotGameDeckTopSideCardEndingLayout.length){
                     biggestLenght = tarotGameDeckTopSideCardEndingLayout[row].length
@@ -73,12 +72,12 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
     const cursorRef = useRef<TTarotGameCursorRefProps>(null);
     const tarotGameDrawnedCardCount = useRef(0)
     
-    const [isDeckReady,setIsDeckReady] = useState(false)
     const [isGameEnded,setIsGameEnded] = useState(false)
     const [deck,setDeck] = useState<TTarotGameDeckDataWithDeckSide | null>(null)
   
     const deckPhase = useSharedValue<TTarotGameDeckPhases>('startGame')
     const deckMeasure = useSharedValue<MeasuredDimensions | null>(null)
+    const isDeckReady = useSharedValue(false)
     const deckCardStartAndEndAnimationInterpolateToggle = useSharedValue<0 | 1>(0)
     const deckTopSideSelectedCardIndex = useSharedValue<number | null>(null)
     const deckTopSidePreviousFrontFacesLength = useSharedValue<number | null>(null)
@@ -567,12 +566,10 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
 
     const handleBottomDeckStartGame = useCallback(()=>{
         if(deckRef.current && cursorRef.current){
-            setIsDeckReady(true)
-            deckRef.current.handleStartGame()
-            let deckStartAnimationDuration = deckRef.current.handleGetTarotGameDeckStartAnimation()
-            setTimeout(() => {
-                cursorRef.current?.handleStartCursorAnimation()
-            }, deckStartAnimationDuration);
+            deckRef.current.handleStartGame(
+                cursorRef.current.handleStartCursorAnimation
+            )
+            isDeckReady.value = true
         }
     },[])
 
@@ -607,11 +604,12 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
 
     useAnimatedReaction(
         ()=>[
-            deckCardDimensions,
-            deckBottomSideCardsMinimumLeft,
-            deckBottomSideSpaceBetweenCards,
-            cursorCenterToDeckBottomSidePage,
-            cursorDimensions
+            deckCardDimensions.value,
+            deckBottomSideCardsMinimumLeft.value,
+            deckBottomSideSpaceBetweenCards.value,
+            cursorCenterToDeckBottomSidePage.value,
+            cursorDimensions.value,
+            cursorMaximumRightTranslateX.value
         ],
         ()=>{
             if(
@@ -620,7 +618,8 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
                 deckBottomSideSpaceBetweenCards.value !== null  &&
                 cursorDimensions.value !== null &&
                 cursorCenterToDeckBottomSidePage.value !== null &&
-                !isDeckReady
+                cursorMaximumRightTranslateX.value !== null &&
+                !isDeckReady.value
             ){
                 runOnJS(handleBottomDeckStartGame)()
             }

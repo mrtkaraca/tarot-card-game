@@ -23,7 +23,6 @@ import { TCheckTarotGameData, TTarotGameDataFetchHookProps } from "./type"
 
 import { TTarotGameAsset, TTarotGameData } from "../type";
 
-import { TarotGameDataLoadingDataTitles } from "../TarotGameInnerContainer/helper";
 import { useTranslation } from "react-i18next";
 
 export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
@@ -33,7 +32,6 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
         handleAfterFetch
     } = props
 
-
     const {
         t
     } = useTranslation()
@@ -41,6 +39,12 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
     const {
         errorResponseHandler
     } = useApiErrorHandler()
+
+    const TarotGameDataLoadingDataTitles = {
+        fetchData:t('tarotGame.tarotGameDataFetch.tarotGameDataLoadingDataTitles.fetchData'),
+        loadingAssets:t('tarotGame.tarotGameDataFetch.tarotGameDataLoadingDataTitles.loadingAssets')
+    }
+
 
     const tarotGameSettingsSelectedItems = useTarotGameGroupStore((state)=>state.tarotGameSettingsSelectedItems)
     const tarotGameSelectedImageQuality = useTarotGameStore((state)=>state.tarotGameSelectionsPaginationSelectedItems.tarotGameImageQuality)

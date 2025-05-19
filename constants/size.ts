@@ -29,7 +29,7 @@ export const TarotGameSettingsSize = {
         title:24/PixelRatio.get()
     },
     tarotGameSettingsScreenItemModalContainer:{
-        textFontSize:24/PixelRatio.get()
+        textFontSize:36/PixelRatio.get()
     }
 }
 
@@ -52,6 +52,10 @@ export const TarotGameSizes={
         FallbackContainerText:{
             fontSize:24/PixelRatio.get()
         }
+    },
+    TarotGameGameLoading:{
+        textFontSize:48/PixelRatio.get(),
+        activityIndicator:36/PixelRatio.get()
     },
     TarotGameCardModal:{
         tarotGameCardModalTextFontSize:24/PixelRatio.get()

@@ -54,6 +54,9 @@ export const TarotGameColors = {
         currentPaginationItemIsSelected:'blue',
         currentPaginationItemIsNotSelected:'grey',
     },
+    tarotGameGameLoading:{
+        backgroundColor:'white'
+    },
     tarotGameCardModal:{
         tarotGameCardModalContainerBackgroundColor:'#000000cc',
         TarotGameCardModalTextColor:'white'

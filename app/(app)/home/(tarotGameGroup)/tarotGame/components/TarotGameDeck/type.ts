@@ -70,8 +70,9 @@ export type TTarotGameDeckProps = {
 }
 
 export type TTarotGameDeckRefProps = {
-    handleStartGame: () => void
-    handleGetTarotGameDeckStartAnimation:()=>number
+    handleStartGame: (
+        handleStartCursorAnimation:()=>void
+    ) => void
     handlePrepareCardsPhase:(
         deckBottomSideCardStoppedIndex:number
     )=>void

@@ -1,3 +1,4 @@
+import { Fragment, Suspense } from "react"
 import { 
     View ,
     Text
@@ -6,11 +7,11 @@ import {
 import {TarotGameCursorGesture} from "../TarotGameCursorGesture"
 import { TarotGameDeck } from "../TarotGameDeck"
 import { TarotGameCursor } from "../TarotGameCursor"
+import { TarotGameGameLoading } from "../TarotGameGameLoading"
 
 import { TTarotGameInnerContainerProps } from "./type"
 import { useTarotGameInnerContainerHook } from "./hook"
 import { TarotGameInnerContainerStyle } from "./stlye"
-import { Fragment, Suspense } from "react"
 
 
 export const TarotGameInnerContainer = (props:TTarotGameInnerContainerProps)=>{
@@ -55,15 +56,9 @@ export const TarotGameInnerContainer = (props:TTarotGameInnerContainerProps)=>{
 
     return(
         <Fragment>
-            {!isDeckReady && 
-                <View style={{top:0,left:0,right:0,bottom:0,backgroundColor:'white',position:'absolute',zIndex:1}} >
-                    <View
-                        style={{justifyContent:'center',alignItems:'center'}}
-                    >
-                       <Text style={{fontSize:64}} >preparing game</Text>
-                    </View>
-                </View> 
-            }
+            <TarotGameGameLoading
+                isDeckReady={isDeckReady}
+            />
             <TarotGameCursorGesture
                 cursorGestureMeasure={cursorGestureMeasure}
                 handleTarotGameCursorGesture={handleTarotGameCursorGesture}

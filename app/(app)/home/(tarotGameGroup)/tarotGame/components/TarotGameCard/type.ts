@@ -34,7 +34,6 @@ export type  TTarotGameCardProps = {
         width: number;
         heigth: number;
     } | null>
-    cardStartAnimationDuration: number
     startAnimationLastCardTranslateXInterpolate: DerivedValue<number>
     cardReOrdinateAnimationDuration: number
     spaceBetweenCards: DerivedValue<number | null>
@@ -63,7 +62,6 @@ export type TTarotGameCardHookProps = Pick<TTarotGameCardProps,
     'deckPhase' |
     'pageCenter' |
     'cardDimensions' |
-    'cardStartAnimationDuration' |
     'startAnimationLastCardTranslateXInterpolate' |
     'cardReOrdinateAnimationDuration' |
     'spaceBetweenCards' |
@@ -81,7 +79,8 @@ export type TTarotGameCardHookProps = Pick<TTarotGameCardProps,
 export type TTarotGameCardRefProps = {
     handleGetTarotCardDeckSideAndIndex:() => TTarotGameCardDeckSideData
     handleTarotCardMoveCardToRightStartAnimation: (
-        easing?:EasingFunction | EasingFunctionFactory | undefined
+        cardStartAnimationLastCardEasing:number,
+        easing?:EasingFunction | EasingFunctionFactory | undefined,
     ) => void
     handleTarotCardPhase:(
         phase:TTarotGameCardPhases

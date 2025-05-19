@@ -38,7 +38,6 @@ export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
 
     const {
         tarotGameDeckAnimatedRef,
-        cardStartAnimationDuration,
         tarotGameDeckAnimatedStyle,
         startAnimationLastCardTranslateXInterpolate,
         cardReOrdinateAnimationDuration,
@@ -76,7 +75,6 @@ export const TarotGameDeck = memo((props:TTarotGameDeckProps)=>{
                         deckPhase={deckPhase}
                         tarotGameDeckTopSideCardEndingLayout={tarotGameDeckTopSideCardEndingLayout}
                         cardDimensions={deckCardDimensions}
-                        cardStartAnimationDuration={cardStartAnimationDuration}
                         cardReOrdinateAnimationDuration={cardReOrdinateAnimationDuration}
                         startAnimationLastCardTranslateXInterpolate={startAnimationLastCardTranslateXInterpolate}
                         pageCenter={frontFace.deckSide === 'bottomSide' ? deckBottomSidePageCenter : deckTopSidePageCenter}

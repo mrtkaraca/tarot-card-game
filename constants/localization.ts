@@ -76,12 +76,19 @@ export const en = {
         tarotGameDataFetch:{
             noTarotCursor:'Seems like no cursor to use!',
             noTarotDeck:'Seems like no deck to use!',
-            noTarotBackground:'Seems like no background to use!'
+            noTarotBackground:'Seems like no background to use!',
+            tarotGameDataLoadingDataTitles:{
+                fetchData:'Fetching Data',
+                loadingAssets:'Loading Assets'
+            }
         },
         tarotGameSelectionsFooterContainer:{
             leftButtonTextLabel:'Prev',
             rightButtonTextLabel:'Next',
             rightButtonEndTextLabel:'Okay'
+        },
+        tarotGameGameLoading:{
+            preparingText:'Preparing the game'
         }
     },
     errorResponseHandler:{

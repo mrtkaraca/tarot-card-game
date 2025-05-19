@@ -39,7 +39,6 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
         pageCenter,
         cardDimensions,
         tarotGameDeckTopSideCardEndingLayout,
-        cardStartAnimationDuration,
         startAnimationLastCardTranslateXInterpolate,
         cardReOrdinateAnimationDuration,
         cardEndingLayoutAnimationDuration,
@@ -337,6 +336,7 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
     },[frontFace])
 
     const handleTarotCardMoveCardToRightStartAnimation:TTarotGameCardRefProps['handleTarotCardMoveCardToRightStartAnimation'] = useCallback((
+        cardStartAnimationLastCardEasing,
         easing
     )=>{
         cardPhase.value = 'startAnimation'
@@ -345,7 +345,7 @@ export const useTarotGameCardHook = (props:TTarotGameCardHookProps)=>{
         cardToggleMaximumRight.value = withTiming(
             1,
             {
-                duration:cardStartAnimationDuration,
+                duration:cardStartAnimationLastCardEasing,
                 easing
             },
             (finished)=>{

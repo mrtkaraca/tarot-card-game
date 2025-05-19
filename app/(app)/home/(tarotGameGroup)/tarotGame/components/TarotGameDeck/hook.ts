@@ -40,7 +40,7 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
     var cardReOrdinateAnimationDuration = 2000
     var cardReOrdinateAnimationCallPerTimeoutFunction = 10
     var cardStartAnimationDuration = 3000
-    var startAnimationLastCardEasing = Easing.bezier(0.75, 0, 0.25, 1)
+    var cardStartAnimationLastCardEasing = Easing.bezier(0.75, 0, 0.25, 1)
 
     const setTarotGameCardModalData = useTarotGameStore((state)=>state.setTarotGameCardModalData)
 
@@ -104,27 +104,29 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
         handleTarotGameDeckMeasure()
     },[])
 
-    const handleGetTarotGameDeckStartAnimation = useCallback(()=>{
-        return cardStartAnimationDuration
-    },[])
-
-
-    const handleStartGame = useCallback(()=>{
+    const handleStartGame:TTarotGameDeckRefProps['handleStartGame'] = useCallback((
+        handleStartCursorAnimation
+    )=>{
         if(tarotGameDeckCardsRef.current){
             
             tarotGameDeckOpacity.value = 1
 
             tarotGameDeckCardsRef.current[tarotGameDeckCardsRef.current.length-1].handleTarotCardMoveCardToRightStartAnimation(
-                startAnimationLastCardEasing
+                cardStartAnimationDuration,
+                cardStartAnimationLastCardEasing
             )
 
             startAnimationLastCardTranslateXToggle.value = withTiming(
                 1,
                 {
                     duration:cardStartAnimationDuration,
-                    easing:startAnimationLastCardEasing
+                    easing:cardStartAnimationLastCardEasing
                 }
             )
+
+            setTimeout(() => {
+                handleStartCursorAnimation()
+            }, cardStartAnimationDuration);
 
 
         }
@@ -330,7 +332,6 @@ export const useTarotGameDeckHook = (props:TTarotGameDeckHookProps)=>{
             return{
                 handlePrepareCardsPhase,
                 handleStartGame,
-                handleGetTarotGameDeckStartAnimation,
                 handleMoveTarotCardFromBottomDeckToTopDeck,
                 handleReOrdinateCards,
                 handleTopSideDeckCardsZIndex,

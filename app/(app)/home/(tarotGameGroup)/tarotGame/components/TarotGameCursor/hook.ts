@@ -356,9 +356,9 @@ export const useTarotGameCursorHook = (props:TTarotGameCursorHookProps,ref:React
 
     useAnimatedReaction(
         ()=>[
-            cursorIndex,
-            cursorTranslateXInterpolate,
-            cursorPreviousranslateXInterpolate
+            cursorIndex.value,
+            cursorTranslateXInterpolate.value,
+            cursorPreviousranslateXInterpolate.value
         ],
         ()=>{
             if(
@@ -379,8 +379,8 @@ export const useTarotGameCursorHook = (props:TTarotGameCursorHookProps,ref:React
 
     useAnimatedReaction(
         ()=>[
-            cardsMinimumLeft,
-            cardsPreviousMinimumLeft
+            cardsMinimumLeft.value,
+            cardsPreviousMinimumLeft.value
         ],
         ()=>{
             if(
@@ -399,7 +399,7 @@ export const useTarotGameCursorHook = (props:TTarotGameCursorHookProps,ref:React
     )
 
     useAnimatedReaction(
-        ()=>cursorMoveToTopDeckToggle,
+        ()=>cursorMoveToTopDeckToggle.value,
         ()=>{
             if(
                 cursorAnimationPhases.value === 'moveToTopDeck' ||
@@ -415,9 +415,9 @@ export const useTarotGameCursorHook = (props:TTarotGameCursorHookProps,ref:React
 
     useAnimatedReaction(
         ()=>[
-            cursorMoveToBottomDeckToggle,
-            cursorMoveToBottomDeckMinimumLeftInterpolate,
-            cursorMoveToBottomDeckCursorTranslateXInterpolate
+            cursorMoveToBottomDeckToggle.value,
+            cursorMoveToBottomDeckMinimumLeftInterpolate.value,
+            cursorMoveToBottomDeckCursorTranslateXInterpolate.value
         ],
         ()=>{
             if(cursorAnimationPhases.value === 'moveToBottomDeck'){
