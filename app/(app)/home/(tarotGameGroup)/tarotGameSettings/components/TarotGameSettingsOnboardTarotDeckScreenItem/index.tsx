@@ -17,6 +17,7 @@ import { Suspense } from "react";
 export const  TarotGameSettingsOnboardTarotDeckScreenItem = (props:TTarotGameSettingsOnboardTarotDeckScreenItemProps)=>{
 
     const {
+        scrollRef,
         item,
         itemImageViewportSizes,
         itemSize,
@@ -35,6 +36,7 @@ export const  TarotGameSettingsOnboardTarotDeckScreenItem = (props:TTarotGameSet
         backFaceImageViewportSizeSource,
         randomFrontFaceImageViewportSizeSource
     } = useTarotGameSettingsOnboardTarotDeckScreenItemHook({
+        scrollRef,
         item,
         itemSize,
         screenName,
@@ -50,7 +52,9 @@ export const  TarotGameSettingsOnboardTarotDeckScreenItem = (props:TTarotGameSet
                 ]}
             >
                 <GestureDetector gesture={exclusiveGesture}>
-                    <View style={TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemInnerContainer}>
+                    <View
+                        style={TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemInnerContainer}
+                    >
                         <GestureDetector gesture={panGesture}>
                             <Animated.View
                                 style={[translateAnim,TarotGameSettingsOnboardScreenItemStyle.TarotGameSettingsOnboardScreenItemMultiImageContainer]}

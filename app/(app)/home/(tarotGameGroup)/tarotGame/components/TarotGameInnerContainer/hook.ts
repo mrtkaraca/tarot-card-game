@@ -630,7 +630,7 @@ export const useTarotGameInnerContainerHook = (props:TTarotGameInnerContainerHoo
         handleShuffleDeck()
         handleSetInitalDeckSideAndIndexToCards()
     },[handleShuffleDeck,handleSetInitalDeckSideAndIndexToCards])
-
+    
     useEffect(()=>{
         if(
             deck !== null &&

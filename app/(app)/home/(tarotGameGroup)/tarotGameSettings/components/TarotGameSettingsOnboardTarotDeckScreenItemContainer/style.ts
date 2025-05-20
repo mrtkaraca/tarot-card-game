@@ -10,7 +10,7 @@ export const TarotGameSettingsOnboardScreenItemContainerStyle = StyleSheet.creat
     },
     TarotGameSettingsOnboardScreenItemContainerContentContainerStyle:{
         flexDirection:'row',
-        flexWrap:'wrap'
+        flexWrap:'wrap',
     }
 })
 

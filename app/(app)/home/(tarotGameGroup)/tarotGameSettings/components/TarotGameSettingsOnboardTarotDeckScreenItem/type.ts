@@ -1,8 +1,11 @@
-import { SharedValue } from "react-native-reanimated";
+import { AnimatedRef, SharedValue } from "react-native-reanimated";
 
 import { TTarotGameSettingsScreens, TTarotGameSettingsTarotDeckScreenData } from "../type";
+import { RefObject } from "react";
+import { ScrollView } from "react-native-gesture-handler";
 
 export type TTarotGameSettingsOnboardTarotDeckScreenItemProps = {
+    scrollRef: AnimatedRef<ScrollView>
     screenName:Extract<TTarotGameSettingsScreens,'tarotDeck'>;
     item:TTarotGameSettingsTarotDeckScreenData ;
     itemSize: Readonly<SharedValue<number>>
@@ -13,6 +16,7 @@ export type TTarotGameSettingsOnboardTarotDeckScreenItemProps = {
 }
 
 export type TTarotGameSettingsOnboardTarotDeckScreenItemHookProps = Pick<TTarotGameSettingsOnboardTarotDeckScreenItemProps,
+    'scrollRef' |
     'item' |
     'screenName' |
     'itemSize' |

@@ -1,5 +1,6 @@
 import { PixelRatio } from "react-native"
-import { useDerivedValue } from "react-native-reanimated"
+import { ScrollView } from "react-native-gesture-handler"
+import { useAnimatedRef, useDerivedValue } from "react-native-reanimated"
 
 import { imageSizeViewports } from "./helper"
 import { TTarotGameSettingsOnboardScreenItemContainerHookProps } from "./type"
@@ -12,6 +13,8 @@ export const useTarotGameSettingsOnboardScreenItemContainerHook = (props:TTarotG
     } = props
 
     const itemGap = Math.floor(4/PixelRatio.get())
+
+    const scrollRef = useAnimatedRef<ScrollView>()
 
     const numberOfColumns = useDerivedValue(()=>{
         return (onboardScreenDimensions.value.heigth && onboardScreenDimensions.value.width) ?
@@ -35,6 +38,7 @@ export const useTarotGameSettingsOnboardScreenItemContainerHook = (props:TTarotG
 
 
     return{
+        scrollRef,
         numberOfColumns,
         itemGap,
         itemSize,

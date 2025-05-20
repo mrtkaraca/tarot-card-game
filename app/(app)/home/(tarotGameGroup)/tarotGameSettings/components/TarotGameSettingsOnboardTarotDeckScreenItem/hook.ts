@@ -11,7 +11,8 @@ import {
 import { 
     GestureUpdateEvent, 
     GestureStateChangeEvent, 
-    Gesture 
+    Gesture, 
+    GestureType
 } from "react-native-gesture-handler";
 import { PanGestureHandlerEventPayload } from "react-native-screens";
 
@@ -25,6 +26,7 @@ import { TTarotGameSettingsOnboardTarotDeckScreenItemHookProps } from "./type";
 export const useTarotGameSettingsOnboardTarotDeckScreenItemHook = (props:TTarotGameSettingsOnboardTarotDeckScreenItemHookProps)=>{
 
     const {
+        scrollRef,
         item,
         itemSize,
         itemImageViewportSizes,
@@ -143,6 +145,7 @@ export const useTarotGameSettingsOnboardTarotDeckScreenItemHook = (props:TTarotG
     const exclusiveGesture = Gesture.Exclusive(doubleTapGesture,tapGesture)
 
     const panGesture = Gesture.Pan()
+    .simultaneousWithExternalGesture(scrollRef as any)
     .onStart(()=>{
         previousTranslateX.value = translateX.value;
     })
@@ -173,7 +176,7 @@ export const useTarotGameSettingsOnboardTarotDeckScreenItemHook = (props:TTarotG
             translateX.value = previousTranslateX.value
         }
     })
-
+    
     useAnimatedReaction(
         ()=>props.itemSize.value,
         ()=>{

@@ -1,11 +1,15 @@
-import { lazy, memo, Suspense } from "react";
-import { View, ScrollView } from "react-native";
+import { memo, useRef } from "react";
+import { View } from "react-native";
+
+import { GestureDetector, ScrollView } from "react-native-gesture-handler";
 
 import { TarotGameSettingsOnboardTarotDeckScreenItem } from "../TarotGameSettingsOnboardTarotDeckScreenItem";
 
 import { TTarotGameSettingsOnboarTarotDeckScreenItemContainerProps } from "./type";
 import { useTarotGameSettingsOnboardScreenItemContainerHook } from "./hook";
 import { TarotGameSettingsOnboardScreenItemContainerStyle } from "./style";
+import { useAnimatedRef } from "react-native-reanimated";
+
 
 export const TarotGameSettingsOnboardTarotDeckScreenItemContainer = memo((props:TTarotGameSettingsOnboarTarotDeckScreenItemContainerProps)=>{
 
@@ -15,6 +19,7 @@ export const TarotGameSettingsOnboardTarotDeckScreenItemContainer = memo((props:
     } = props
 
     const {
+        scrollRef,
         itemGap,
         itemSize,
         itemImageViewportSizes,
@@ -24,12 +29,13 @@ export const TarotGameSettingsOnboardTarotDeckScreenItemContainer = memo((props:
     });
 
     return(
-        <View 
+        <View
             style={
                 TarotGameSettingsOnboardScreenItemContainerStyle.TarotGameSettingsOnboardScreenItemContainerContainer
             }   
         >
             <ScrollView
+                ref={scrollRef}
                 showsVerticalScrollIndicator={false}
                 overScrollMode='never'
                 contentContainerStyle={[
@@ -43,6 +49,7 @@ export const TarotGameSettingsOnboardTarotDeckScreenItemContainer = memo((props:
                     return (
                         <TarotGameSettingsOnboardTarotDeckScreenItem
                             key={index}
+                            scrollRef={scrollRef}
                             item={item}
                             itemSize={itemSize}
                             itemImageViewportSizes={itemImageViewportSizes}

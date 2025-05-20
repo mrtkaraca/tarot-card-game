@@ -13,6 +13,7 @@ import { AlertModal } from '@/components/AlertModal';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { GlobalMMKVProvider } from '@/contexts/globalMMKV';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 SplashScreen.preventAutoHideAsync();
@@ -29,17 +30,26 @@ const RootLayout = () => {
 
 
     return (
-        <GlobalMMKVProvider>
-            <AlertModalProvider>
-                <PortalProvider>
-                    <GestureHandlerRootView>
-                        <StatusBar style='auto' />
-                        <Slot/>
-                        <AlertModal/>
-                    </GestureHandlerRootView>
-                </PortalProvider>
-            </AlertModalProvider>
-        </GlobalMMKVProvider>
+        <SafeAreaView
+            // some xiaomi problems
+            edges={['bottom','right','left']}
+            style={{
+                flex:1,
+                backgroundColor:'black'
+            }}
+        >
+            <GlobalMMKVProvider>
+                <AlertModalProvider>
+                    <PortalProvider>
+                        <GestureHandlerRootView>
+                            <StatusBar style='auto' />
+                            <Slot/>
+                            <AlertModal/>
+                        </GestureHandlerRootView>
+                    </PortalProvider>
+                </AlertModalProvider>
+            </GlobalMMKVProvider>
+        </SafeAreaView>
     )
 }
 
