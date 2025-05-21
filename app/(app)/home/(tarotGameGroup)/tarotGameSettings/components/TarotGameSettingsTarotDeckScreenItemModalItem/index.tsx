@@ -7,8 +7,15 @@ import { useTarotGameSettingsTarotDeckScreenItemModalItemHook } from "./hook"
 import { TarotGameSettingsTarotDeckScreenItemModalItemStyle } from "./style"
 import { TTarotGameSettingsTarotDeckScreenItemModalItemProps } from "./type"
 
+const staticServerUrl = process.env.EXPO_PUBLIC_STATIC_SERVER_URL
+
 export const TarotGameSettingsTarotDeckScreenItemModalItem = (props:TTarotGameSettingsTarotDeckScreenItemModalItemProps)=>{
   
+
+    const {
+        data
+    } = props
+
     const {
         containerAnimatedStyle,
     } = useTarotGameSettingsTarotDeckScreenItemModalItemHook({
@@ -16,6 +23,8 @@ export const TarotGameSettingsTarotDeckScreenItemModalItem = (props:TTarotGameSe
         rotateX:props.rotateX,
         rotateY:props.rotateY
     })
+
+    const imageUrl = staticServerUrl + data.image.url
 
     return(
         <Animated.View
@@ -29,8 +38,8 @@ export const TarotGameSettingsTarotDeckScreenItemModalItem = (props:TTarotGameSe
                 style={[
                     TarotGameSettingsTarotDeckScreenItemModalItemStyle.TarotGameSettingsTarotDeckScreenItemModalItemImageContainer,
                 ]} 
-                source={props.data.image.url}
-                placeholder={{blurhash:props.data.image.blurhash}}
+                source={imageUrl}
+                placeholder={{blurhash:data.image.blurhash}}
                 allowDownscaling={false}
                 transition={{
                     duration:1000,

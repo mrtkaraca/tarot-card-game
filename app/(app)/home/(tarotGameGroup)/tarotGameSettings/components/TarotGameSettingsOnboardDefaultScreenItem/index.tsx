@@ -38,7 +38,7 @@ export const  TarotGameSettingsOnboardDefaultScreenItem = (props:TTarotGameSetti
         itemImageViewportSizes
     });
 
-  
+
     return(
         <Animated.View 
             style={[

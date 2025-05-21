@@ -10,6 +10,9 @@ import { TarotGameSettingsTarotDeckScreenItemModalItemContainerStyle } from "./s
 import { TTarotGameSettingsTarotDeckScreenItemModalItemContainerProps } from "./type";
 
 export const TarotGameSettingsTarotDeckScreenItemModalItemContainer = (props:TTarotGameSettingsTarotDeckScreenItemModalItemContainerProps)=>{
+    const {
+        data
+    } = props
 
     const {
         panGesture,
@@ -26,13 +29,13 @@ export const TarotGameSettingsTarotDeckScreenItemModalItemContainer = (props:TTa
             >
                 <View style={TarotGameSettingsTarotDeckScreenItemModalItemContainerStyle.TarotGameSettingsTarotDeckScreenItemModalInnerContainer} >
                     <TarotGameSettingsTarotDeckScreenItemModalItem
-                        data={props.data.randomFrontFace}
+                        data={data.randomFrontFace}
                         isFrontFace={true}
                         rotateX={rotateX}
                         rotateY={rotateY}
                     />
                     <TarotGameSettingsTarotDeckScreenItemModalItem
-                        data={props.data.backFace}
+                        data={data.backFace}
                         isFrontFace={false}
                         rotateX={rotateX}
                         rotateY={rotateY}

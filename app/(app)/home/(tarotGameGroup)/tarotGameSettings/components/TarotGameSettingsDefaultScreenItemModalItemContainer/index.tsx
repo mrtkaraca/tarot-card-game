@@ -3,14 +3,22 @@ import { Image } from "expo-image"
 import { TTarotGameSettingsDefaultScreenItemModalItemContainerProps } from "./type"
 import { TarotGameSettingsDefaultScreenItemModalStyle } from "./style"
 
+const staticServerUrl = process.env.EXPO_PUBLIC_STATIC_SERVER_URL
 
 export const TarotGameSettingsDefaultScreenItemModalItemContainer = (props:TTarotGameSettingsDefaultScreenItemModalItemContainerProps)=>{
     
+
+    const {
+        data
+    } = props
+
+    const imageUrl = staticServerUrl + data.image.url
+
     return(
         <Image
             allowDownscaling={false}
-            source={props.data.image.url}
-            placeholder={{blurhash:props.data.image.blurhash}}
+            source={imageUrl}
+            placeholder={{blurhash:data.image.blurhash}}
             contentFit="cover"
             cachePolicy={'disk'}
             transition={{

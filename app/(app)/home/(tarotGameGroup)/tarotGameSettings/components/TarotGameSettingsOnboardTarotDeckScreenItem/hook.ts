@@ -23,6 +23,8 @@ import { useTarotGameGroupStore } from "@/contexts/tarotGameGroup";
 
 import { TTarotGameSettingsOnboardTarotDeckScreenItemHookProps } from "./type";
 
+const staticServerUrl = process.env.EXPO_PUBLIC_STATIC_SERVER_URL
+
 export const useTarotGameSettingsOnboardTarotDeckScreenItemHook = (props:TTarotGameSettingsOnboardTarotDeckScreenItemHookProps)=>{
 
     const {
@@ -74,6 +76,7 @@ export const useTarotGameSettingsOnboardTarotDeckScreenItemHook = (props:TTarotG
 
     const randomFrontFaceImageViewportSizeSource = itemImageViewportSizes.map((viewPorts)=>{
         const uri = 
+            staticServerUrl +
             `${item.randomFrontFace.image.url.split(item.randomFrontFace.image.ext)[0]}` +
             `-` + 
             `${viewPorts.width}` + 
@@ -90,6 +93,7 @@ export const useTarotGameSettingsOnboardTarotDeckScreenItemHook = (props:TTarotG
 
     const backFaceImageViewportSizeSource = itemImageViewportSizes.map((viewPorts)=>{
         const uri = 
+            staticServerUrl +
             `${item.backFace.image.url.split(item.backFace.image.ext)[0]}` +
             `-` + 
             `${viewPorts.width}` + 

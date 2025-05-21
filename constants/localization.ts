@@ -74,6 +74,7 @@ export const en = {
             }
         },
         tarotGameDataFetch:{
+            reFetch:'Try Again',
             noTarotCursor:'Seems like no cursor to use!',
             noTarotDeck:'Seems like no deck to use!',
             noTarotBackground:'Seems like no background to use!',

@@ -6,10 +6,10 @@ import {
 } from "react";
 import { useAnimatedReaction, useSharedValue } from "react-native-reanimated";
 import {Image} from 'expo-image'
+import { useTranslation } from "react-i18next";
 
 import { useTarotGameStore } from "@/contexts/tarotGame";
 import { useTarotGameGroupStore } from "@/contexts/tarotGameGroup";
-
 
 import { TErrorViewProps } from "@/components/ErrorView/type";
 import { TDataLoadingData } from "@/components/DataLoading/type";
@@ -17,13 +17,15 @@ import { TDataLoadingData } from "@/components/DataLoading/type";
 import { getTarotGameData } from "@/api/tarotGameGroup";
 import { useApiErrorHandler } from "@/api/hook";
 
-import { TTarotGamePrefetchMap } from "./type";
-
-import { TCheckTarotGameData, TTarotGameDataFetchHookProps } from "./type"
+import { TarotGameColors } from "@/constants/color";
 
 import { TTarotGameAsset, TTarotGameData } from "../type";
 
-import { useTranslation } from "react-i18next";
+import { TTarotGamePrefetchMap } from "./type";
+import { TCheckTarotGameData, TTarotGameDataFetchHookProps } from "./type"
+
+
+const staticServerUrl = process.env.EXPO_PUBLIC_STATIC_SERVER_URL
 
 export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
 
@@ -69,6 +71,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
             let viewPorts = tarotGameImageQualitys.filter((qualitys)=>qualitys.id === tarotGameSelectedImageQuality).map((quality)=>quality.viewports[asset])[0]
     
             let uri = 
+                staticServerUrl +
                 `${pureTarotGameDataRef.current[asset].image.url.split(pureTarotGameDataRef.current[asset].image.ext)[0]}` +
                 `-` + 
                 `${viewPorts.width}` + 
@@ -87,6 +90,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
             let viewPorts = tarotGameImageQualitys.filter((qualitys)=>qualitys.id === tarotGameSelectedImageQuality).map((quality)=>quality.viewports[asset])[0]
     
             let backFaceUri = 
+                staticServerUrl +
                 `${pureTarotGameDataRef.current[asset].backFace.image.url.split(pureTarotGameDataRef.current[asset].backFace.image.ext)[0]}` +
                 `-` + 
                 `${viewPorts.width}` + 
@@ -100,6 +104,7 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
             for(let i = 0 ; i < pureTarotGameDataRef.current[asset].frontFaces.length; i++){
     
                 let frotFaceUri = 
+                    staticServerUrl +
                     `${pureTarotGameDataRef.current[asset].frontFaces[i].image.url.split(pureTarotGameDataRef.current[asset].frontFaces[i].image.ext)[0]}` +
                     `-` + 
                     `${viewPorts.width}` + 
@@ -267,7 +272,8 @@ export const useTarotGameDataFetchHook = (props:TTarotGameDataFetchHookProps)=>{
                         isVisible:true,
                         errorData:err,
                         textButtonProps:{
-                            textButtonTextLabel:'heh',
+                            textButtonOpacityColor:TarotGameColors.TextButtons.buttonOpacityColor,
+                            textButtonTextLabel:t('tarotGame.tarotGameDataFetch.reFetch'),
                             handleOnPress:()=>{
                                 setIsPrefetch(true)
                                 setErrorViewData(null)

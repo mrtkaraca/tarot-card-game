@@ -12,6 +12,8 @@ import { useTarotGameGroupStore } from "@/contexts/tarotGameGroup";
 import { TTarotGameSettingsOnboardDefaultScreenItemHookProps } from "./type";
 import { ImageSource } from "expo-image";
 
+const staticServerUrl = process.env.EXPO_PUBLIC_STATIC_SERVER_URL
+
 export const useTarotGameSettingsOnboardDefaultScreenItemHook = (props:TTarotGameSettingsOnboardDefaultScreenItemHookProps)=>{
 
     const {
@@ -36,6 +38,7 @@ export const useTarotGameSettingsOnboardDefaultScreenItemHook = (props:TTarotGam
 
     const itemImageViewportSizeSource:ImageSource[] = itemImageViewportSizes.map((viewPorts)=>{
         const uri = 
+            staticServerUrl +
             `${item.image.url.split(item.image.ext)[0]}` +
             `-` + 
             `${viewPorts.width}` + 
