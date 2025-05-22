@@ -24,8 +24,6 @@ export const TarotGameCardModalCardContainer = (props:TTarotGameCardModalCardCon
     } = useTarotGameCardModalCardContainerHook({
         
     })
-    
-    console.log(cardData,'here')
 
     return(
         <GestureDetector
